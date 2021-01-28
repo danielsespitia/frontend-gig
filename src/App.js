@@ -1,21 +1,21 @@
-import styled from 'styled-components';
-import './App.css';
-import MyProfileSettings from './components/MyProfileSettings/MyProfileSettings';
-import MyProfileInfo from './components/MyProfileInfo/MyProfileInfo';
+import "./App.css";
+import {
+  BrowserRouter as Router,
+  Redirect,
+  Route,
+  Switch,
+} from "react-router-dom";
 
-const PageContainer = styled.div `
-  display: flex;
-  justify-content: space-evenly;
-`;
+import Profile from "./pages/profile/profile";
 
 function App() {
   return (
     <div className="App">
-      <h1>Home</h1>
-      <PageContainer>
-        <MyProfileSettings/>
-        <MyProfileInfo/>
-      </PageContainer>
+      <Router>
+        <Switch>
+          <Route exact path="app/profile" component={Profile} />
+        </Switch>
+      </Router>
     </div>
   );
 }

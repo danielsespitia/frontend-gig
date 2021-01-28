@@ -1,9 +1,9 @@
 function MyProfileInfo() {
   return (
     <>
-    <p>My Profile Info</p>
+      <p>My Profile Info</p>
     </>
-  )
+  );
 }
 
 export default MyProfileInfo;
