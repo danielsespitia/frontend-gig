@@ -2,10 +2,10 @@ import MyProfileSettings from "../../components/MyProfileSettings/MyProfileSetti
 import MyProfileInfo from "../../components/MyProfileInfo/MyProfileInfo";
 import { PageContainer } from "../StyledPages/StyledPages";
 
-function Profile() {
+function Messages() {
   return (
-    <div className="profile">
-      <p><strong>Profile Page</strong></p>
+    <div className="messages">
+      <p><strong>Messages</strong></p>
       <PageContainer>
         <MyProfileSettings />
         <MyProfileInfo />
@@ -14,4 +14,4 @@ function Profile() {
   );
 }
 
-export default Profile;
+export default Messages;
