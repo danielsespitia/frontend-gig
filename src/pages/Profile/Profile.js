@@ -1,12 +1,12 @@
 import MyProfileSettings from "../../components/MyProfileSettings/MyProfileSettings";
 import MyProfileInfo from "../../components/MyProfileInfo/MyProfileInfo";
-import { PageContainer } from "./profile-styles";
+import { PageContainer } from "./ProfileStyles";
 
 function Profile() {
   return (
     <div className="profile">
+      <h1>Profile Page</h1>
       <PageContainer>
-        <h1>Prueba</h1>
         <MyProfileSettings />
         <MyProfileInfo />
       </PageContainer>
