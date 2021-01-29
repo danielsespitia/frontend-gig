@@ -1,5 +1,5 @@
 import MyProfileSettings from "../../components/MyProfileSettings/MyProfileSettings";
-import MyProfileInfo from "../../components/MyProfileInfo/MyProfileInfo";
+import MyProfileEdit from "../../components/MyProfileEdit/MyProfileEdit";
 import { PageContainer } from "../StyledPages/StyledPages";
 
 function ProfileEdit() {
@@ -8,7 +8,7 @@ function ProfileEdit() {
       <p><strong>Profile Edit</strong></p>
       <PageContainer>
         <MyProfileSettings />
-        <MyProfileInfo />
+        <MyProfileEdit />
       </PageContainer>
     </div>
   );
