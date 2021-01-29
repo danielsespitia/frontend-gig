@@ -22,7 +22,7 @@ function App() {
           <Route exact path="/app/discover" component={Discover} />
           <Route exact path="/app/profile" component={Profile} />
           <Route exact path="/app/profile/edit" component={ProfileEdit} />
-          <Route exact path="/app/messages/" component={Messages} />
+          <Route exact path="/app/messages/:userId" component={Messages} />
           <Route component={NotFound} />
         </Switch>
       </Router>

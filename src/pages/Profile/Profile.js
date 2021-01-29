@@ -5,7 +5,9 @@ import { PageContainer } from "../StyledPages/StyledPages";
 function Profile() {
   return (
     <div className="profile">
-      <p><strong>Profile Page</strong></p>
+      <p>
+        <strong>Profile Page</strong>
+      </p>
       <PageContainer>
         <MyProfileSettings />
         <MyProfileInfo />

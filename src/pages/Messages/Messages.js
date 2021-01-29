@@ -1,14 +1,16 @@
-import MyProfileSettings from "../../components/MyProfileSettings/MyProfileSettings";
-import MyProfileInfo from "../../components/MyProfileInfo/MyProfileInfo";
+import MessageList from "../../components/MessageList/MessageList";
+import MessageRender from "../../components/MessageRender/MessageRender";
 import { PageContainer } from "../StyledPages/StyledPages";
 
 function Messages() {
   return (
     <div className="messages">
-      <p><strong>Messages</strong></p>
+      <p>
+        <strong>Messages</strong>
+      </p>
       <PageContainer>
-        <MyProfileSettings />
-        <MyProfileInfo />
+        <MessageList />
+        <MessageRender />
       </PageContainer>
     </div>
   );
