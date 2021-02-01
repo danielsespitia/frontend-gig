@@ -4,6 +4,12 @@ export const Form = styled.form`
   display: grid;
 `;
 
+export const Error = styled.span`
+  font-size: 12px;
+  color: grey;
+  font-style: italic;
+`;
+
 export function SignUpForm({
   name,
   email,
@@ -13,11 +19,11 @@ export function SignUpForm({
   handleChange,
   handleSubmit,
   errorsPassword,
-  errorsAcount,
+  errorsAccount,
 }) {
   return (
     <div>
-      <span>{errorsAcount}</span>
+      <Error>{errorsAccount}</Error>
       <Form onSubmit={handleSubmit}>
         <label className="name-label" htmlFor="name">
           Nombre
@@ -71,7 +77,7 @@ export function SignUpForm({
           placeholder="***********"
           required
         />
-        <span>{errorsPassword}</span>
+        <Error>{errorsPassword}</Error>
         <span>
           <label className="terms-label" htmlFor="terms">
             Estoy de acuerdo con los Términos y Condiciones

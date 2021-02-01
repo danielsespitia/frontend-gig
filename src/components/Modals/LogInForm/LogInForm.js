@@ -1,26 +1,28 @@
-import styled from 'styled-components'
+import styled from "styled-components";
 
 export const Form = styled.form`
   display: grid;
 `;
 
-export function LogInForm ({
-  email, 
+export const Error = styled.span`
+  font-size: 12px;
+  color: grey;
+  font-style: italic;
+`;
+
+export function LogInForm({
+  email,
   password,
   handleSubmit,
   handleChange,
-  errorsLogIn
-}) 
-{
-  return(
+  message,
+  errorsLogIn,
+}) {
+  return (
     <div>
       <Form onSubmit={handleSubmit}>
-        <span>{ errorsLogIn }</span>
-        <label
-          htmlFor="email"
-        >
-          Correo electrónico
-        </label>
+        <Error>{errorsLogIn}</Error>
+        <label htmlFor="email">Correo electrónico</label>
         <input
           id="email"
           name="email"
@@ -30,11 +32,7 @@ export function LogInForm ({
           placeholder="daniel@gig.com"
           required
         />
-        <label 
-          htmlFor="password"
-        >
-          Contraseña
-        </label>
+        <label htmlFor="password">Contraseña</label>
         <input
           id="password"
           name="password"
@@ -49,9 +47,12 @@ export function LogInForm ({
             className="Form__submit-input"
             type="submit"
             value="Iniciar sesión"
-          >Iniciar sesión</button>
+          >
+            Iniciar sesión
+          </button>
         </div>
       </Form>
+      <span>{message}</span>
     </div>
-  )
-} 
+  );
+}

@@ -13,16 +13,25 @@ import Profile from "./pages/Profile/Profile";
 import ProfileEdit from "./pages/ProfileEdit/ProfileEdit";
 import Messages from "./pages/Messages/Messages";
 
+function PrivateRoute(props) {
+  
+  const token = localStorage.getItem('token')
+
+  if(!token) return <Redirect to="/" />
+  
+  return <Route {...props} />
+}
+
 function App() {
   return (
     <div className="App">
       <Router>
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route exact path="/app/discover" component={Discover} />
-          <Route exact path="/app/profile" component={Profile} />
-          <Route exact path="/app/profile/edit" component={ProfileEdit} />
-          <Route exact path="/app/messages/:userId" component={Messages} />
+          <PrivateRoute exact path="/app/discover" component={Discover} />
+          <PrivateRoute exact path="/app/profile" component={Profile} />
+          <PrivateRoute exact path="/app/profile/edit" component={ProfileEdit} />
+          <PrivateRoute exact path="/app/messages/:userId" component={Messages} />
           <Route component={NotFound} />
         </Switch>
       </Router>

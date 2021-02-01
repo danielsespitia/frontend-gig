@@ -1,7 +1,9 @@
 function MyProfileEdit() {
   return (
     <>
-      <p>My Profile Edit</p>
+      <div>
+        <p>My Profile Edit</p>
+      </div>
     </>
   );
 }

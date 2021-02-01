@@ -1,7 +1,17 @@
+import { useContext } from "react";
+import { AuthContext } from "../../store/AuthContext";
+
 function MyProfileSettings() {
+  const { logout } = useContext(AuthContext);
+
   return (
     <>
-      <p>My Profile Settings</p>
+      <div>
+        <p>My Profile Settings</p>
+        <a href="/" onClick={logout}>
+          <button>Cerrar Sesion</button>
+        </a>
+      </div>
     </>
   );
 }
