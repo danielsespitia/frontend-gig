@@ -62,10 +62,10 @@ function SignUpModal() {
   };
 
   const validate = () => {
-    const arePasswordEqual =
+    const arePasswordsEqual =
       !!password && !!confirmPassword && password === confirmPassword;
 
-    if (!arePasswordEqual) {
+    if (!arePasswordsEqual) {
       setErrors({ password: "La contraseñas no coinciden!" });
       return false;
     }

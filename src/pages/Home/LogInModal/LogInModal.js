@@ -46,8 +46,7 @@ function LogInModal() {
       setMessage("Inicio de sesion exitoso");
     } catch (err) {
       localStorage.removeItem("token");
-      const newError = { login: "Usuario o contraseña incorrectos" };
-      setErrors({ errors: newError });
+      setErrors({ login: "Usuario o contraseña incorrectos" });
     }
   };
 
