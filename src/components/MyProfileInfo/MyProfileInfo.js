@@ -1,7 +1,12 @@
 function MyProfileInfo() {
   return (
     <>
-      <p>My Profile Info</p>
+      <div>
+        <p>My Profile Info</p>
+        <a href="/app/profile/edit">
+          <button>Editar Perfil</button>
+        </a>
+      </div>
     </>
   );
 }

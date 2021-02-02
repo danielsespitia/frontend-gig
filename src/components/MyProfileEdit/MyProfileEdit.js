@@ -1,8 +1,132 @@
-function MyProfileEdit() {
+function MyProfileEdit({
+  name,
+  video,
+  email,
+  description,
+  city,
+  instruments,
+  youtubeAccount,
+  twitterUsername,
+  facebookAccount,
+  instagramAccount,
+  genres,
+  influences,
+  isProfessional,
+  bands,
+  lookingFor,
+  isProducer,
+  premiumAccount,
+  handleChange,
+}) {
   return (
     <>
       <div>
-        <p>My Profile Edit</p>
+        <p>Mi Perfil (edit)</p>
+        <a href="/app/profile">
+          <button>Actualizar</button>
+        </a>
+        <div>
+          <p>
+            <strong>Nombre:</strong>
+          </p>
+          <p>{name}</p>
+        </div>
+        <div>
+          <p>
+            <strong>Video:</strong>
+          </p>
+          <p>{video}</p>
+        </div>
+        <div>
+          <p>
+            <strong>Correo Electronico:</strong>
+          </p>
+          <p>{email}</p>
+        </div>
+        <div>
+          <p>
+            <strong>Descripcion:</strong>
+          </p>
+          <p>{description}</p>
+        </div>
+        <div>
+          <p>
+            <strong>Ciudad:</strong>
+          </p>
+          <p>{city}</p>
+        </div>
+        <div>
+          <p>
+            <strong>Instrumentos:</strong>
+          </p>
+          <p>{instruments}</p>
+        </div>
+        <div>
+          <p>
+            <strong>Canal de YouTube:</strong>
+          </p>
+          <p>{youtubeAccount}</p>
+        </div>
+        <div>
+          <p>
+            <strong>Twitter:</strong>
+          </p>
+          <p>{twitterUsername}</p>
+        </div>
+        <div>
+          <p>
+            <strong>Facebook:</strong>
+          </p>
+          <p>{facebookAccount}</p>
+        </div>
+        <div>
+          <p>
+            <strong>Instagram:</strong>
+          </p>
+          <p>{instagramAccount}</p>
+        </div>
+        <div>
+          <p>
+            <strong>Generos:</strong>
+          </p>
+          <p>{genres}</p>
+        </div>
+        <div>
+          <p>
+            <strong>Influencias:</strong>
+          </p>
+          <p>{influences}</p>
+        </div>
+        <div>
+          <p>
+            <strong>Perfil de Musico:</strong>
+          </p>
+          <p>{isProfessional}</p>
+        </div>
+        <div>
+          <p>
+            <strong>Bandas:</strong>
+          </p>
+          <p>{bands}</p>
+        </div>
+        <div>
+          <p>
+            <strong>Buscando:</strong>
+          </p>
+          <p>{lookingFor}</p>
+        </div>
+        <div>
+          <p>
+            <strong>Productor:</strong>
+          </p>
+          <p>{isProducer}</p>
+        </div>
+        <div>
+          <p>
+            <strong>Membresia:</strong>
+          </p>
+          <p>{premiumAccount}</p>
+        </div>
       </div>
     </>
   );
