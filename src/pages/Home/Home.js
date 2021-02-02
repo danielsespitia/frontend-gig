@@ -70,8 +70,8 @@ function Home() {
             overlay: {},
             content: {
               margin: "auto",
-              height: "25%",
-              width: "20%",
+              height: "230px",
+              width: "260px",
             },
           }}
         >
@@ -98,8 +98,8 @@ function Home() {
             overlay: {},
             content: {
               margin: "auto",
-              height: "40%",
-              width: "20%",
+              height: "360px",
+              width: "260px",
             },
           }}
         >

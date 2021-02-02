@@ -7,7 +7,7 @@ function MyProfileSettings() {
   return (
     <>
       <div>
-        <p>My Profile Settings</p>
+        <p>Mi Perfil (settings)</p>
         <a href="/" onClick={logout}>
           <button>Cerrar Sesion</button>
         </a>

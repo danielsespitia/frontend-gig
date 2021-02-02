@@ -42,8 +42,8 @@ function LogInModal() {
       const pathUser = "app/profile/edit";
       localStorage.setItem("pathUser", pathUser);
       isAuthenticated(token, pathUser);
-      history.push(`${pathUser}`);
       setMessage("Inicio de sesion exitoso");
+      history.push(`${pathUser}`);
     } catch (err) {
       localStorage.removeItem("token");
       setErrors({ login: "Usuario o contraseña incorrectos" });
