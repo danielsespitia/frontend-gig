@@ -11,6 +11,8 @@ function ProfileEdit() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [video, setVideo] = useState("");
+  const [videoStart, setVideoStart] = useState(0);
+  const [videoEnd, setVideoEnd] = useState(0);
   const [description, setDescription] = useState("");
   const [city, setCity] = useState("");
   const [instruments, setInstruments] = useState([]);
@@ -42,6 +44,8 @@ function ProfileEdit() {
         });
         setName(data.name || "");
         setVideo(data.video || "");
+        setVideoStart(data.videoStart || 0);
+        setVideoEnd(data.videoEnd || 0);
         setEmail(data.email || "");
         setDescription(data.description || "");
         setCity(data.city || "");
@@ -125,6 +129,55 @@ function ProfileEdit() {
     }
   };
 
+  const onSubmit = async (data) => {
+    const {
+      name,
+      email,
+      video,
+      videoStart,
+      videoEnd,
+      description,
+      city,
+      youtubeAccount,
+      twitterUsername,
+      facebookAccount,
+      instagramAccount,
+      isProducer,
+      isProfessional,
+      lookingFor,
+    } = data;
+    try {
+      const token = localStorage.getItem("token");
+      await axios({
+        method: "PUT",
+        baseURL: process.env.REACT_APP_SERVER_URL,
+        url: `/users`,
+        data: {
+          name,
+          email,
+          description,
+          city,
+          youtubeAccount,
+          twitterUsername,
+          facebookAccount,
+          instagramAccount,
+          isProducer,
+          isProfessional,
+          lookingFor,
+          video,
+          videoStart,
+          videoEnd,
+        },
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      console.log("exitosa");
+    } catch (err) {
+      console.log("c mamo");
+    }
+  };
+
   return (
     <div className="profile-edit">
       <p>
@@ -135,6 +188,8 @@ function ProfileEdit() {
         <MyProfileEdit
           name={name}
           video={video}
+          videoStart={videoStart}
+          videoEnd={videoEnd}
           email={email}
           description={description}
           city={city}
@@ -151,6 +206,7 @@ function ProfileEdit() {
           isProducer={isProducer}
           premiumAccount={premiumAccount}
           handleChange={handleChange}
+          onSubmit={onSubmit}
         />
       </PageContainer>
     </div>

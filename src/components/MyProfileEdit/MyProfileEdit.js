@@ -18,6 +18,8 @@ export const InfoContainer = styled.div`
 function MyProfileEdit({
   name,
   video,
+  videoStart,
+  videoEnd,
   email,
   description,
   city,
@@ -34,23 +36,23 @@ function MyProfileEdit({
   isProducer,
   premiumAccount,
   handleChange,
+  onSubmit
 }) {
   const { register, handleSubmit } = useForm();
-
-  const onSubmit = (data) => {
-    console.log(data);
-  };
 
   return (
     <ProfileContainer>
       <p>Mi Perfil (edit)</p>
       <VideoContainer>
-        <div>
-          <p>
-            <strong>Video:</strong>
-          </p>
-          <p>{video}</p>
-        </div>
+        {/* <Iframe
+          title="userVideo"
+          width="560"
+          height="315"
+          src="https://www.youtube.com/embed/MemRPyUHQ6g?start={videoStart}&end={videoEnd}"
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+        ></Iframe> */}
       </VideoContainer>
       <InfoContainer>
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -230,15 +232,25 @@ function MyProfileEdit({
             >
               <option value="collaboration">Colaborar</option>
               <option value="session-musician">Musico de Sesion</option>
-              <option value="false">Empirico</option>
-              <option value="true">Profesional</option>
+              <option value="make-a-band">Crear Banda</option>
+              <option value="complete-a-band">Completar Banda</option>
+              <option value="producer">Productor</option>
+              <option value="mix-engineer">Ingeniero de Mezcla</option>
             </select>
           </div>
           <div>
-            <p>
-              <strong>Productor:</strong>
-            </p>
-            <p>{isProducer}</p>
+            <label className="isProducer-label">Productor:</label>
+            <select
+              id="isProducer"
+              name="isProducer"
+              value={isProducer}
+              onChange={handleChange}
+              ref={register}
+              required
+            >
+              <option value="false">No</option>
+              <option value="true">Si</option>
+            </select>
           </div>
           <a href="/app/profile">
             <button
