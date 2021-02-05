@@ -40,23 +40,23 @@ function ProfileEdit() {
             Authorization: `Bearer ${token}`,
           },
         });
-        setName(data.name);
-        setVideo(data.video);
-        setEmail(data.email);
-        setDescription(data.description);
-        setCity(data.city);
-        setInstruments(data.instruments);
-        setYoutubeAccount(data.youtubeAccount);
-        setTwitterUsername(data.twitterUsername);
-        setFacebookAccount(data.facebookAccount);
-        setInstagramAccount(data.instagramAccount);
-        setGenres(data.genres);
-        setInfluences(data.influences);
-        setIsProfessional(data.isProfessional);
-        setBands(data.bands);
-        setLookingFor(data.lookingFor);
-        setIsProducer(data.isProducer);
-        setPremiumAccount(data.premiumAccount);
+        setName(data.name || "");
+        setVideo(data.video || "");
+        setEmail(data.email || "");
+        setDescription(data.description || "");
+        setCity(data.city || "");
+        setInstruments(data.instruments || []);
+        setYoutubeAccount(data.youtubeAccount || "");
+        setTwitterUsername(data.twitterUsername || "");
+        setFacebookAccount(data.facebookAccount || "");
+        setInstagramAccount(data.instagramAccount || "");
+        setGenres(data.genres || []);
+        setInfluences(data.influences || []);
+        setIsProfessional(data.isProfessional || false);
+        setBands(data.bands || "");
+        setLookingFor(data.lookingFor || "Collaboration");
+        setIsProducer(data.isProducer || false);
+        setPremiumAccount(data.premiumAccount || false);
       } catch (error) {
         localStorage.removeItem("token");
         history.push("/");
