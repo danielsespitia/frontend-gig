@@ -10,6 +10,18 @@ export const Error = styled.span`
   font-style: italic;
 `;
 
+export const ButtonSpan = styled.span`
+  display: flex;
+  justify-content: center;
+  padding-top: 10px;
+`;
+
+export const ItemContainer = styled.span`
+  display: inherit;
+  padding-top: 5px;
+  padding-bottom: 5px;
+`;
+
 export function SignUpForm({
   name,
   email,
@@ -25,78 +37,88 @@ export function SignUpForm({
     <div>
       <Error>{errorsAccount}</Error>
       <Form onSubmit={handleSubmit}>
-        <label className="name-label" htmlFor="name">
-          Nombre
-        </label>
-        <input
-          className="name-input"
-          id="name"
-          type="text"
-          name="name"
-          value={name}
-          onChange={handleChange}
-          placeholder="Daniel Espitia"
-          required
-        />
-        <label className="email-label" htmlFor="email">
-          Correo electrónico
-        </label>
-        <input
-          className="email-input"
-          id="email"
-          type="email"
-          name="email"
-          value={email}
-          onChange={handleChange}
-          placeholder="daniel@gig.com"
-          required
-        />
-        <label className="password-label" htmlFor="password">
-          Contraseña
-        </label>
-        <input
-          className="password-input"
-          id="password"
-          type="password"
-          name="password"
-          value={password}
-          onChange={handleChange}
-          placeholder="***********"
-          required
-        />
-        <label className="password-label" htmlFor="confirmPassword">
-          Confirmar contraseña
-        </label>
-        <input
-          className="password-input"
-          id="confirmPassword"
-          type="password"
-          name="confirmPassword"
-          value={confirmPassword}
-          onChange={handleChange}
-          placeholder="***********"
-          required
-        />
-        <Error>{errorsPassword}</Error>
-        <span>
-          <label className="terms-label" htmlFor="terms">
-            Estoy de acuerdo con los Términos y Condiciones
+        <ItemContainer>
+          <label className="name-label" htmlFor="name">
+            Nombre:
           </label>
           <input
-            className="terms-input"
-            id="terms"
-            type="checkbox"
-            name="terms"
-            value={terms}
+            className="name-input"
+            id="name"
+            type="text"
+            name="name"
+            value={name}
             onChange={handleChange}
+            placeholder="Daniel Espitia"
             required
           />
-        </span>
-        <span className="submit-span">
-          <button className="submit-input" type="submit">
+        </ItemContainer>
+        <ItemContainer>
+          <label className="email-label" htmlFor="email">
+            Correo electrónico:
+          </label>
+          <input
+            className="email-input"
+            id="email"
+            type="email"
+            name="email"
+            value={email}
+            onChange={handleChange}
+            placeholder="daniel@gig.com"
+            required
+          />
+        </ItemContainer>
+        <ItemContainer>
+          <label className="password-label" htmlFor="password">
+            Contraseña:
+          </label>
+          <input
+            className="password-input"
+            id="password"
+            type="password"
+            name="password"
+            value={password}
+            onChange={handleChange}
+            placeholder="***********"
+            required
+          />
+        </ItemContainer>
+        <ItemContainer>
+          <label className="password-label" htmlFor="confirmPassword">
+            Confirmar contraseña:
+          </label>
+          <input
+            className="password-input"
+            id="confirmPassword"
+            type="password"
+            name="confirmPassword"
+            value={confirmPassword}
+            onChange={handleChange}
+            placeholder="***********"
+            required
+          />
+          <Error>{errorsPassword}</Error>
+        </ItemContainer>
+        <ItemContainer>
+          <span>
+            <label className="terms-label" htmlFor="terms">
+              Estoy de acuerdo con los Términos y Condiciones
+            </label>
+            <input
+              className="terms-input"
+              id="terms"
+              type="checkbox"
+              name="terms"
+              value={terms}
+              onChange={handleChange}
+              required
+            />
+          </span>
+        </ItemContainer>
+        <ButtonSpan className="submit-span">
+          <button className="submit-button" type="submit">
             Registrarse
           </button>
-        </span>
+        </ButtonSpan>
       </Form>
     </div>
   );

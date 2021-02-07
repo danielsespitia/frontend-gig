@@ -5,6 +5,18 @@ import { useState } from "react";
 import SignUpModal from "../Home/SignUpModal/SignUpModal";
 import LogInModal from "../Home/LogInModal/LogInModal";
 
+export const HomeContainer = styled.div`
+  color: white;
+  background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.3)),
+    url("https://img.wavescdn.com/1lib/images/blog/preview/make-online-music-collabs-more-productive.jpg");
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+`;
+
 export const Header = styled.header`
   display: flex;
   justify-content: space-between;
@@ -24,8 +36,9 @@ export const LogInButton = styled.div`
   margin-right: 1rem;
 `;
 
-export const Body = styled.div`
-  height: 50rem;
+export const Greeting = styled.div`
+  display: inherit;
+  flex-direction: column;
   margin: auto;
 `;
 
@@ -49,7 +62,7 @@ function Home() {
   const [showSignUpModal, setShowSignUpModal] = useState(false);
 
   return (
-    <div className="home">
+    <HomeContainer className="home">
       <Header className="header">
         <LogoContainer className="logo">
           <Logo
@@ -84,7 +97,7 @@ function Home() {
           <LogInModal />
         </Modal>
       </Header>
-      <Body className="body">
+      <Greeting>
         <div>
           <h1>Descubre musicos cerca</h1>
         </div>
@@ -98,7 +111,7 @@ function Home() {
             overlay: {},
             content: {
               margin: "auto",
-              height: "360px",
+              height: "380px",
               width: "260px",
             },
           }}
@@ -111,8 +124,8 @@ function Home() {
           </ModalHeader>
           <SignUpModal />
         </Modal>
-      </Body>
-    </div>
+      </Greeting>
+    </HomeContainer>
   );
 }
 
