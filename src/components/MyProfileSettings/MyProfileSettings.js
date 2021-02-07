@@ -2,10 +2,8 @@ import { useContext } from "react";
 import { AuthContext } from "../../store/AuthContext";
 import styled from "styled-components";
 
-export const ProfileContainer = styled.div`
+export const MyProfileSettingsContainer = styled.div`
   display: inherit;
-  height: 100vh;
-  width: 100vw;
   flex-direction: column;
 `;
 
@@ -13,7 +11,7 @@ function MyProfileSettings({ handleDelete }) {
   const { logout } = useContext(AuthContext);
 
   return (
-    <ProfileContainer>
+    <MyProfileSettingsContainer>
       <p>Mi Perfil</p>
       <a href="/" onClick={logout}>
         <button>Cerrar Sesion</button>
@@ -21,7 +19,7 @@ function MyProfileSettings({ handleDelete }) {
       <div>
         <button onClick={handleDelete}>Eliminar Perfil</button>
       </div>
-    </ProfileContainer>
+    </MyProfileSettingsContainer>
   );
 }
 

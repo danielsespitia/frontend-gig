@@ -15,7 +15,6 @@ export const ProfileContainer = styled.div`
   align-items: center;
   align-self: center;
   width: 560px;
-  color: white;
 `;
 
 export const VideoContainer = styled.div`
