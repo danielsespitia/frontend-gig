@@ -1,12 +1,16 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
+import Swal from "sweetalert2";
+
+import { AuthContext } from "../../store/AuthContext";
 
 import MyProfileSettings from "../../components/MyProfileSettings/MyProfileSettings";
 import MyProfileEdit from "../../components/MyProfileEdit/MyProfileEdit";
 import { PageContainer } from "../StyledPages/StyledPages";
 
 function ProfileEdit() {
+  const { logout } = useContext(AuthContext);
   const history = useHistory();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -172,9 +176,26 @@ function ProfileEdit() {
           Authorization: `Bearer ${token}`,
         },
       });
-      console.log("exitosa");
+    } catch (err) {}
+  };
+
+  const handleDelete = async (e) => {
+    try {
+      const token = localStorage.getItem("token");
+      axios({
+        method: "DELETE",
+        baseURL: process.env.REACT_APP_SERVER_URL,
+        url: `/users`,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      alert("Tu cuenta fue eliminada");
+      localStorage.removeItem("token");
+      logout();
+      history.push("/");
     } catch (err) {
-      console.log("c mamo");
+      console.log(err);
     }
   };
 
@@ -184,7 +205,7 @@ function ProfileEdit() {
         <strong>Profile Edit</strong>
       </p>
       <PageContainer>
-        <MyProfileSettings />
+        <MyProfileSettings handleDelete={handleDelete} />
         <MyProfileEdit
           name={name}
           video={video}
