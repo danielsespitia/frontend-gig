@@ -4,6 +4,8 @@ import styled from "styled-components";
 
 export const ProfileContainer = styled.div`
   display: inherit;
+  height: 100vh;
+  width: 100vw;
   flex-direction: column;
 `;
 
@@ -12,11 +14,13 @@ function MyProfileSettings({ handleDelete }) {
 
   return (
     <ProfileContainer>
-      <p>Mi Perfil (settings)</p>
+      <p>Mi Perfil</p>
       <a href="/" onClick={logout}>
         <button>Cerrar Sesion</button>
       </a>
-      <button onClick={handleDelete}>Eliminar Perfil</button>
+      <div>
+        <button onClick={handleDelete}>Eliminar Perfil</button>
+      </div>
     </ProfileContainer>
   );
 }
