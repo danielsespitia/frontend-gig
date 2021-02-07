@@ -194,7 +194,9 @@ function ProfileEdit() {
           Authorization: `Bearer ${token}`,
         },
       });
-    } catch (err) {}
+      history.push("/app/profile");
+    } catch (err) {
+    }
   };
 
   const handleDelete = async (e) => {
