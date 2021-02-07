@@ -2,12 +2,30 @@ import { useState, useEffect, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 import Swal from "sweetalert2";
+import styled from "styled-components";
 
 import { AuthContext } from "../../store/AuthContext";
 
 import MyProfileSettings from "../../components/MyProfileSettings/MyProfileSettings";
 import MyProfileEdit from "../../components/MyProfileEdit/MyProfileEdit";
+
 import { PageContainer } from "../StyledPages/StyledPages";
+
+export const Aside = styled.div`
+  display: inherit;
+  justify-content: center;
+  flex-basis: 25%;
+  min-width: 325px;
+  max-width: 375px;
+  border-right: 0.5px solid lightgrey;
+  border-bottom: 0.5px solid lightgrey;
+`;
+
+export const Main = styled.div`
+  display: inherit;
+  justify-content: center;
+  flex: 1;
+`;
 
 function ProfileEdit() {
   const { logout } = useContext(AuthContext);
@@ -201,34 +219,35 @@ function ProfileEdit() {
 
   return (
     <div className="profile-edit">
-      <p>
-        <strong>Profile Edit</strong>
-      </p>
       <PageContainer>
-        <MyProfileSettings handleDelete={handleDelete} />
-        <MyProfileEdit
-          name={name}
-          video={video}
-          videoStart={videoStart}
-          videoEnd={videoEnd}
-          email={email}
-          description={description}
-          city={city}
-          instruments={instruments}
-          youtubeAccount={youtubeAccount}
-          twitterUsername={twitterUsername}
-          facebookAccount={facebookAccount}
-          instagramAccount={instagramAccount}
-          genres={genres}
-          influences={influences}
-          isProfessional={isProfessional}
-          bands={bands}
-          lookingFor={lookingFor}
-          isProducer={isProducer}
-          premiumAccount={premiumAccount}
-          handleChange={handleChange}
-          onSubmit={onSubmit}
-        />
+        <Aside>
+          <MyProfileSettings handleDelete={handleDelete} />
+        </Aside>
+        <Main>
+          <MyProfileEdit
+            name={name}
+            video={video}
+            videoStart={videoStart}
+            videoEnd={videoEnd}
+            email={email}
+            description={description}
+            city={city}
+            instruments={instruments}
+            youtubeAccount={youtubeAccount}
+            twitterUsername={twitterUsername}
+            facebookAccount={facebookAccount}
+            instagramAccount={instagramAccount}
+            genres={genres}
+            influences={influences}
+            isProfessional={isProfessional}
+            bands={bands}
+            lookingFor={lookingFor}
+            isProducer={isProducer}
+            premiumAccount={premiumAccount}
+            handleChange={handleChange}
+            onSubmit={onSubmit}
+          />
+        </Main>
       </PageContainer>
     </div>
   );
