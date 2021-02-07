@@ -2,6 +2,12 @@ import { useForm } from "react-hook-form";
 
 import styled from "styled-components";
 
+export const MyProfileEditContainer = styled.div`
+  display: inherit;
+  flex-direction: column;
+  justify-content: center;
+`;
+
 export const ProfileContainer = styled.div`
   display: inherit;
   flex-direction: column;
@@ -32,7 +38,7 @@ export const FormContainer = styled.div`
   grid-gap: 20px 0px;
 `;
 
-export const Form = styled.div`
+export const Form = styled.form`
   display: inherit;
 `;
 
@@ -58,12 +64,16 @@ export const TextArea = styled.textarea`
   width: 85%;
 `;
 
-const Select = styled.select ` 
+const Select = styled.select`
   padding: 4px;
   border-radius: 4px;
-  border: 1px solid #CED4DA;
+  border: 1px solid #ced4da;
   background-color: #ffffff;
   color: #6c757d;
+`;
+
+const ButtonContainer = styled.div`
+  padding: 20px;
 `;
 
 function MyProfileEdit({
@@ -92,13 +102,14 @@ function MyProfileEdit({
   const { register, handleSubmit } = useForm();
 
   return (
-    <ProfileContainer>
-      <VideoContainer>
-        <VideoPlaceholder
-          src="https://roadmaptoprofit.com/wp-content/uploads/2018/10/video-placeholder.jpg"
-          alt="videoPlaceholder"
-        />
-        {/* <iframe
+    <MyProfileEditContainer>
+      <ProfileContainer>
+        <VideoContainer>
+          <VideoPlaceholder
+            src="https://roadmaptoprofit.com/wp-content/uploads/2018/10/video-placeholder.jpg"
+            alt="videoPlaceholder"
+          />
+          {/* <iframe
           title="userVideo"
           width="560"
           height="315"
@@ -107,226 +118,235 @@ function MyProfileEdit({
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
         ></iframe> */}
-      </VideoContainer>
-      <InfoContainer>
-        <Form onSubmit={handleSubmit(onSubmit)}>
-          <FormContainer>
-            <div>
-              <Label>
-                <strong>Nombre:</strong>
-              </Label>
-              <Input
-                className="name-input"
-                id="name"
-                type="text"
-                name="name"
-                value={name}
-                autoComplete="on"
-                onChange={handleChange}
-                ref={register}
-                required
-              />
-            </div>
-            <div>
-              <Label>
-                <strong>Correo Electrónico:</strong>
-              </Label>
-              <Input
-                className="email-input"
-                id="email"
-                type="email"
-                name="email"
-                value={email}
-                autoComplete="on"
-                onChange={handleChange}
-                ref={register}
-                required
-              />
-            </div>
-            <div>
-              <Label>
-                <strong>Descripcion:</strong>
-              </Label>
-              <TextArea
-                className="description-input"
-                id="description"
-                name="description"
-                value={description}
-                onChange={handleChange}
-                ref={register}
-                required
-              />
-            </div>
-            <div>
-              <Label>
-                <strong>Ciudad:</strong>
-              </Label>
-              <Input
-                className="city-input"
-                id="city"
-                type="text"
-                name="city"
-                value={city}
-                autoComplete="on"
-                onChange={handleChange}
-                ref={register}
-                required
-              />
-            </div>
-            <div>
-              <p>
-                <strong>Instrumentos:</strong>
-              </p>
-              <p>{instruments}</p>
-            </div>
-            <div>
-              <Label>
-                <strong>Canal de YouTube:</strong>
-              </Label>
-              <Input
-                className="youtubeAccount-input"
-                id="youtubeAccount"
-                type="url"
-                name="youtubeAccount"
-                value={youtubeAccount}
-                autoComplete="on"
-                onChange={handleChange}
-                ref={register}
-                required
-              />
-            </div>
-            <div>
-              <Label>
-                <strong>Twitter:</strong>
-              </Label>
-              <Input
-                className="twitterUsername-input"
-                id="twitterUsername"
-                type="url"
-                name="twitterUsername"
-                value={twitterUsername}
-                autoComplete="on"
-                onChange={handleChange}
-                ref={register}
-                required
-              />
-            </div>
-            <div>
-              <Label>
-                <strong>Facebook:</strong>
-              </Label>
-              <Input
-                className="facebookAccount-input"
-                id="facebookAccount"
-                type="url"
-                name="facebookAccount"
-                value={facebookAccount}
-                autoComplete="on"
-                onChange={handleChange}
-                ref={register}
-                required
-              />
-            </div>
-            <div>
-              <Label>
-                <strong>Instagram:</strong>
-              </Label>
-              <Input
-                className="instagramAccount-input"
-                id="instagramAccount"
-                type="url"
-                name="instagramAccount"
-                value={instagramAccount}
-                autoComplete="on"
-                onChange={handleChange}
-                ref={register}
-                required
-              />
-            </div>
-            <div>
-              <p>
-                <strong>Generos:</strong>
-              </p>
-              <p>{genres}</p>
-            </div>
-            <div>
-              <p>
-                <strong>Influencias:</strong>
-              </p>
-              <p>{influences}</p>
-            </div>
-            <div>
-              <Label className="isProfessional-label">Perfil de Musico:</Label>
-              <Select
-                id="isProfessional"
-                name="isProfessional"
-                value={isProfessional}
-                onChange={handleChange}
-                ref={register}
-                required
-              >
-                <option value="false">Empirico</option>
-                <option value="true">Profesional</option>
-              </Select>
-            </div>
-            <div>
-              <p>
-                <strong>Bandas:</strong>
-              </p>
-              <p>{bands}</p>
-            </div>
-            <div>
-              <Label className="lookingFor-label">Estoy buscando:</Label>
-              <Select
-                id="lookingFor"
-                name="lookingFor"
-                value={lookingFor}
-                onChange={handleChange}
-                ref={register}
-                required
-              >
-                <option value="collaboration">Colaborar</option>
-                <option value="session-musician">Musico de Sesion</option>
-                <option value="make-a-band">Crear Banda</option>
-                <option value="complete-a-band">Completar Banda</option>
-                <option value="producer">Productor</option>
-                <option value="mix-engineer">Ingeniero de Mezcla</option>
-              </Select>
-            </div>
-            <div>
-              <Label className="isProducer-label">Productor:</Label>
-              <Select
-                id="isProducer"
-                name="isProducer"
-                value={isProducer}
-                onChange={handleChange}
-                ref={register}
-                required
-              >
-                <option value="false">No</option>
-                <option value="true">Si</option>
-              </Select>
-            </div>
-            <a href="/app/profile">
-              <button
-                className="button-submit"
-                id="button-submit"
-                type="submit"
-                value="Actualizar"
-              >
-                Actualizar
-              </button>
-            </a>
-          </FormContainer>
-        </Form>
-      </InfoContainer>
-      <div>
-        <p>
-          <strong>Membresia:</strong>
-        </p>
-        <p>{premiumAccount ? "Premium" : "Gratuita"}</p>
-      </div>
-    </ProfileContainer>
+        </VideoContainer>
+        <InfoContainer>
+          <Form id="edit-form" onSubmit={handleSubmit(onSubmit)}>
+            <FormContainer>
+              <div>
+                <Label>
+                  <strong>Nombre:</strong>
+                </Label>
+                <Input
+                  className="name-input"
+                  id="name"
+                  type="text"
+                  name="name"
+                  value={name}
+                  autoComplete="on"
+                  onChange={handleChange}
+                  ref={register}
+                  required
+                />
+              </div>
+              <div>
+                <Label>
+                  <strong>Correo Electrónico:</strong>
+                </Label>
+                <Input
+                  className="email-input"
+                  id="email"
+                  type="email"
+                  name="email"
+                  value={email}
+                  autoComplete="on"
+                  onChange={handleChange}
+                  ref={register}
+                  required
+                />
+              </div>
+              <div>
+                <Label>
+                  <strong>Descripcion:</strong>
+                </Label>
+                <TextArea
+                  className="description-input"
+                  id="description"
+                  name="description"
+                  value={description}
+                  onChange={handleChange}
+                  ref={register}
+                  required
+                />
+              </div>
+              <div>
+                <Label>
+                  <strong>Ciudad:</strong>
+                </Label>
+                <Input
+                  className="city-input"
+                  id="city"
+                  type="text"
+                  name="city"
+                  value={city}
+                  autoComplete="on"
+                  onChange={handleChange}
+                  ref={register}
+                  required
+                />
+              </div>
+              <div>
+                <p>
+                  <strong>Instrumentos:</strong>
+                </p>
+                <p>{instruments}</p>
+              </div>
+              <div>
+                <Label>
+                  <strong>Canal de YouTube:</strong>
+                </Label>
+                <Input
+                  className="youtubeAccount-input"
+                  id="youtubeAccount"
+                  type="url"
+                  name="youtubeAccount"
+                  value={youtubeAccount}
+                  autoComplete="on"
+                  onChange={handleChange}
+                  ref={register}
+                  required
+                />
+              </div>
+              <div>
+                <Label>
+                  <strong>Twitter:</strong>
+                </Label>
+                <Input
+                  className="twitterUsername-input"
+                  id="twitterUsername"
+                  type="url"
+                  name="twitterUsername"
+                  value={twitterUsername}
+                  autoComplete="on"
+                  onChange={handleChange}
+                  ref={register}
+                  required
+                />
+              </div>
+              <div>
+                <Label>
+                  <strong>Facebook:</strong>
+                </Label>
+                <Input
+                  className="facebookAccount-input"
+                  id="facebookAccount"
+                  type="url"
+                  name="facebookAccount"
+                  value={facebookAccount}
+                  autoComplete="on"
+                  onChange={handleChange}
+                  ref={register}
+                  required
+                />
+              </div>
+              <div>
+                <Label>
+                  <strong>Instagram:</strong>
+                </Label>
+                <Input
+                  className="instagramAccount-input"
+                  id="instagramAccount"
+                  type="url"
+                  name="instagramAccount"
+                  value={instagramAccount}
+                  autoComplete="on"
+                  onChange={handleChange}
+                  ref={register}
+                  required
+                />
+              </div>
+              <div>
+                <p>
+                  <strong>Generos:</strong>
+                </p>
+                <p>{genres}</p>
+              </div>
+              <div>
+                <p>
+                  <strong>Influencias:</strong>
+                </p>
+                <p>{influences}</p>
+              </div>
+              <div>
+                <Label className="isProfessional-label">
+                  <strong>Perfil de Musico:</strong>
+                </Label>
+                <Select
+                  id="isProfessional"
+                  name="isProfessional"
+                  value={isProfessional}
+                  onChange={handleChange}
+                  ref={register}
+                  required
+                >
+                  <option value="false">Empirico</option>
+                  <option value="true">Profesional</option>
+                </Select>
+              </div>
+              <div>
+                <p>
+                  <strong>Bandas:</strong>
+                </p>
+                <p>{bands}</p>
+              </div>
+              <div>
+                <Label className="lookingFor-label">
+                  <strong>Estoy buscando:</strong>
+                </Label>
+                <Select
+                  id="lookingFor"
+                  name="lookingFor"
+                  value={lookingFor}
+                  onChange={handleChange}
+                  ref={register}
+                  required
+                >
+                  <option value="collaboration">Colaborar</option>
+                  <option value="session-musician">Musico de Sesion</option>
+                  <option value="make-a-band">Crear Banda</option>
+                  <option value="complete-a-band">Completar Banda</option>
+                  <option value="producer">Productor</option>
+                  <option value="mix-engineer">Ingeniero de Mezcla</option>
+                </Select>
+              </div>
+              <div>
+                <Label className="isProducer-label">
+                  <strong>Productor:</strong>
+                </Label>
+                <Select
+                  id="isProducer"
+                  name="isProducer"
+                  value={isProducer}
+                  onChange={handleChange}
+                  ref={register}
+                  required
+                >
+                  <option value="false">No</option>
+                  <option value="true">Si</option>
+                </Select>
+              </div>
+            </FormContainer>
+            <div></div>
+          </Form>
+          <div>
+            <p>
+              <strong>Membresia:</strong>
+            </p>
+            <p>{premiumAccount ? "Premium" : "Gratuita"}</p>
+          </div>
+        </InfoContainer>
+      </ProfileContainer>
+      <ButtonContainer>
+        <button
+          form="edit-form"
+          className="button-submit"
+          id="button-submit"
+          type="submit"
+          value="Actualizar"
+        >
+          Actualizar
+        </button>
+      </ButtonContainer>
+    </MyProfileEditContainer>
   );
 }
 
