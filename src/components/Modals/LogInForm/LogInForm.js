@@ -13,13 +13,13 @@ export const Error = styled.span`
 export const ButtonSpan = styled.span`
   display: flex;
   justify-content: center;
-  padding-top: 10px;
+  margin-top: 10px;
 `;
 
 export const ItemContainer = styled.span`
   display: inherit;
-  padding-top: 5px;
-  padding-bottom: 5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
 `;
 
 export function LogInForm({

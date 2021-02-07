@@ -20,7 +20,7 @@ export const HomeContainer = styled.div`
 export const Header = styled.header`
   display: flex;
   justify-content: space-between;
-  height: 3rem;
+  height: 60px;
 `;
 
 export const LogoContainer = styled.div`

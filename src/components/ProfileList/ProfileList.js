@@ -12,8 +12,8 @@ export const ButtonsContainer = styled.div`
 
 export const ButtonContainer = styled.div`
   display: inherit;
-  padding-left: 5px;
-  padding-right: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
 `;
 
 function ProfileList() {
