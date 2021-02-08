@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import Header from "../Header/Header";
+import Header from "../Headers/HeaderLeft";
 
 export const MessageListContainer = styled.div`
   display: inherit;

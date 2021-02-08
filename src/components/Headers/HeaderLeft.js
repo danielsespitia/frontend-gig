@@ -42,7 +42,7 @@ export const MyProfileAnchor = styled.h2`
   margin-left: 10px;
 `;
 
-function Header() {
+function HeaderLeft() {
   return (
     <InAppHeader>
       <HeaderContainer>
@@ -58,4 +58,4 @@ function Header() {
   );
 }
 
-export default Header;
+export default HeaderLeft;

@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
-
 import styled from "styled-components";
+
+import HeaderRight from "../Headers/HeaderRight";
 
 export const MyProfileEditContainer = styled.div`
   display: inherit;
@@ -8,23 +9,6 @@ export const MyProfileEditContainer = styled.div`
   width: 100%;
   justify-content: space-between;
   align-items: center;
-`;
-
-export const InAppHeader = styled.header`
-  width: 100%;
-  display: inherit;
-  height: 60px;
-  justify-content: center;
-`;
-
-export const LogoContainer = styled.div`
-  display: inherit;
-`;
-
-export const Logo = styled.img`
-  opacity: 0.5;
-  width: 50px;
-  height: 50px;
 `;
 
 export const BodyContainer = styled.div`
@@ -126,14 +110,7 @@ function MyProfileEdit({
 
   return (
     <MyProfileEditContainer>
-      <InAppHeader>
-        <LogoContainer>
-          <Logo
-            src="https://static.thenounproject.com/png/3097969-200.png"
-            alt="logo"
-          />
-        </LogoContainer>
-      </InAppHeader>
+      <HeaderRight />
       <BodyContainer>
         <ProfileContainer>
           <VideoContainer>

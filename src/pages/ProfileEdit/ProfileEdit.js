@@ -9,23 +9,7 @@ import { AuthContext } from "../../store/AuthContext";
 import MyProfileSettings from "../../components/MyProfileSettings/MyProfileSettings";
 import MyProfileEdit from "../../components/MyProfileEdit/MyProfileEdit";
 
-import { PageContainer } from "../StyledPages/StyledPages";
-
-export const Aside = styled.div`
-  display: inherit;
-  justify-content: center;
-  flex-basis: 25%;
-  min-width: 325px;
-  max-width: 375px;
-  border-right: 0.5px solid lightgrey;
-  border-bottom: 0.5px solid lightgrey;
-`;
-
-export const Main = styled.div`
-  display: inherit;
-  justify-content: center;
-  flex: 1;
-`;
+import { PageContainer, Aside, Main } from "../StyledPages/StyledPages";
 
 function ProfileEdit() {
   const { logout } = useContext(AuthContext);
@@ -195,8 +179,7 @@ function ProfileEdit() {
         },
       });
       history.push("/app/profile");
-    } catch (err) {
-    }
+    } catch (err) {}
   };
 
   const handleDelete = async (e) => {
