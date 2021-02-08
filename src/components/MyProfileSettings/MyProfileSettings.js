@@ -10,7 +10,12 @@ export const MyProfileSettingsContainer = styled.div`
   flex-direction: column;
 `;
 
-function MyProfileSettings({ handleDelete }) {
+export const MembershipContainer = styled.div`
+  display: inherit;
+  align-self: center;
+`;
+
+function MyProfileSettings({ premiumAccount, handleDelete }) {
   const { logout } = useContext(AuthContext);
 
   return (
@@ -22,6 +27,11 @@ function MyProfileSettings({ handleDelete }) {
       <div>
         <button onClick={handleDelete}>Eliminar Perfil</button>
       </div>
+      <MembershipContainer>
+        <p>
+          <strong>Membresia:</strong> {premiumAccount ? "Premium" : "Gratuita"}
+        </p>
+      </MembershipContainer>
     </MyProfileSettingsContainer>
   );
 }
