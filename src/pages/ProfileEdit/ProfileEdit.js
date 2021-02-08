@@ -206,7 +206,10 @@ function ProfileEdit() {
     <div className="profile-edit">
       <PageContainer>
         <Aside>
-          <MyProfileSettings handleDelete={handleDelete} />
+          <MyProfileSettings
+            premiumAccount={premiumAccount}
+            handleDelete={handleDelete}
+          />
         </Aside>
         <Main>
           <MyProfileEdit
