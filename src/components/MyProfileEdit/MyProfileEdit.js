@@ -36,25 +36,19 @@ export const VideoContainer = styled.div`
   display: inherit;
 `;
 
-export const VideoPlaceholder = styled.img`
-  border-radius: 4px;
-  width: 560px;
-  height: 315px;
-`;
-
 export const InfoContainer = styled.div`
+  display: inherit;
   margin: 10px;
-  height: 200px;
-  display: grid;
+  height: 240px;
   overflow: auto;
 `;
 
 export const Form = styled.form`
   display: inherit;
-`;
-
-export const FormContainer = styled.div`
-  display: inherit;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-self: center;
 `;
 
 export const EditThumbnail = styled.img`
@@ -65,7 +59,7 @@ export const EditThumbnail = styled.img`
 `;
 
 export const Label = styled.label`
-  display: block;
+  display: inherit;
 `;
 
 export const Input = styled.input`
@@ -140,7 +134,7 @@ function MyProfileEdit({
           </VideoContainer>
           <InfoContainer>
             <Form id="edit-form" onSubmit={handleSubmit(onSubmit)}>
-              <FormContainer>
+              
                 <EditThumbnail
                   src="https://i.pinimg.com/originals/20/4a/c2/204ac2d176b028b2a40638fb7f61039b.jpg"
                   alt="Profile Thumbnail"
@@ -349,7 +343,7 @@ function MyProfileEdit({
                     required
                   />
                 </div>
-              </FormContainer>
+          
             </Form>
           </InfoContainer>
         </ProfileContainer>
