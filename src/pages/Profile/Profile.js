@@ -4,7 +4,7 @@ import axios from "axios";
 
 import MyProfileSettings from "../../components/MyProfileSettings/MyProfileSettings";
 import MyProfileInfo from "../../components/MyProfileInfo/MyProfileInfo";
-import { PageContainer } from "../StyledPages/StyledPages";
+import { PageContainer, Aside, Main } from "../StyledPages/StyledPages";
 
 function Profile() {
   const history = useHistory();
@@ -67,11 +67,11 @@ function Profile() {
 
   return (
     <div className="profile">
-      <p>
-        <strong>Profile Page</strong>
-      </p>
       <PageContainer>
+        <Aside>
         <MyProfileSettings />
+        </Aside>
+        <Main>
         <MyProfileInfo
           name={name}
           video={video}
@@ -91,6 +91,7 @@ function Profile() {
           isProducer={isProducer}
           premiumAccount={premiumAccount}
         />
+        </Main>
       </PageContainer>
     </div>
   );

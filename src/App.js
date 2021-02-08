@@ -7,19 +7,18 @@ import {
 } from "react-router-dom";
 
 import NotFound from "./pages/NotFound/NotFound";
-import Home from "./pages/Home/Home"
+import Home from "./pages/Home/Home";
 import Discover from "./pages/Discover/Discover";
 import Profile from "./pages/Profile/Profile";
 import ProfileEdit from "./pages/ProfileEdit/ProfileEdit";
 import Messages from "./pages/Messages/Messages";
 
 function PrivateRoute(props) {
-  
-  const token = localStorage.getItem('token')
+  const token = localStorage.getItem("token");
 
-  if(!token) return <Redirect to="/" />
-  
-  return <Route {...props} />
+  if (!token) return <Redirect to="/" />;
+
+  return <Route {...props} />;
 }
 
 function App() {
@@ -30,8 +29,16 @@ function App() {
           <Route exact path="/" component={Home} />
           <PrivateRoute exact path="/app/discover" component={Discover} />
           <PrivateRoute exact path="/app/profile" component={Profile} />
-          <PrivateRoute exact path="/app/profile/edit" component={ProfileEdit} />
-          <PrivateRoute exact path="/app/messages/:userId" component={Messages} />
+          <PrivateRoute
+            exact
+            path="/app/profile/edit"
+            component={ProfileEdit}
+          />
+          <PrivateRoute
+            exact
+            path="/app/messages/:userId"
+            component={Messages}
+          />
           <Route component={NotFound} />
         </Switch>
       </Router>

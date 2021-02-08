@@ -10,6 +10,18 @@ export const Error = styled.span`
   font-style: italic;
 `;
 
+export const ButtonSpan = styled.span`
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+`;
+
+export const ItemContainer = styled.span`
+  display: inherit;
+  margin-top: 5px;
+  margin-bottom: 5px;
+`;
+
 export function LogInForm({
   email,
   password,
@@ -22,35 +34,39 @@ export function LogInForm({
     <div>
       <Form onSubmit={handleSubmit}>
         <Error>{errorsLogIn}</Error>
-        <label htmlFor="email">Correo electrónico</label>
-        <input
-          id="email"
-          name="email"
-          type="email"
-          onChange={handleChange}
-          value={email}
-          placeholder="daniel@gig.com"
-          required
-        />
-        <label htmlFor="password">Contraseña</label>
-        <input
-          id="password"
-          name="password"
-          type="password"
-          onChange={handleChange}
-          value={password}
-          placeholder="***********"
-          required
-        />
-        <div className="Form__subtmit-span">
+        <ItemContainer>
+          <label htmlFor="email">Correo electrónico:</label>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            onChange={handleChange}
+            value={email}
+            placeholder="daniel@gig.com"
+            required
+          />
+        </ItemContainer>
+        <ItemContainer>
+          <label htmlFor="password">Contraseña:</label>
+          <input
+            id="password"
+            name="password"
+            type="password"
+            onChange={handleChange}
+            value={password}
+            placeholder="***********"
+            required
+          />
+        </ItemContainer>
+        <ButtonSpan className="submit-span">
           <button
-            className="Form__submit-input"
+            className="submit-button"
             type="submit"
             value="Iniciar sesión"
           >
             Iniciar sesión
           </button>
-        </div>
+        </ButtonSpan>
       </Form>
       <span>{message}</span>
     </div>
