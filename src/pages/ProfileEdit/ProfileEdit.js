@@ -1,8 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
-import Swal from "sweetalert2";
-import styled from "styled-components";
 
 import { AuthContext } from "../../store/AuthContext";
 
@@ -14,20 +12,26 @@ import { PageContainer, Aside, Main } from "../StyledPages/StyledPages";
 function ProfileEdit() {
   const { logout } = useContext(AuthContext);
   const history = useHistory();
+  const [disabled, setDisabled] = useState(true); 
+
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [video, setVideo] = useState("");
-  const [videoStart, setVideoStart] = useState(0);
-  const [videoEnd, setVideoEnd] = useState(0);
+  const [videoStartMin, setVideoStartMin] = useState(0);
+  const [videoStartSec, setVideoStartSec] = useState(0);
+  const [videoEndMin, setVideoEndMin] = useState(0);
+  const [videoEndSec, setVideoEndSec] = useState(0);
   const [description, setDescription] = useState("");
   const [city, setCity] = useState("");
-  const [instruments, setInstruments] = useState([]);
+  const [mainInstrument, setMainInstrument] = useState("");
+  const [sideInstrument, setSideInstrument] = useState("");
   const [youtubeAccount, setYoutubeAccount] = useState("");
   const [twitterUsername, setTwitterUsername] = useState("");
   const [facebookAccount, setFacebookAccount] = useState("");
   const [instagramAccount, setInstagramAccount] = useState("");
-  const [genres, setGenres] = useState([]);
-  const [influences, setInfluences] = useState([]);
+  const [mainGenre, setMainGenre] = useState("");
+  const [sideGenre, setSideGenre] = useState("");
+  const [influences, setInfluences] = useState("");
   const [isProfessional, setIsProfessional] = useState(false);
   const [bands, setBands] = useState("");
   const [lookingFor, setLookingFor] = useState("Collaboration");
@@ -50,18 +54,22 @@ function ProfileEdit() {
         });
         setName(data.name || "");
         setVideo(data.video || "");
-        setVideoStart(data.videoStart || 0);
-        setVideoEnd(data.videoEnd || 0);
+        setVideoStartMin(data.videoStartMin || 0);
+        setVideoStartSec(data.videoStartSec || 0);
+        setVideoEndMin(data.videoEndMin || 0);
+        setVideoEndSec(data.videoEndSec || 0);
         setEmail(data.email || "");
         setDescription(data.description || "");
         setCity(data.city || "");
-        setInstruments(data.instruments || []);
+        setMainInstrument(data.mainInstrument || "");
+        setSideInstrument(data.sideInstrument || "");
         setYoutubeAccount(data.youtubeAccount || "");
         setTwitterUsername(data.twitterUsername || "");
         setFacebookAccount(data.facebookAccount || "");
         setInstagramAccount(data.instagramAccount || "");
-        setGenres(data.genres || []);
-        setInfluences(data.influences || []);
+        setMainGenre(data.mainGenre || "");
+        setSideGenre(data.sideGenre || "");
+        setInfluences(data.influences || "");
         setIsProfessional(data.isProfessional || false);
         setBands(data.bands || "");
         setLookingFor(data.lookingFor || "Collaboration");
@@ -77,6 +85,7 @@ function ProfileEdit() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+    setDisabled(false);
 
     switch (name) {
       case "name":
@@ -88,14 +97,29 @@ function ProfileEdit() {
       case "video":
         setVideo(value);
         break;
+      case "videoStartMin":
+        setVideoStartMin(value);
+        break;
+      case "videoStartSec":
+        setVideoStartSec(value);
+        break;
+      case "videoEndMin":
+        setVideoEndMin(value);
+        break;
+      case "videoEndSec":
+        setVideoEndSec(value);
+        break;
       case "description":
         setDescription(value);
         break;
       case "city":
         setCity(value);
         break;
-      case "instruments":
-        setInstruments(value);
+      case "mainInstrument":
+        setMainInstrument(value);
+        break;
+      case "sideInstrument":
+        setSideInstrument(value);
         break;
       case "youtubeAccount":
         setYoutubeAccount(value);
@@ -109,8 +133,11 @@ function ProfileEdit() {
       case "instagramAccount":
         setInstagramAccount(value);
         break;
-      case "genres":
-        setGenres(value);
+      case "mainGenre":
+        setMainGenre(value);
+        break;
+      case "sideGenre":
+        setSideGenre(value);
         break;
       case "influences":
         setInfluences(value);
@@ -140,10 +167,17 @@ function ProfileEdit() {
       name,
       email,
       video,
-      videoStart,
-      videoEnd,
+      videoStartMin,
+      videoStartSec,
+      videoEndMin,
+      videoEndSec,
       description,
       city,
+      mainInstrument,
+      sideInstrument,
+      mainGenre,
+      sideGenre,
+      influences,
       youtubeAccount,
       twitterUsername,
       facebookAccount,
@@ -151,6 +185,7 @@ function ProfileEdit() {
       isProducer,
       isProfessional,
       lookingFor,
+      bands,
     } = data;
     try {
       const token = localStorage.getItem("token");
@@ -163,6 +198,10 @@ function ProfileEdit() {
           email,
           description,
           city,
+          mainInstrument,
+          sideInstrument,
+          mainGenre,
+          sideGenre,
           youtubeAccount,
           twitterUsername,
           facebookAccount,
@@ -170,9 +209,13 @@ function ProfileEdit() {
           isProducer,
           isProfessional,
           lookingFor,
+          influences,
+          bands,
           video,
-          videoStart,
-          videoEnd,
+          videoStartMin,
+          videoStartSec,
+          videoEndMin,
+          videoEndSec,
         },
         headers: {
           Authorization: `Bearer ${token}`,
@@ -198,7 +241,7 @@ function ProfileEdit() {
       logout();
       history.push("/");
     } catch (err) {
-      console.log(err);
+      alert("Tu cuenta no pudo ser eliminada", err);
     }
   };
 
@@ -215,17 +258,21 @@ function ProfileEdit() {
           <MyProfileEdit
             name={name}
             video={video}
-            videoStart={videoStart}
-            videoEnd={videoEnd}
+            videoStartMin={videoStartMin}
+            videoStartSec={videoStartSec}
+            videoEndMin={videoEndMin}
+            videoEndSec={videoEndSec}
             email={email}
             description={description}
             city={city}
-            instruments={instruments}
+            mainInstrument={mainInstrument}
+            sideInstrument={sideInstrument}
             youtubeAccount={youtubeAccount}
             twitterUsername={twitterUsername}
             facebookAccount={facebookAccount}
             instagramAccount={instagramAccount}
-            genres={genres}
+            mainGenre={mainGenre}
+            sideGenre={sideGenre}
             influences={influences}
             isProfessional={isProfessional}
             bands={bands}
@@ -234,6 +281,7 @@ function ProfileEdit() {
             premiumAccount={premiumAccount}
             handleChange={handleChange}
             onSubmit={onSubmit}
+            disabled={disabled}
           />
         </Main>
       </PageContainer>
