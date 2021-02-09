@@ -1,36 +1,68 @@
 import styled from "styled-components";
 
-export const ProfileListContainer = styled.div`
-  display: inherit;
-  flex-direction: column;
-`;
+import HeaderRight from "../Headers/HeaderRight";
+
+import {
+  ComponentContainer,
+  BodyContainer,
+  ProfileContainer,
+  VideoContainer,
+  VideoPlaceholder,
+  InfoContainer,
+} from "../StyledComponents/StyledCard";
+
+export const ProfileListContainer = styled(ComponentContainer)``;
 
 export const ButtonsContainer = styled.div`
   display: inherit;
   flex-direction: row;
+  margin: 20px;
 `;
 
-export const ButtonContainer = styled.div`
+export const SingleButtonContainer = styled.div`
   display: inherit;
   margin-left: 5px;
   margin-right: 5px;
 `;
 
-function ProfileList() {
+function ProfileList({ video, youtubeId, startTime, endTime }) {
   return (
     <ProfileListContainer>
-      <p>Descubre</p>
-      <ButtonsContainer>
-        <ButtonContainer>
-          <button>Siguiente</button>
-        </ButtonContainer>
-        <ButtonContainer>
-          <button>Enviar Mensaje</button>
-        </ButtonContainer>
-        <ButtonContainer>
-          <button>Reportar</button>
-        </ButtonContainer>
-      </ButtonsContainer>
+      <HeaderRight />
+      <BodyContainer>
+        <ProfileContainer>
+          <VideoContainer>
+            {video ? (
+              <iframe
+                title="userVideo"
+                width="560"
+                height="315"
+                src={`https://www.youtube.com/embed/${youtubeId}?start=${startTime}&end=${endTime}`}
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
+            ) : (
+              <VideoPlaceholder
+                src="https://roadmaptoprofit.com/wp-content/uploads/2018/10/video-placeholder.jpg"
+                alt="videoPlaceholder"
+              />
+            )}
+          </VideoContainer>
+          <InfoContainer></InfoContainer>
+        </ProfileContainer>
+        <ButtonsContainer>
+          <SingleButtonContainer>
+            <button>Siguiente</button>
+          </SingleButtonContainer>
+          <SingleButtonContainer>
+            <button>Enviar Mensaje</button>
+          </SingleButtonContainer>
+          <SingleButtonContainer>
+            <button>Reportar</button>
+          </SingleButtonContainer>
+        </ButtonsContainer>
+      </BodyContainer>
     </ProfileListContainer>
   );
 }

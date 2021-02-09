@@ -29,6 +29,7 @@ export const ThumbnailContainer = styled.div`
 `;
 
 export const ProfilePicture = styled.img`
+  font-size: 9px;
   object-fit: cover;
   height: 100%;
   width: 100%;
@@ -42,15 +43,12 @@ export const MyProfileAnchor = styled.h2`
   margin-left: 10px;
 `;
 
-function HeaderLeft() {
+function HeaderLeft({ profilePicture }) {
   return (
     <InAppHeader>
       <HeaderContainer>
         <ThumbnailContainer>
-          <ProfilePicture
-            src="https://i.pinimg.com/originals/20/4a/c2/204ac2d176b028b2a40638fb7f61039b.jpg"
-            alt="Profle Thumbnail"
-          />
+          <ProfilePicture src={profilePicture} alt="Profle Thumbnail" />
         </ThumbnailContainer>
         <MyProfileAnchor>Mi Perfil</MyProfileAnchor>
       </HeaderContainer>

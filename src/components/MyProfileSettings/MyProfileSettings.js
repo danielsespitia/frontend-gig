@@ -15,12 +15,12 @@ export const MembershipContainer = styled.div`
   align-self: center;
 `;
 
-function MyProfileSettings({ premiumAccount, handleDelete }) {
+function MyProfileSettings({ profilePicture, premiumAccount, handleDelete }) {
   const { logout } = useContext(AuthContext);
 
   return (
     <MyProfileSettingsContainer>
-      <HeaderLeft />
+      <HeaderLeft profilePicture={profilePicture} />
       <a href="/" onClick={logout}>
         <button>Cerrar Sesion</button>
       </a>
