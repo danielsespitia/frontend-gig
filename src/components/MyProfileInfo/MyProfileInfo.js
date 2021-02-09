@@ -19,7 +19,41 @@ import {
 
 const MyProfileInfoContainer = styled(ComponentContainer)``;
 
-function MyProfileInfo({ video, youtubeId, startTime, endTime }) {
+const DataItem = styled.div`
+  grid-row-gap: 5px;
+`;
+
+export const EditThumbnail = styled.img`
+  justify-self: center;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: contain;
+`;
+
+function MyProfileInfo({
+  name,
+  profilePicture,
+  video,
+  youtubeId,
+  startTime,
+  endTime,
+  email,
+  description,
+  city,
+  mainInstrument,
+  sideInstrument,
+  youtubeAccount,
+  twitterUsername,
+  facebookAccount,
+  instagramAccount,
+  mainGenre,
+  sideGenre,
+  influences,
+  isProfessional,
+  bands,
+  lookingFor,
+  isProducer,
+}) {
   return (
     <MyProfileInfoContainer>
       <HeaderRight />
@@ -43,7 +77,54 @@ function MyProfileInfo({ video, youtubeId, startTime, endTime }) {
               />
             )}
           </VideoContainer>
-          <InfoContainer></InfoContainer>
+          <InfoContainer>
+            <EditThumbnail src={profilePicture} alt="Profile Thumbnail" />
+            <DataItem>
+              <p>{name}</p>
+            </DataItem>
+            <DataItem>
+              <p>
+                <strong>Correo Electrónico:</strong>
+              </p>
+              <p>{email}</p>
+            </DataItem>
+            <DataItem>
+              <p>
+                <strong>Dirección:</strong>
+              </p>
+              <p>{description}</p>
+            </DataItem>
+            <DataItem>
+              <p>
+                <strong>Número de Teléfono:</strong>
+              </p>
+              <p>{city}</p>
+            </DataItem>
+            <DataItem>
+              <p>
+                <strong>Hora de Apertura:</strong>
+              </p>
+              <p>{mainInstrument}</p>
+            </DataItem>
+            <DataItem>
+              <p>
+                <strong>Hora de Cierre:</strong>
+              </p>
+              <p>{sideInstrument}</p>
+            </DataItem>
+            <DataItem>
+              <p>
+                <strong>NIT: </strong>
+              </p>
+              <p>{youtubeAccount}</p>
+            </DataItem>
+            <DataItem>
+              <p>
+                <strong>Pago Mínimo:</strong>
+              </p>
+              <p>${twitterUsername}</p>
+            </DataItem>
+          </InfoContainer>
         </ProfileContainer>
         <ButtonContainer>
           <a href="/app/profile/edit">
