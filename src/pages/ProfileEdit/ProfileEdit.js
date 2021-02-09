@@ -289,6 +289,7 @@ function ProfileEdit() {
       <PageContainer>
         <Aside>
           <MyProfileSettings
+            profilePicture={profilePicture}
             premiumAccount={premiumAccount}
             handleDelete={handleDelete}
           />
