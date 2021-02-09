@@ -34,6 +34,7 @@ export const VideoContainer = styled.div`
 
 export const InfoContainer = styled.div`
   display: inherit;
+  flex-direction: column;
   margin: 10px;
   height: 240px;
   overflow: auto;
@@ -51,7 +52,7 @@ export const EditThumbnail = styled.img`
   justify-self: center;
   height: 80px;
   border-radius: 50%;
-  object-fit: cover;
+  object-fit: contain;
 `;
 
 export const VideoPlaceholder = styled.img`
@@ -120,6 +121,7 @@ const ButtonContainer = styled.div`
 
 function MyProfileEdit({
   name,
+  profilePicture,
   video,
   videoStartMin,
   videoStartSec,
@@ -144,6 +146,8 @@ function MyProfileEdit({
   handleChange,
   onSubmit,
   disabled,
+  handleChangeProfilePicture,
+  handleSubmitProfilePicture,
 }) {
   const { register, handleSubmit } = useForm();
 
@@ -165,27 +169,40 @@ function MyProfileEdit({
       <BodyContainer>
         <ProfileContainer>
           <VideoContainer>
-            {video ? 
-            <iframe
-              title="userVideo"
-              width="560"
-              height="315"
-              src={`https://www.youtube.com/embed/${youtubeId}?start=${startTime}&end=${endTime}`}
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            ></iframe> : 
-            <VideoPlaceholder
-            src="https://roadmaptoprofit.com/wp-content/uploads/2018/10/video-placeholder.jpg"
-            alt="videoPlaceholder"
-          />}
+            {video ? (
+              <iframe
+                title="userVideo"
+                width="560"
+                height="315"
+                src={`https://www.youtube.com/embed/${youtubeId}?start=${startTime}&end=${endTime}`}
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
+            ) : (
+              <VideoPlaceholder
+                src="https://roadmaptoprofit.com/wp-content/uploads/2018/10/video-placeholder.jpg"
+                alt="videoPlaceholder"
+              />
+            )}
           </VideoContainer>
           <InfoContainer>
+            <form onSubmit={handleSubmitProfilePicture}>
+              <label htmlFor="file">
+                <EditThumbnail src={profilePicture} alt="Profile Thumbnail" />
+              </label>
+              <div>
+                <input
+                  type="file"
+                  accept="image/*"
+                  name="file"
+                  id="file"
+                  onChange={handleChangeProfilePicture}
+                />
+                <button type="submit" value="confirmar foto perfil">Subir</button>
+              </div>
+            </form>
             <Form id="edit-form" onSubmit={handleSubmit(onSubmit)}>
-              <EditThumbnail
-                src="https://i.pinimg.com/originals/20/4a/c2/204ac2d176b028b2a40638fb7f61039b.jpg"
-                alt="Profile Thumbnail"
-              />
               <div>
                 <Label>
                   <strong>Nombre:</strong>
