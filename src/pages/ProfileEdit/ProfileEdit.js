@@ -12,10 +12,12 @@ import { PageContainer, Aside, Main } from "../StyledPages/StyledPages";
 function ProfileEdit() {
   const { logout } = useContext(AuthContext);
   const history = useHistory();
-  const [disabled, setDisabled] = useState(true); 
+  const [disabled, setDisabled] = useState(true);
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [profilePicture, setProfilePicture] = useState(null);
+  const [file, setFile] = useState(null);
   const [video, setVideo] = useState("");
   const [videoStartMin, setVideoStartMin] = useState(0);
   const [videoStartSec, setVideoStartSec] = useState(0);
@@ -53,6 +55,7 @@ function ProfileEdit() {
           },
         });
         setName(data.name || "");
+        setProfilePicture(data.profilePicture || null);
         setVideo(data.video || "");
         setVideoStartMin(data.videoStartMin || 0);
         setVideoStartSec(data.videoStartSec || 0);
@@ -245,6 +248,42 @@ function ProfileEdit() {
     }
   };
 
+  const readFile = (file) => {
+    const reader = new FileReader();
+    reader.onload = (e) => setProfilePicture(e.target.result);
+    reader.readAsDataURL(file);
+  };
+
+  const handleChangeProfilePicture = async (e) => {
+    e.preventDefault();
+    setDisabled(false);
+    readFile(e.target.files[0]);
+    setFile(e.target.files[0]);
+  };
+
+  const handleSubmitProfilePicture = async (e) => {
+    e.preventDefault();
+    const data = new FormData();
+    data.append("profilePicture", profilePicture);
+    data.append("file", file);
+    try {
+      const token = localStorage.getItem("token");
+      await axios({
+        method: "PUT",
+        baseURL: process.env.REACT_APP_SERVER_URL,
+        url: `/users/update-pp`,
+        data,
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      alert("Imagen actualizada correctamente");
+    } catch (error) {
+      alert("La imagen no pudo ser cargada", error);
+    }
+  };
+
   return (
     <div className="profile-edit">
       <PageContainer>
@@ -257,6 +296,7 @@ function ProfileEdit() {
         <Main>
           <MyProfileEdit
             name={name}
+            profilePicture={profilePicture}
             video={video}
             videoStartMin={videoStartMin}
             videoStartSec={videoStartSec}
@@ -282,6 +322,8 @@ function ProfileEdit() {
             handleChange={handleChange}
             onSubmit={onSubmit}
             disabled={disabled}
+            handleSubmitProfilePicture={handleSubmitProfilePicture}
+            handleChangeProfilePicture={handleChangeProfilePicture}
           />
         </Main>
       </PageContainer>
