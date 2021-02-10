@@ -26,17 +26,23 @@ export const Main = styled.div`
 
 export const ActionButton = styled.button`
   font-size: 14px;
+  font-weight: bold;
   padding: 0;
   border: none;
   height: 40px;
   width: 120px;
-  border-radius: 12px;
+  border-radius: 8px;
   background: linear-gradient(
     90deg,
-    rgba(13, 231, 208, 1) 0%,
-    rgba(110, 47, 200, 1) 100%
+    rgba(23, 205, 212, 1) 0%,
+    rgba(130, 98, 199, 1) 100%
   );
   color: white;
+  &:hover {
+    color: #8262c7;
+    border: #8262c7 solid 1px;
+    background: #fff;
+  }
 `;
 
 export const ActionButtonContainer = styled.div`

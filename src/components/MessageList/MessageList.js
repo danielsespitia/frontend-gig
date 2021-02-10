@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import Header from "../Headers/HeaderLeft";
+import HeaderLeft from "../Headers/HeaderLeft";
 
 export const MessageListContainer = styled.div`
   display: inherit;
@@ -8,10 +8,11 @@ export const MessageListContainer = styled.div`
   flex-direction: column;
 `;
 
-function MessageList() {
+function MessageList({ profilePicture }) {
   return (
     <MessageListContainer>
-      <Header />
+      <HeaderLeft
+      profilePicture={profilePicture} />
       <p>Message List</p>
     </MessageListContainer>
   );
