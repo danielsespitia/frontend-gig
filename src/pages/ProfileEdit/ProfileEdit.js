@@ -21,8 +21,6 @@ function ProfileEdit() {
   const [video, setVideo] = useState("");
   const [videoStartMin, setVideoStartMin] = useState(0);
   const [videoStartSec, setVideoStartSec] = useState(0);
-  const [videoEndMin, setVideoEndMin] = useState(0);
-  const [videoEndSec, setVideoEndSec] = useState(0);
   const [description, setDescription] = useState("");
   const [city, setCity] = useState("");
   const [mainInstrument, setMainInstrument] = useState("");
@@ -54,13 +52,17 @@ function ProfileEdit() {
             Authorization: `Bearer ${token}`,
           },
         });
+        console.log(data.profilePicture);
         setName(data.name || "");
         setProfilePicture(data.profilePicture || null);
+        if (data.profilePicture === undefined) {
+          setProfilePicture(
+            "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png"
+          );
+        }
         setVideo(data.video || "");
         setVideoStartMin(data.videoStartMin || 0);
         setVideoStartSec(data.videoStartSec || 0);
-        setVideoEndMin(data.videoEndMin || 0);
-        setVideoEndSec(data.videoEndSec || 0);
         setEmail(data.email || "");
         setDescription(data.description || "");
         setCity(data.city || "");
@@ -105,12 +107,6 @@ function ProfileEdit() {
         break;
       case "videoStartSec":
         setVideoStartSec(value);
-        break;
-      case "videoEndMin":
-        setVideoEndMin(value);
-        break;
-      case "videoEndSec":
-        setVideoEndSec(value);
         break;
       case "description":
         setDescription(value);
@@ -172,8 +168,6 @@ function ProfileEdit() {
       video,
       videoStartMin,
       videoStartSec,
-      videoEndMin,
-      videoEndSec,
       description,
       city,
       mainInstrument,
@@ -217,13 +211,12 @@ function ProfileEdit() {
           video,
           videoStartMin,
           videoStartSec,
-          videoEndMin,
-          videoEndSec,
         },
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
+      alert('Perfil actualizado correctamente!')
       history.push("/app/profile");
     } catch (err) {}
   };
@@ -294,7 +287,7 @@ function ProfileEdit() {
   const youtubeId = youtubeParser(video);
 
   const startTime = videoStartMin * 60 + videoStartSec;
-  const endTime = videoEndMin * 60 + videoEndSec;
+  const endTime = startTime + 15;
 
   return (
     <div className="profile-edit">
@@ -316,8 +309,6 @@ function ProfileEdit() {
             endTime={endTime}
             videoStartMin={videoStartMin}
             videoStartSec={videoStartSec}
-            videoEndMin={videoEndMin}
-            videoEndSec={videoEndSec}
             email={email}
             description={description}
             city={city}

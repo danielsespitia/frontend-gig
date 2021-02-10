@@ -19,8 +19,6 @@ function Profile() {
   const [video, setVideo] = useState("");
   const [videoStartMin, setVideoStartMin] = useState(0);
   const [videoStartSec, setVideoStartSec] = useState(0);
-  const [videoEndMin, setVideoEndMin] = useState(0);
-  const [videoEndSec, setVideoEndSec] = useState(0);
   const [description, setDescription] = useState("");
   const [city, setCity] = useState("");
   const [mainInstrument, setMainInstrument] = useState("");
@@ -54,11 +52,14 @@ function Profile() {
         });
         setName(data.name || "");
         setProfilePicture(data.profilePicture || null);
+        if (data.profilePicture === undefined) {
+          setProfilePicture(
+            "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png"
+          );
+        }
         setVideo(data.video || "");
         setVideoStartMin(data.videoStartMin || 0);
         setVideoStartSec(data.videoStartSec || 0);
-        setVideoEndMin(data.videoEndMin || 0);
-        setVideoEndSec(data.videoEndSec || 0);
         setEmail(data.email || "");
         setDescription(data.description || "");
         setCity(data.city || "");
@@ -120,7 +121,7 @@ function Profile() {
   const youtubeId = youtubeParser(video);
 
   const startTime = videoStartMin * 60 + videoStartSec;
-  const endTime = videoEndMin * 60 + videoEndSec;
+  const endTime = startTime + 15;
 
   return (
     <div className="profile">

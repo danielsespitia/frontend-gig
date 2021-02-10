@@ -13,6 +13,8 @@ import {
   ButtonContainer,
 } from "../StyledComponents/StyledCard";
 
+import { ActionButton } from "../../pages/StyledPages/StyledPages"
+
 const MyProfileEditContainer = styled(ComponentContainer)``;
 
 export const Form = styled.form`
@@ -23,11 +25,23 @@ export const Form = styled.form`
   justify-self: center;
 `;
 
+export const MyProfileContainerDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 100%;
+`;
+
+export const EditThumbnailContainer = styled.div`
+  height: 80px;
+  width: 80px;
+`;
+
 export const EditThumbnail = styled.img`
   justify-self: center;
-  height: 80px;
+  height: 100%;
+  width: 100%;
   border-radius: 50%;
-  object-fit: contain;
+  object-fit: cover;
 `;
 
 export const VideoFragmentContainer = styled.div`
@@ -90,8 +104,6 @@ function MyProfileEdit({
   video,
   videoStartMin,
   videoStartSec,
-  videoEndMin,
-  videoEndSec,
   youtubeId,
   startTime,
   endTime,
@@ -145,7 +157,14 @@ function MyProfileEdit({
           <InfoContainer>
             <form onSubmit={handleSubmitProfilePicture}>
               <label htmlFor="file">
-                <EditThumbnail src={profilePicture} alt="Profile Thumbnail" />
+                <MyProfileContainerDiv>
+                  <EditThumbnailContainer>
+                    <EditThumbnail
+                      src={profilePicture}
+                      alt="Profile Thumbnail"
+                    />
+                  </EditThumbnailContainer>
+                </MyProfileContainerDiv>
               </label>
               <div>
                 <input
@@ -203,98 +222,50 @@ function MyProfileEdit({
               <p>
                 <em>
                   Tendras 15 segundos para ensenar tus habilidades, escribe a
-                  continuacion el minuto y segundo de inicio y final de tu video
-                  introductorio.
+                  continuacion el minuto y segundo donde quieres que inicie tu
+                  video introductorio.
                 </em>
               </p>
-              <VideoFragmentContainer>
-                <VideoStartContainer>
-                  <p>
-                    <strong>Inicio</strong>
-                  </p>
-                  <StartTimestampContainer>
-                    <div>
-                      <Label>
-                        <strong>Minuto:</strong>
-                      </Label>
-                      <Input
-                        className="videoStartMin-input"
-                        id="videoStartMin"
-                        type="number"
-                        name="videoStartMin"
-                        min="0"
-                        max="5"
-                        step="1"
-                        value={videoStartMin}
-                        onChange={handleChange}
-                        ref={register}
-                        required
-                      />
-                    </div>
-                    <div>
-                      <Label>
-                        <strong>Segundo:</strong>
-                      </Label>
-                      <Input
-                        className="videoStartSec-input"
-                        id="videoStartSec"
-                        type="number"
-                        name="videoStartSec"
-                        min="0"
-                        max="60"
-                        step="1"
-                        value={videoStartSec}
-                        onChange={handleChange}
-                        ref={register}
-                        required
-                      />
-                    </div>
-                  </StartTimestampContainer>
-                </VideoStartContainer>
-                <VideoEndContainer>
-                  <p>
-                    <strong>Fin</strong>
-                  </p>
-                  <EndTimestampContainer>
-                    <div>
-                      <Label>
-                        <strong>Minuto:</strong>
-                      </Label>
-                      <Input
-                        className="videoEndMin-input"
-                        id="videoEndMin"
-                        type="number"
-                        name="videoEndMin"
-                        min="0"
-                        max="5"
-                        step="1"
-                        value={videoEndMin}
-                        onChange={handleChange}
-                        ref={register}
-                        required
-                      />
-                    </div>
-                    <div>
-                      <Label>
-                        <strong>Segundo:</strong>
-                      </Label>
-                      <Input
-                        className="videoEndSec-input"
-                        id="videoEndSec"
-                        type="number"
-                        name="videoEndSec"
-                        min="0"
-                        max="60"
-                        step="1"
-                        value={videoEndSec}
-                        onChange={handleChange}
-                        ref={register}
-                        required
-                      />
-                    </div>
-                  </EndTimestampContainer>
-                </VideoEndContainer>
-              </VideoFragmentContainer>
+              <VideoStartContainer>
+                <StartTimestampContainer>
+                  <div>
+                    <Label>
+                      <strong>Minuto:</strong>
+                    </Label>
+                    <Input
+                      className="videoStartMin-input"
+                      id="videoStartMin"
+                      type="number"
+                      name="videoStartMin"
+                      min="0"
+                      max="5"
+                      step="1"
+                      value={videoStartMin}
+                      onChange={handleChange}
+                      ref={register}
+                      required
+                    />
+                  </div>
+                  <div>
+                    <Label>
+                      <strong>Segundo:</strong>
+                    </Label>
+                    <Input
+                      className="videoStartSec-input"
+                      id="videoStartSec"
+                      type="number"
+                      name="videoStartSec"
+                      min="0"
+                      max="60"
+                      step="1"
+                      value={videoStartSec}
+                      onChange={handleChange}
+                      ref={register}
+                      required
+                    />
+                  </div>
+                </StartTimestampContainer>
+              </VideoStartContainer>
               <div>
                 <Label className="mainInstrument-label">
                   <strong>Instrumento Principal:</strong>
@@ -574,7 +545,7 @@ function MyProfileEdit({
           </InfoContainer>
         </ProfileContainer>
         <ButtonContainer>
-          <button
+          <ActionButton
             form="edit-form"
             disabled={disabled}
             className="button-submit"
@@ -583,7 +554,7 @@ function MyProfileEdit({
             value="Actualizar"
           >
             Actualizar
-          </button>
+          </ActionButton>
         </ButtonContainer>
       </BodyContainer>
     </MyProfileEditContainer>

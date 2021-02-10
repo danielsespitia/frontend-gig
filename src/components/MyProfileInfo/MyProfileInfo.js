@@ -35,11 +35,9 @@ export const ThumbnailContainer = styled.div`
   width: 80px;
   justify-content: center;
   border-radius: 50px;
-  background-color: lightblue;
 `;
 
 export const EditThumbnail = styled.img`
-  background-color: lightcoral;
   display: inherit;
   justify-self: center;
   height: 100%;
@@ -82,7 +80,7 @@ function MyProfileInfo({
                 title="userVideo"
                 width="560"
                 height="315"
-                src={`https://www.youtube.com/embed/${youtubeId}?start=${startTime}&end=${endTime}`}
+                src={`https://www.youtube.com/embed/${youtubeId}?start=${startTime}&end=${endTime}&autoplay=1`}
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
