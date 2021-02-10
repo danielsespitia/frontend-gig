@@ -13,6 +13,8 @@ import {
   ButtonContainer,
 } from "../StyledComponents/StyledCard";
 
+import { ActionButton } from "../../pages/StyledPages/StyledPages"
+
 const MyProfileEditContainer = styled(ComponentContainer)``;
 
 export const Form = styled.form`
@@ -23,11 +25,23 @@ export const Form = styled.form`
   justify-self: center;
 `;
 
+export const MyProfileContainerDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 100%;
+`;
+
+export const EditThumbnailContainer = styled.div`
+  height: 80px;
+  width: 80px;
+`;
+
 export const EditThumbnail = styled.img`
   justify-self: center;
-  height: 80px;
+  height: 100%;
+  width: 100%;
   border-radius: 50%;
-  object-fit: contain;
+  object-fit: cover;
 `;
 
 export const VideoFragmentContainer = styled.div`
@@ -143,7 +157,14 @@ function MyProfileEdit({
           <InfoContainer>
             <form onSubmit={handleSubmitProfilePicture}>
               <label htmlFor="file">
-                <EditThumbnail src={profilePicture} alt="Profile Thumbnail" />
+                <MyProfileContainerDiv>
+                  <EditThumbnailContainer>
+                    <EditThumbnail
+                      src={profilePicture}
+                      alt="Profile Thumbnail"
+                    />
+                  </EditThumbnailContainer>
+                </MyProfileContainerDiv>
               </label>
               <div>
                 <input
@@ -524,7 +545,7 @@ function MyProfileEdit({
           </InfoContainer>
         </ProfileContainer>
         <ButtonContainer>
-          <button
+          <ActionButton
             form="edit-form"
             disabled={disabled}
             className="button-submit"
@@ -533,7 +554,7 @@ function MyProfileEdit({
             value="Actualizar"
           >
             Actualizar
-          </button>
+          </ActionButton>
         </ButtonContainer>
       </BodyContainer>
     </MyProfileEditContainer>

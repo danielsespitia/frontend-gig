@@ -1,16 +1,17 @@
-import { useState, useEffect, useHistory } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
-import styled from "styled-components";
 
 import MessageList from "../../components/MessageList/MessageList";
 import ProfileList from "../../components/ProfileList/ProfileList";
 import { PageContainer, Aside, Main } from "../StyledPages/StyledPages";
 
 function Discover() {
-  const [dataArray, setDataArray] = useState([]);
-  const [index, setIndex] = useState(1);
 
-  const [profilePicture, setProfilePicture] = useState(null);
+  const [dataArray, setDataArray] = useState([]);
+  const [index, setIndex] = useState(0);
+  const [userId, setUserId] = useState("");
+
+  const [profilePicture, setProfilePicture] = useState("");
 
   useEffect(() => {
     async function load() {
@@ -45,7 +46,13 @@ function Discover() {
             Authorization: `Bearer ${token}`,
           },
         });
-        setProfilePicture(data.profilePicture)
+        setUserId(data._id);
+        setProfilePicture(data.profilePicture || null);
+        if (data.profilePicture === undefined) {
+          setProfilePicture(
+            "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png"
+          );
+        }
       } catch (error) {
         localStorage.removeItem("token");
       }
@@ -57,11 +64,22 @@ function Discover() {
 
   const randomizer = () => {
     const totalProfiles = dataArray.length - 1;
-    return Math.floor(Math.random() * Math.floor(totalProfiles) + 1);
+    return Math.floor(Math.random() * Math.floor(totalProfiles));
+  };
+
+  const detectMyProfile = async () => {
+    let profileIndex = 0;
+    for (let i = 0; i < dataArray.length - 1; i++) {
+      if (dataArray[i]._id === userId) {
+        profileIndex = i;
+      }
+    }
+    return profileIndex;
   };
 
   const handleNext = () => {
     const newIndex = randomizer();
+
     if (index < dataArray.length - 1 && index !== newIndex) {
       return setIndex(newIndex);
     }
@@ -70,9 +88,6 @@ function Discover() {
     }
     if (index >= dataArray.length - 1) {
       return setIndex(index - 1);
-    }
-    if (newIndex !== 0) {
-      return setIndex(newIndex);
     }
   };
 
@@ -87,9 +102,7 @@ function Discover() {
     <div className="discover">
       <PageContainer>
         <Aside>
-          <MessageList
-            profilePicture={profilePicture}
-          />
+          <MessageList profilePicture={profilePicture} />
         </Aside>
         <Main>
           {!!dataArray.length > 0 && (

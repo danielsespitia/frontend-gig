@@ -1,10 +1,10 @@
-import styled from "styled-components";
 import { useState } from "react";
+import Modal from "react-modal";
+
+import styled from "styled-components";
 
 import HeaderRight from "../Headers/HeaderRight";
-
-import { Transition } from "react-transition-group";
-
+import SendMessageModal from "../../pages/Discover/SendMessageModal/SendMessageModal";
 import {
   ComponentContainer,
   BodyContainer,
@@ -42,10 +42,60 @@ export const SingleButtonContainer = styled.div`
   margin-right: 5px;
 `;
 
+export const ModalHeader = styled.header`
+  width: 100%;
+  height: 90px;
+  display: flex;
+  justify-content: space-between;
+`;
+
+export const SendUserContainer = styled.div`
+  display: flex;
+  margin-top: 5px;
+  flex-direction: row;
+  align-items: center;
+`;
+
+export const To = styled.h3`
+  font-weight: normal;
+  align-self: center;
+`;
+
+export const ThumbnailContainer = styled.div`
+  display: inherit;
+  justify-content: center;
+  border-radius: 50px;
+`;
+
+export const Thumbnail = styled.img`
+  display: inherit;
+  justify-self: center;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: contain;
+`;
+
+export const SendUserName = styled.p`
+  margin-left: 5px;
+`;
+
+export const CloseModalButton = styled.div`
+  display: inherit;
+  align-self: flex-start;
+`;
+
+export const CloseButton = styled.img`
+  opacity: 0.5;
+  height: 18px;
+  cursor: pointer;
+`;
+
 function ProfileList({ dataArray, youtubeParser, handleNext, index }) {
+  const [showSendMessageModal, setShowSendMessageModal] = useState(false);
 
   const {
     name,
+    profilePicture,
     video,
     videoStartMin,
     videoStartSec,
@@ -85,8 +135,45 @@ function ProfileList({ dataArray, youtubeParser, handleNext, index }) {
         </ProfileContainer>
         <ButtonsContainer>
           <SingleButtonContainer>
-            <button>Enviar Mensaje</button>
+            <button onClick={() => setShowSendMessageModal(true)}>
+              Enviar Mensaje
+            </button>
           </SingleButtonContainer>
+          <Modal
+            isOpen={showSendMessageModal}
+            onRequestClose={() => setShowSendMessageModal(false)}
+            style={{
+              overlay: {},
+              content: {
+                margin: "auto",
+                height: "30%",
+                width: "30%",
+                borderRadius: "10px",
+              },
+            }}
+          >
+            <ModalHeader>
+              <To>
+                Para:
+                <SendUserContainer>
+                  <ThumbnailContainer>
+                    <Thumbnail src={profilePicture} alt="user thumbnail" />
+                  </ThumbnailContainer>
+                  <SendUserName>
+                    {" "}
+                    <strong>{name}</strong>
+                  </SendUserName>
+                </SendUserContainer>
+              </To>
+              <CloseModalButton>
+                <CloseButton
+                  src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-close-512.png"
+                  onClick={() => setShowSendMessageModal(false)}
+                ></CloseButton>
+              </CloseModalButton>
+            </ModalHeader>
+            <SendMessageModal />
+          </Modal>
           <SingleButtonContainer>
             <button onClick={handleNext}>Siguiente</button>
           </SingleButtonContainer>

@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import Modal from "react-modal";
+import { useHistory } from "react-router-dom";
 import { useState } from "react";
 
 import SignUpModal from "../Home/SignUpModal/SignUpModal";
@@ -7,7 +8,7 @@ import LogInModal from "../Home/LogInModal/LogInModal";
 
 export const HomeContainer = styled.div`
   color: white;
-  background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.3)),
+  background: linear-gradient(rgba(130, 98, 199, 0.3), rgba(23, 205, 212, 0.3)),
     url("https://img.wavescdn.com/1lib/images/blog/preview/make-online-music-collabs-more-productive.jpg");
   background-size: cover;
   background-position: center;
@@ -58,6 +59,13 @@ export const CloseModalButton = styled.div`
 Modal.setAppElement("#root");
 
 function Home() {
+  const history = useHistory();
+  const token = localStorage.getItem("token");
+
+  if (token) {
+    history.push("/app/discover");
+  }
+
   const [showLogInModal, setShowLogInModal] = useState(false);
   const [showSignUpModal, setShowSignUpModal] = useState(false);
 
@@ -85,6 +93,7 @@ function Home() {
               margin: "auto",
               height: "230px",
               width: "260px",
+              borderRadius: "10px",
             },
           }}
         >
@@ -113,6 +122,7 @@ function Home() {
               margin: "auto",
               height: "380px",
               width: "260px",
+              borderRadius: "10px",
             },
           }}
         >

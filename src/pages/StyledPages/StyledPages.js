@@ -43,6 +43,12 @@ export const ActionButton = styled.button`
     border: #8262c7 solid 1px;
     background: #fff;
   }
+  &:disabled {
+    cursor: not-allowed;
+    pointer-events: none;
+
+    opacity: 0.5;
+  }
 `;
 
 export const ActionButtonContainer = styled.div`

@@ -52,6 +52,11 @@ function Profile() {
         });
         setName(data.name || "");
         setProfilePicture(data.profilePicture || null);
+        if (data.profilePicture === undefined) {
+          setProfilePicture(
+            "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png"
+          );
+        }
         setVideo(data.video || "");
         setVideoStartMin(data.videoStartMin || 0);
         setVideoStartSec(data.videoStartSec || 0);
