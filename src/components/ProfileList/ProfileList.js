@@ -39,76 +39,56 @@ export const SingleButtonContainer = styled.div`
   margin-right: 5px;
 `;
 
-function ProfileList({
-  dataArray,
-  youtubeParser,
-  index,
-  handleNext,
-}) {
+function ProfileList({ dataArray, youtubeParser, handleNext, index }) {
 
-  const current = dataArray[index];
+  const {
+    name,
+    video,
+    videoStartMin,
+    videoStartSec,
+    videoEndMin,
+    videoEndSec,
+  } = dataArray[index];
+
+  const startTime = videoStartMin * 60 + videoStartSec;
+  const endTime = videoEndMin * 60 + videoEndSec;
 
   return (
     <ProfileListContainer>
       <HeaderRight />
-      <BodySeveralCards>
-        {!!dataArray &&
-          dataArray.length > 0 &&
-          dataArray.map(
-            ({
-              _id,
-              name,
-              video,
-              videoStartMin,
-              videoStartSec,
-              videoEndMin,
-              videoEndSec,
-            }) => {
-              return (
-                <MapRenderer key={_id}>
-                  <ProfileContainer>
-                    <VideoContainer>
-                      {video ? (
-                        <iframe
-                          title="userVideo"
-                          width="560"
-                          height="315"
-                          src={`https://www.youtube.com/embed/${youtubeParser(
-                            video
-                          )}?start=${videoStartMin * 60 + videoStartSec}&end=${
-                            videoEndMin * 60 + videoEndSec
-                          }`}
-                          frameBorder="0"
-                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                          allowFullScreen
-                        ></iframe>
-                      ) : (
-                        <VideoPlaceholder
-                          src="https://roadmaptoprofit.com/wp-content/uploads/2018/10/video-placeholder.jpg"
-                          alt="videoPlaceholder"
-                        />
-                      )}
-                    </VideoContainer>
-                    <InfoContainer>
-                      <p>Nombre {name}</p>
-                    </InfoContainer>
-                  </ProfileContainer>
-                  <ButtonsContainer>
-                    <SingleButtonContainer>
-                      <button>Siguiente</button>
-                    </SingleButtonContainer>
-                    <SingleButtonContainer>
-                      <button>Enviar Mensaje</button>
-                    </SingleButtonContainer>
-                    <SingleButtonContainer>
-                      <button>Reportar</button>
-                    </SingleButtonContainer>
-                  </ButtonsContainer>
-                </MapRenderer>
-              );
-            }
-          )}
-      </BodySeveralCards>
+      <BodyContainer>
+        <ProfileContainer>
+          <VideoContainer>
+            {video ? (
+              <iframe
+                title="userVideo"
+                width="560"
+                height="315"
+                src={`https://www.youtube.com/embed/${youtubeParser(video)}?start=${startTime}&end=${endTime}`}
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
+            ) : (
+              <VideoPlaceholder
+                src="https://roadmaptoprofit.com/wp-content/uploads/2018/10/video-placeholder.jpg"
+                alt="videoPlaceholder"
+              />
+            )}
+          </VideoContainer>
+          <InfoContainer>
+            <p>Nombre {name}</p>
+          </InfoContainer>
+        </ProfileContainer>
+        <ButtonsContainer>
+          <SingleButtonContainer>
+            <button>Enviar Mensaje</button>
+          </SingleButtonContainer>
+          <SingleButtonContainer>
+            <button onClick={handleNext}>Siguiente</button>
+          </SingleButtonContainer>
+        </ButtonsContainer>
+      </BodyContainer>
     </ProfileListContainer>
   );
 }
