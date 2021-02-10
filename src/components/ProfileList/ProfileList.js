@@ -11,10 +11,24 @@ import {
   InfoContainer,
 } from "../StyledComponents/StyledCard";
 
-export const ProfileListContainer = styled(ComponentContainer)``;
+export const BodySeveralCards = styled(BodyContainer)`
+  display: inherit;
+  justify-content: flex-start;
+`;
+
+export const ProfileListContainer = styled(ComponentContainer)`
+  display: inherit;
+`;
+
+export const MapRenderer = styled.div`
+  display: flex;
+  margin-top: 6.1rem;
+  flex-direction: column;
+`;
 
 export const ButtonsContainer = styled.div`
   display: inherit;
+  justify-content: center;
   flex-direction: row;
   margin: 20px;
 `;
@@ -25,7 +39,20 @@ export const SingleButtonContainer = styled.div`
   margin-right: 5px;
 `;
 
-function ProfileList({ video, youtubeId, startTime, endTime }) {
+function ProfileList({ dataArray, youtubeParser, handleNext, index, userId }) {
+  const {
+    _id,
+    name,
+    video,
+    videoStartMin,
+    videoStartSec,
+    videoEndMin,
+    videoEndSec,
+  } = dataArray[index];
+
+  const startTime = videoStartMin * 60 + videoStartSec;
+  const endTime = videoEndMin * 60 + videoEndSec;
+
   return (
     <ProfileListContainer>
       <HeaderRight />
@@ -37,7 +64,9 @@ function ProfileList({ video, youtubeId, startTime, endTime }) {
                 title="userVideo"
                 width="560"
                 height="315"
-                src={`https://www.youtube.com/embed/${youtubeId}?start=${startTime}&end=${endTime}`}
+                src={`https://www.youtube.com/embed/${youtubeParser(
+                  video
+                )}?start=${startTime}&end=${endTime}`}
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
@@ -49,17 +78,16 @@ function ProfileList({ video, youtubeId, startTime, endTime }) {
               />
             )}
           </VideoContainer>
-          <InfoContainer></InfoContainer>
+          <InfoContainer>
+            <p>Nombre {name}</p>
+          </InfoContainer>
         </ProfileContainer>
         <ButtonsContainer>
-          <SingleButtonContainer>
-            <button>Siguiente</button>
-          </SingleButtonContainer>
           <SingleButtonContainer>
             <button>Enviar Mensaje</button>
           </SingleButtonContainer>
           <SingleButtonContainer>
-            <button>Reportar</button>
+            <button onClick={handleNext}>Siguiente</button>
           </SingleButtonContainer>
         </ButtonsContainer>
       </BodyContainer>
