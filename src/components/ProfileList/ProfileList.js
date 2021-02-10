@@ -49,12 +49,10 @@ function ProfileList({ dataArray, youtubeParser, handleNext, index }) {
     video,
     videoStartMin,
     videoStartSec,
-    videoEndMin,
-    videoEndSec,
   } = dataArray[index];
 
   const startTime = videoStartMin * 60 + videoStartSec;
-  const endTime = videoEndMin * 60 + videoEndSec;
+  const endTime = startTime + 15;
 
   return (
     <ProfileListContainer>
@@ -82,7 +80,7 @@ function ProfileList({ dataArray, youtubeParser, handleNext, index }) {
             )}
           </VideoContainer>
           <InfoContainer>
-            <p>Nombre {name}</p>
+            <p>{name}</p>
           </InfoContainer>
         </ProfileContainer>
         <ButtonsContainer>

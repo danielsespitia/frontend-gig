@@ -83,8 +83,6 @@ function Discover() {
     return match && match[7].length === 11 ? match[7] : false;
   };
 
-  console.log(index);
-
   return (
     <div className="discover">
       <PageContainer>
