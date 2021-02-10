@@ -21,11 +21,16 @@ function MyProfileSettings({ profilePicture, premiumAccount, handleDelete }) {
   return (
     <MyProfileSettingsContainer>
       <HeaderLeft profilePicture={profilePicture} />
+      <a href="/app/discover/">
+        <button>Pagina Principal</button>
+      </a>
       <a href="/" onClick={logout}>
         <button>Cerrar Sesion</button>
       </a>
       <div>
-        <button onClick={handleDelete}>Eliminar Perfil</button>
+        <button onClick={handleDelete}>
+          Eliminar Perfil
+        </button>
       </div>
       <MembershipContainer>
         <p>

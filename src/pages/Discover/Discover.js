@@ -9,7 +9,8 @@ import { PageContainer, Aside, Main } from "../StyledPages/StyledPages";
 function Discover() {
   const [dataArray, setDataArray] = useState([]);
   const [index, setIndex] = useState(1);
-  const [userId, setUserId] = useState("");
+
+  const [profilePicture, setProfilePicture] = useState(null);
 
   useEffect(() => {
     async function load() {
@@ -44,7 +45,7 @@ function Discover() {
             Authorization: `Bearer ${token}`,
           },
         });
-        setUserId(data._id);
+        setProfilePicture(data.profilePicture)
       } catch (error) {
         localStorage.removeItem("token");
       }
@@ -82,13 +83,15 @@ function Discover() {
     return match && match[7].length === 11 ? match[7] : false;
   };
 
-  console.log(index)
+  console.log(index);
 
   return (
     <div className="discover">
       <PageContainer>
         <Aside>
-          <MessageList />
+          <MessageList
+            profilePicture={profilePicture}
+          />
         </Aside>
         <Main>
           {!!dataArray.length > 0 && (
@@ -97,7 +100,6 @@ function Discover() {
               dataArray={dataArray}
               handleNext={handleNext}
               index={index}
-              userId={userId}
             />
           )}
         </Main>

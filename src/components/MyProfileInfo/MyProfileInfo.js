@@ -143,14 +143,14 @@ function MyProfileInfo({
               <p>
                 <strong>Pago Mínimo:</strong>
               </p>
-              <p>${twitterUsername}</p>
+              <p>{twitterUsername}</p>
             </DataItem>
           </InfoContainer>
         </ProfileContainer>
         <ButtonContainer>
           <a href="/app/profile/edit">
             <ActionButtonContainer>
-              <ActionButton>Editar Perfil</ActionButton>
+              <ActionButton color="primary">Editar Perfil</ActionButton>
             </ActionButtonContainer>
           </a>
         </ButtonContainer>

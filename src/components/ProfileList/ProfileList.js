@@ -1,6 +1,9 @@
 import styled from "styled-components";
+import { useState } from "react";
 
 import HeaderRight from "../Headers/HeaderRight";
+
+import { Transition } from "react-transition-group";
 
 import {
   ComponentContainer,
@@ -39,9 +42,9 @@ export const SingleButtonContainer = styled.div`
   margin-right: 5px;
 `;
 
-function ProfileList({ dataArray, youtubeParser, handleNext, index, userId }) {
+function ProfileList({ dataArray, youtubeParser, handleNext, index }) {
+
   const {
-    _id,
     name,
     video,
     videoStartMin,

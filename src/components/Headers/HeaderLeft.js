@@ -7,8 +7,8 @@ export const InAppHeader = styled.header`
   justify-content: flex-start;
   background: linear-gradient(
     90deg,
-    rgba(13, 231, 208, 1) 0%,
-    rgba(110, 47, 200, 1) 100%
+    rgba(23, 205, 212, 1) 0%,
+    rgba(130, 98, 199, 1) 100%
   );
   color: white;
   box-shadow: 0 1px 8px 0 rgba(0, 17, 25, 0.27);
@@ -39,7 +39,10 @@ export const ProfilePicture = styled.img`
   border-style: solid;
 `;
 
-export const MyProfileAnchor = styled.h2`
+export const MyProfileAnchor = styled.a`
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
   margin-left: 10px;
 `;
 
@@ -50,7 +53,7 @@ function HeaderLeft({ profilePicture }) {
         <ThumbnailContainer>
           <ProfilePicture src={profilePicture} alt="Profle Thumbnail" />
         </ThumbnailContainer>
-        <MyProfileAnchor>Mi Perfil</MyProfileAnchor>
+        <MyProfileAnchor href="/app/profile/">Mi Perfil</MyProfileAnchor>
       </HeaderContainer>
     </InAppHeader>
   );
