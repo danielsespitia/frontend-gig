@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { useForm } from "react-hook-form";
 import { ActionButton } from "../../../pages/StyledPages/StyledPages";
 
 export const Form = styled.form`
@@ -26,14 +27,28 @@ export const SendMessageButton = styled(ActionButton)`
   justify-self: center;
 `;
 
-function MessageForm() {
+function MessageForm({ messageBody, handleChange, disabled }) {
+  const { register, handleSubmit } = useForm();
+
   return (
     <Form>
       <MessageInput
+        className="messageBody-input"
+        id="messageBody"
+        name="messageBody"
+        value={messageBody}
+        onChange={handleChange}
+        handleSubmit={handleSubmit}
+        ref={register}
         placeholder="Escribe aqui tu mensaje"
       />
       <ButtonSpan className="submit-span">
-        <ActionButton className="submit-button" type="submit" value="send">
+        <ActionButton
+          className="submit-button"
+          type="submit"
+          value="send"
+          disabled={disabled}
+        >
           Enviar
         </ActionButton>
       </ButtonSpan>

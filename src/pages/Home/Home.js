@@ -56,6 +56,12 @@ export const CloseModalButton = styled.div`
   align-self: center;
 `;
 
+export const CloseButton = styled.img`
+  opacity: 0.5;
+  height: 18px;
+  cursor: pointer;
+`;
+
 Modal.setAppElement("#root");
 
 function Home() {
@@ -99,9 +105,10 @@ function Home() {
         >
           <ModalHeader>
             <h3>Bienvenido</h3>
-            <CloseModalButton>
-              <button onClick={() => setShowLogInModal(false)}>X</button>
-            </CloseModalButton>
+            <CloseButton
+              src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-close-512.png"
+              onClick={() => setShowLogInModal(false)}
+            ></CloseButton>
           </ModalHeader>
           <LogInModal />
         </Modal>
@@ -128,9 +135,10 @@ function Home() {
         >
           <ModalHeader>
             <h3>Bienvenido</h3>
-            <CloseModalButton>
-              <button onClick={() => setShowSignUpModal(false)}>X</button>
-            </CloseModalButton>
+            <CloseButton
+              src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-close-512.png"
+              onClick={() => setShowSignUpModal(false)}
+            ></CloseButton>
           </ModalHeader>
           <SignUpModal />
         </Modal>
