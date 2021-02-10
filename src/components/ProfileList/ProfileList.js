@@ -69,7 +69,7 @@ function ProfileList({ dataArray, youtubeParser, handleNext, index }) {
                 height="315"
                 src={`https://www.youtube.com/embed/${youtubeParser(
                   video
-                )}?start=${startTime}&end=${endTime}`}
+                )}?autoplay=1&start=${startTime}&end=${endTime}`}
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
