@@ -39,7 +39,7 @@ function LogInModal() {
         data: { email, password },
       });
       localStorage.setItem("token", token);
-      const pathUser = "app/profile/edit";
+      const pathUser = "app/discover/";
       localStorage.setItem("pathUser", pathUser);
       isAuthenticated(token, pathUser);
       setMessage("Inicio de sesion exitoso");

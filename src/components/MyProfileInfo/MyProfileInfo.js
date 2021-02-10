@@ -23,9 +23,26 @@ const DataItem = styled.div`
   grid-row-gap: 5px;
 `;
 
-export const EditThumbnail = styled.img`
-  justify-self: center;
+export const ImageContainer = styled.div`
+  display: inherit;
+  justify-content: center;
+  width: 100%;
+`;
+
+export const ThumbnailContainer = styled.div`
+  display: inherit;
   height: 80px;
+  width: 80px;
+  justify-content: center;
+  border-radius: 50px;
+  background-color: lightblue;
+`;
+
+export const EditThumbnail = styled.img`
+  background-color: lightcoral;
+  display: inherit;
+  justify-self: center;
+  height: 100%;
   border-radius: 50%;
   object-fit: contain;
 `;
@@ -78,7 +95,11 @@ function MyProfileInfo({
             )}
           </VideoContainer>
           <InfoContainer>
-            <EditThumbnail src={profilePicture} alt="Profile Thumbnail" />
+            <ImageContainer>
+              <ThumbnailContainer>
+                <EditThumbnail src={profilePicture} alt="Profile Thumbnail" />
+              </ThumbnailContainer>
+            </ImageContainer>
             <DataItem>
               <p>{name}</p>
             </DataItem>
