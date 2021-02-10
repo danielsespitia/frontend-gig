@@ -6,6 +6,11 @@ import { useState } from "react";
 import SignUpModal from "../Home/SignUpModal/SignUpModal";
 import LogInModal from "../Home/LogInModal/LogInModal";
 
+import {
+  MainActionButton,
+  SecondaryActionButton,
+} from "../StyledPages/StyledPages";
+
 export const HomeContainer = styled.div`
   color: white;
   background: linear-gradient(rgba(130, 98, 199, 0.3), rgba(23, 205, 212, 0.3)),
@@ -86,15 +91,18 @@ function Home() {
           <p>GIG</p>
         </LogoContainer>
         <LogInButton>
-          <button onClick={() => setShowLogInModal(true)}>
+          <SecondaryActionButton onClick={() => setShowLogInModal(true)}>
             Iniciar Sesion
-          </button>
+          </SecondaryActionButton>
         </LogInButton>
         <Modal
           isOpen={showLogInModal}
           onRequestClose={() => setShowLogInModal(false)}
           style={{
-            overlay: {},
+            overlay: {
+              background:
+                "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5))",
+              },
             content: {
               margin: "auto",
               height: "230px",
@@ -118,13 +126,18 @@ function Home() {
           <h1>Descubre musicos cerca</h1>
         </div>
         <SignUpButton>
-          <button onClick={() => setShowSignUpModal(true)}>Registrate</button>
+          <MainActionButton onClick={() => setShowSignUpModal(true)}>
+            Registrate
+          </MainActionButton>
         </SignUpButton>
         <Modal
           isOpen={showSignUpModal}
           onRequestClose={() => setShowSignUpModal(false)}
           style={{
-            overlay: {},
+            overlay: {
+              background:
+                "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5))",
+            },
             content: {
               margin: "auto",
               height: "380px",

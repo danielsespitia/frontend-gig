@@ -13,7 +13,9 @@ function ReadMessageModal({
       isOpen={showReadMessageModal}
       onRequestClose={() => setShowReadMessageModal(false)}
       style={{
-        overlay: {},
+        overlay: {
+          background: "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5))"
+        },
         content: {
           margin: "auto",
           height: "30%",

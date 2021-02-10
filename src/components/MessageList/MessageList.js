@@ -51,6 +51,7 @@ export const SingleMessageContainer = styled.div`
   align-items: center;
   display: inherit;
   width: 100%;
+  cursor: pointer;
 `;
 
 export const ImgContainer = styled.div`
