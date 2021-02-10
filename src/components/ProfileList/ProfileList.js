@@ -42,7 +42,6 @@ export const SingleButtonContainer = styled.div`
   margin-right: 5px;
 `;
 
-APP009+
 function ProfileList({ dataArray, youtubeParser, handleNext, index }) {
 
   const {
