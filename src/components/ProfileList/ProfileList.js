@@ -39,9 +39,9 @@ export const SingleButtonContainer = styled.div`
   margin-right: 5px;
 `;
 
-function ProfileList({ dataArray, youtubeParser, handleNext, index }) {
-
+function ProfileList({ dataArray, youtubeParser, handleNext, index, userId }) {
   const {
+    _id,
     name,
     video,
     videoStartMin,
@@ -64,7 +64,9 @@ function ProfileList({ dataArray, youtubeParser, handleNext, index }) {
                 title="userVideo"
                 width="560"
                 height="315"
-                src={`https://www.youtube.com/embed/${youtubeParser(video)}?start=${startTime}&end=${endTime}`}
+                src={`https://www.youtube.com/embed/${youtubeParser(
+                  video
+                )}?start=${startTime}&end=${endTime}`}
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen

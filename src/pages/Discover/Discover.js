@@ -8,7 +8,8 @@ import { PageContainer, Aside, Main } from "../StyledPages/StyledPages";
 
 function Discover() {
   const [dataArray, setDataArray] = useState([]);
-  const [index, setIndex] = useState(0);
+  const [index, setIndex] = useState(1);
+  const [userId, setUserId] = useState("");
 
   useEffect(() => {
     async function load() {
@@ -29,11 +30,33 @@ function Discover() {
     load();
   }, []);
 
+  useEffect(() => {
+    async function load() {
+      const token = localStorage.getItem("token");
+      try {
+        const {
+          data: { data },
+        } = await axios({
+          method: "GET",
+          baseURL: process.env.REACT_APP_SERVER_URL,
+          url: "/users/profile",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        setUserId(data._id);
+      } catch (error) {
+        localStorage.removeItem("token");
+      }
+    }
+    load();
+  }, []);
+
   const handleMessage = () => {};
 
   const randomizer = () => {
     const totalProfiles = dataArray.length - 1;
-    return Math.floor(Math.random() * Math.floor(totalProfiles));
+    return Math.floor(Math.random() * Math.floor(totalProfiles) + 1);
   };
 
   const handleNext = () => {
@@ -42,10 +65,13 @@ function Discover() {
       return setIndex(newIndex);
     }
     if (index === newIndex && index < dataArray.length - 1) {
-      return setIndex(index + 1)
+      return setIndex(index + 1);
     }
     if (index >= dataArray.length - 1) {
-      return setIndex(index - 1)
+      return setIndex(index - 1);
+    }
+    if (newIndex !== 0) {
+      return setIndex(newIndex);
     }
   };
 
@@ -55,6 +81,8 @@ function Discover() {
 
     return match && match[7].length === 11 ? match[7] : false;
   };
+
+  console.log(index)
 
   return (
     <div className="discover">
@@ -69,6 +97,7 @@ function Discover() {
               dataArray={dataArray}
               handleNext={handleNext}
               index={index}
+              userId={userId}
             />
           )}
         </Main>
