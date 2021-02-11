@@ -12,6 +12,7 @@ export const Form = styled.form`
 
 export const MessageInput = styled.textarea`
   box-sizing: border-box;
+  border-radius: 4px;
   resize: none;
   width: 100%;
   height: 100%;

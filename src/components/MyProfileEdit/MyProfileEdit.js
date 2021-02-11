@@ -13,9 +13,13 @@ import {
   ButtonContainer,
 } from "../StyledComponents/StyledCard";
 
-import { ActionButton } from "../../pages/StyledPages/StyledPages"
+import { ActionButton } from "../../pages/StyledPages/StyledPages";
 
 const MyProfileEditContainer = styled(ComponentContainer)``;
+
+const ButtonContainerEditInfo = styled(ButtonContainer)`
+  margin-top: 70px;
+`;
 
 export const Form = styled.form`
   display: inherit;
@@ -268,7 +272,7 @@ function MyProfileEdit({
               </VideoStartContainer>
               <div>
                 <Label className="mainInstrument-label">
-                  <strong>Instrumento Principal:</strong>
+                  <strong>Rol Principal:</strong>
                 </Label>
                 <Select
                   id="mainInstrument"
@@ -278,18 +282,18 @@ function MyProfileEdit({
                   ref={register}
                   required
                 >
-                  <option value="guitar">Guitarra</option>
-                  <option value="bass">Bajo</option>
-                  <option value="drums">Bateria</option>
-                  <option value="vocals">Voz</option>
-                  <option value="keys">Piano</option>
-                  <option value="synths">Sintetizadores</option>
-                  <option value="beat-maker">Beat Maker</option>
+                  <option value="Guitarrista">Guitarrista</option>
+                  <option value="Bajista">Bajista</option>
+                  <option value="Baterista">Baterista</option>
+                  <option value="Vocalista">Vocalista</option>
+                  <option value="Pianista">Pianista</option>
+                  <option value="Diseñador Sonoro">Diseñador Sonoro</option>
+                  <option value="Beat Maker">Beat Maker</option>
                 </Select>
               </div>
               <div>
                 <Label className="sideInstrument-label">
-                  <strong>Otro Instrumento:</strong>
+                  <strong>Rol Secundario:</strong>
                 </Label>
                 <Select
                   id="sideInstrument"
@@ -297,17 +301,18 @@ function MyProfileEdit({
                   value={sideInstrument}
                   onChange={handleChange}
                   ref={register}
-                  required
                 >
-                  <option value="none">Ninguno</option>
-                  <option value="guitar">Guitarra</option>
-                  <option value="bass">Bajo</option>
-                  <option value="drums">Bateria</option>
-                  <option value="vocals">Voz</option>
-                  <option value="keys">Piano</option>
-                  <option value="synths">Sintetizadores</option>
-                  <option value="beat-maker">Beat Maker</option>
-                  <option value="mix-engineer">Ingeniero de Mezcla</option>
+                  <option value="Ninguno">Ninguno</option>
+                  <option value="Guitarrista">Guitarrista</option>
+                  <option value="Bajista">Bajista</option>
+                  <option value="Baterista">Baterista</option>
+                  <option value="Vocalista">Vocalista</option>
+                  <option value="Pianista">Pianista</option>
+                  <option value="Diseñador Sonoro">Diseñador Sonoro</option>
+                  <option value="Beat Maker">Beat Maker</option>
+                  <option value="Ingeniero de Mezcla">
+                    Ingeniero de Mezcla
+                  </option>
                 </Select>
               </div>
               <div>
@@ -322,12 +327,14 @@ function MyProfileEdit({
                   ref={register}
                   required
                 >
-                  <option value="collaboration">Colaborar</option>
-                  <option value="session-musician">Musico de Sesion</option>
-                  <option value="make-a-band">Crear Banda</option>
-                  <option value="complete-a-band">Completar Banda</option>
-                  <option value="producer">Productor</option>
-                  <option value="mix-engineer">Ingeniero de Mezcla</option>
+                  <option value="Colaborar">Colaborar</option>
+                  <option value="Musico de Sesion">Musico de Sesion</option>
+                  <option value="Crear Banda">Crear Banda</option>
+                  <option value="Completar Banda">Completar Banda</option>
+                  <option value="Productor">Productor</option>
+                  <option value="Ingeniero de Mezcla">
+                    Ingeniero de Mezcla
+                  </option>
                 </Select>
               </div>
               <div>
@@ -373,7 +380,6 @@ function MyProfileEdit({
                   value={description}
                   onChange={handleChange}
                   ref={register}
-                  required
                 />
               </div>
               <div>
@@ -386,9 +392,8 @@ function MyProfileEdit({
                   value={isProducer}
                   onChange={handleChange}
                   ref={register}
-                  required
                 >
-                  <option value="false">No</option>
+                  <option value={"false"}>No</option>
                   <option value="true">Si</option>
                 </Select>
               </div>
@@ -402,7 +407,6 @@ function MyProfileEdit({
                   value={isProfessional}
                   onChange={handleChange}
                   ref={register}
-                  required
                 >
                   <option value="false">Empirico</option>
                   <option value="true">Profesional</option>
@@ -420,13 +424,13 @@ function MyProfileEdit({
                   ref={register}
                   required
                 >
-                  <option value="rock">Rock</option>
-                  <option value="metal">Metal</option>
-                  <option value="edm">EDM</option>
-                  <option value="pop">Pop</option>
-                  <option value="ballad">Balada</option>
-                  <option value="jazz">Jazz</option>
-                  <option value="hip hop">Hip Hop</option>
+                  <option value="Rock">Rock</option>
+                  <option value="Metal">Metal</option>
+                  <option value="EDM">EDM</option>
+                  <option value="Pop">Pop</option>
+                  <option value="Balada">Balada</option>
+                  <option value="Jazz">Jazz</option>
+                  <option value="Hip Hop">Hip Hop</option>
                 </Select>
               </div>
               <div>
@@ -439,15 +443,14 @@ function MyProfileEdit({
                   value={sideGenre}
                   onChange={handleChange}
                   ref={register}
-                  required
                 >
-                  <option value="rock">Rock</option>
-                  <option value="metal">Metal</option>
-                  <option value="edm">EDM</option>
-                  <option value="pop">Pop</option>
-                  <option value="ballad">Balada</option>
-                  <option value="jazz">Jazz</option>
-                  <option value="hip hop">Hip Hop</option>
+                  <option value="Rock">Rock</option>
+                  <option value="Metal">Metal</option>
+                  <option value="EDM">EDM</option>
+                  <option value="Pop">Pop</option>
+                  <option value="Balada">Balada</option>
+                  <option value="Jazz">Jazz</option>
+                  <option value="Hip Hop">Hip Hop</option>
                 </Select>
               </div>
               <div>
@@ -490,7 +493,6 @@ function MyProfileEdit({
                   autoComplete="on"
                   onChange={handleChange}
                   ref={register}
-                  required
                 />
               </div>
               <div>
@@ -506,7 +508,6 @@ function MyProfileEdit({
                   autoComplete="on"
                   onChange={handleChange}
                   ref={register}
-                  required
                 />
               </div>
               <div>
@@ -522,7 +523,6 @@ function MyProfileEdit({
                   autoComplete="on"
                   onChange={handleChange}
                   ref={register}
-                  required
                 />
               </div>
               <div>
@@ -538,13 +538,12 @@ function MyProfileEdit({
                   autoComplete="on"
                   onChange={handleChange}
                   ref={register}
-                  required
                 />
               </div>
             </Form>
           </InfoContainer>
         </ProfileContainer>
-        <ButtonContainer>
+        <ButtonContainerEditInfo>
           <ActionButton
             form="edit-form"
             disabled={disabled}
@@ -555,7 +554,7 @@ function MyProfileEdit({
           >
             Actualizar
           </ActionButton>
-        </ButtonContainer>
+        </ButtonContainerEditInfo>
       </BodyContainer>
     </MyProfileEditContainer>
   );

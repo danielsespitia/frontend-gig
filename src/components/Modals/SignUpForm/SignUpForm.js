@@ -23,6 +23,23 @@ export const ItemContainer = styled.span`
   margin-bottom: 5px;
 `;
 
+export const TermsContainer = styled.span`
+  display: inherit;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+`;
+
+export const Span = styled.span`
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: center;
+`;
+
+
 export function SignUpForm({
   name,
   email,
@@ -99,11 +116,8 @@ export function SignUpForm({
           />
           <Error>{errorsPassword}</Error>
         </ItemContainer>
-        <ItemContainer>
-          <span>
-            <label className="terms-label" htmlFor="terms">
-              Estoy de acuerdo con los Términos y Condiciones
-            </label>
+        <TermsContainer>
+          <Span>
             <input
               className="terms-input"
               id="terms"
@@ -113,8 +127,11 @@ export function SignUpForm({
               onChange={handleChange}
               required
             />
-          </span>
-        </ItemContainer>
+            <label className="terms-label" htmlFor="terms">
+              Estoy de acuerdo con los Términos y Condiciones
+            </label>
+          </Span>
+        </TermsContainer>
         <ButtonSpan className="submit-span">
           <ActionButton className="submit-button" type="submit">
             Registrarse
