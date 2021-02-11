@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { ActionButton } from "../../../pages/StyledPages/StyledPages";
 
 export const Form = styled.form`
   display: grid;
@@ -115,9 +116,9 @@ export function SignUpForm({
           </span>
         </ItemContainer>
         <ButtonSpan className="submit-span">
-          <button className="submit-button" type="submit">
+          <ActionButton className="submit-button" type="submit">
             Registrarse
-          </button>
+          </ActionButton>
         </ButtonSpan>
       </Form>
     </div>

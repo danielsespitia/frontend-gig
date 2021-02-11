@@ -103,12 +103,6 @@ function MyProfileInfo({
             </DataItem>
             <DataItem>
               <p>
-                <strong>Correo Electrónico:</strong>
-              </p>
-              <p>{email}</p>
-            </DataItem>
-            <DataItem>
-              <p>
                 <strong>Dirección:</strong>
               </p>
               <p>{description}</p>

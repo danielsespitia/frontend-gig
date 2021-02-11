@@ -29,12 +29,24 @@ export const Header = styled.header`
   height: 60px;
 `;
 
+export const HomeTitle = styled.h1`
+  text-shadow: 3px 3px 1px #000000;
+`;
+
 export const LogoContainer = styled.div`
   display: inherit;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const LogoContainerModal = styled(LogoContainer)`
+  background-color: grey;
+  width: 100%;
 `;
 
 export const Logo = styled.img`
-  width: 50px;
+  display: inherit;
+  height: 40px;
 `;
 
 export const LogInButton = styled.div`
@@ -54,6 +66,7 @@ export const SignUpButton = styled.div`
 
 export const ModalHeader = styled.span`
   display: flex;
+  align-items: center;
   justify-content: space-between;
 `;
 
@@ -85,7 +98,7 @@ function Home() {
       <Header className="header">
         <LogoContainer className="logo">
           <Logo
-            src="https://static.thenounproject.com/png/3097969-200.png"
+            src="https://res.cloudinary.com/danielsespitia/image/upload/v1613019159/User-ProfilePicture/LOGO_Mesa_de_trabajo_1_tjzeqa.ico"
             alt="logo"
           />
           <p>GIG</p>
@@ -102,7 +115,7 @@ function Home() {
             overlay: {
               background:
                 "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5))",
-              },
+            },
             content: {
               margin: "auto",
               height: "230px",
@@ -112,7 +125,13 @@ function Home() {
           }}
         >
           <ModalHeader>
-            <h3>Bienvenido</h3>
+            <LogoContainer>
+              <Logo
+                src="https://res.cloudinary.com/danielsespitia/image/upload/v1613019159/User-ProfilePicture/LOGO_Mesa_de_trabajo_1_tjzeqa.ico"
+                alt="logo"
+              />
+            </LogoContainer>
+            <h3>Bienvenido de vuelta!</h3>
             <CloseButton
               src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-close-512.png"
               onClick={() => setShowLogInModal(false)}
@@ -123,7 +142,7 @@ function Home() {
       </Header>
       <Greeting>
         <div>
-          <h1>Descubre musicos cerca</h1>
+          <HomeTitle>Descubre musicos cerca</HomeTitle>
         </div>
         <SignUpButton>
           <MainActionButton onClick={() => setShowSignUpModal(true)}>
@@ -140,14 +159,20 @@ function Home() {
             },
             content: {
               margin: "auto",
-              height: "380px",
+              height: "440px",
               width: "260px",
               borderRadius: "10px",
             },
           }}
         >
           <ModalHeader>
-            <h3>Bienvenido</h3>
+            <LogoContainer>
+              <Logo
+                src="https://res.cloudinary.com/danielsespitia/image/upload/v1613019159/User-ProfilePicture/LOGO_Mesa_de_trabajo_1_tjzeqa.ico"
+                alt="logo"
+              />
+            </LogoContainer>
+            <h3>Bienvenido a GIG</h3>
             <CloseButton
               src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-close-512.png"
               onClick={() => setShowSignUpModal(false)}

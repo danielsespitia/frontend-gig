@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { ActionButton } from "../../../pages/StyledPages/StyledPages";
 
 export const Form = styled.form`
   display: grid;
@@ -59,13 +60,13 @@ export function LogInForm({
           />
         </ItemContainer>
         <ButtonSpan className="submit-span">
-          <button
+          <ActionButton
             className="submit-button"
             type="submit"
             value="Iniciar sesión"
           >
             Iniciar sesión
-          </button>
+          </ActionButton>
         </ButtonSpan>
       </Form>
       <span>{message}</span>

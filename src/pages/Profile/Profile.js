@@ -128,6 +128,7 @@ function Profile() {
       <PageContainer>
         <Aside>
           <MyProfileSettings
+            email={email}
             profilePicture={profilePicture}
             premiumAccount={premiumAccount}
             handleDelete={handleDelete}
@@ -141,7 +142,6 @@ function Profile() {
             youtubeId={youtubeId}
             startTime={startTime}
             endTime={endTime}
-            email={email}
             description={description}
             city={city}
             mainInstrument={mainInstrument}

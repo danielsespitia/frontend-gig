@@ -19,27 +19,39 @@ export const MessageArrayRender = styled.div`
 `;
 
 export const SingleMessageContainer = styled.div`
-  margin-top: 5px;
+  display: inherit;
+  margin-top: 20px;
   flex-direction: row;
   align-items: center;
-  display: inherit;
   width: 100%;
   cursor: pointer;
 `;
 
-export const ImgContainer = styled.div`
-  margin-left: 15px;
+export const ImageContainer = styled.div`
   display: inherit;
-  width: 50px;
-  height: 50px;
+  justify-content: center;
 `;
 
-export const Img = styled.img`
+export const ThumbnailContainer = styled.div`
+  margin-left: 15px;
+  display: inherit;
+  height: 80px;
+  width: 80px;
+  justify-content: center;
+  border-radius: 50px;
+  border: solid 1px lightgray;
+`;
+
+export const EditThumbnail = styled.img`
+  display: inherit;
+  justify-self: center;
   height: 100%;
-  width: 100%;
+  border-radius: 50%;
+  object-fit: contain;
 `;
 
 export const TextContainer = styled.div`
+  padding-left: 13px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -84,7 +96,7 @@ function MessageList({ profilePicture }) {
           },
         });
         setMessageArray(data || []);
-        console.log(messageArray)
+        console.log(messageArray);
       } catch (error) {
         localStorage.removeItem("token");
       }
@@ -100,24 +112,32 @@ function MessageList({ profilePicture }) {
         messageArray.length > 0 &&
         messageArray.map(
           ({ _id, sender, senderPhoto, messageBody, timestamp }) => {
-          return (
-            <MessageArrayRender key={_id}>
-              <SingleMessageContainer
-                onClick={() =>
-                  onClick(sender.name, sender.profilePicture, messageBody, timestamp)
-                }
-              >
-                <ImgContainer>
-                  <Img src={sender.profilePicture} alt="sender" />
-                </ImgContainer>
-                <TextContainer>
-                  <SenderName>{sender.name}</SenderName>
-                  <MessageBody>{messageBody}</MessageBody>
-                </TextContainer>
-              </SingleMessageContainer>
-            </MessageArrayRender>
-          );
-        })}
+            return (
+              <MessageArrayRender key={_id}>
+                <SingleMessageContainer
+                  onClick={() =>
+                    onClick(
+                      sender.name,
+                      sender.profilePicture,
+                      messageBody,
+                      timestamp
+                    )
+                  }
+                >
+                  <ImageContainer>
+                    <ThumbnailContainer>
+                      <EditThumbnail src={sender.profilePicture} alt="sender" />
+                    </ThumbnailContainer>
+                  </ImageContainer>
+                  <TextContainer>
+                    <SenderName>{sender.name}</SenderName>
+                    <MessageBody>{messageBody}</MessageBody>
+                  </TextContainer>
+                </SingleMessageContainer>
+              </MessageArrayRender>
+            );
+          }
+        )}
       <ReadMessageModal
         sender={state.sender}
         senderPhoto={state.senderPhoto}
