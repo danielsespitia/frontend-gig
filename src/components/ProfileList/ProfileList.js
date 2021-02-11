@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Modal from "react-modal";
+import axios from "axios";
 
 import styled from "styled-components";
 
@@ -90,6 +91,9 @@ export const CloseButton = styled.img`
   cursor: pointer;
 `;
 
+export const MessageButton = styled.button`
+`;
+
 function ProfileList({ dataArray, youtubeParser, handleNext, index }) {
   const [showSendMessageModal, setShowSendMessageModal] = useState(false);
 
@@ -101,6 +105,28 @@ function ProfileList({ dataArray, youtubeParser, handleNext, index }) {
     videoStartMin,
     videoStartSec,
   } = dataArray[index];
+
+  const onSubmit = async (data) => {
+    setShowSendMessageModal(false);
+    const { messageBody } = data;
+    try {
+      const token = localStorage.getItem("token");
+      await axios({
+        method: "POST",
+        baseURL: process.env.REACT_APP_SERVER_URL,
+        url: `/messages/${_id}`,
+        data: {
+          messageBody,
+        },
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      alert("Mensaje enviado!");
+    } catch (err) {
+      alert("No se pudo enviar tu mensaje");
+    }
+  };
 
   const startTime = videoStartMin * 60 + videoStartSec;
   const endTime = startTime + 15;
@@ -142,7 +168,6 @@ function ProfileList({ dataArray, youtubeParser, handleNext, index }) {
           </SingleButtonContainer>
           <Modal
             isOpen={showSendMessageModal}
-            shouldReturnFocusAfterClose={false}
             onRequestClose={() => setShowSendMessageModal(false)}
             style={{
               overlay: {
@@ -177,10 +202,10 @@ function ProfileList({ dataArray, youtubeParser, handleNext, index }) {
                 ></CloseButton>
               </CloseModalButton>
             </ModalHeader>
-            <SendMessageModal id={_id} />
+            <SendMessageModal id={_id} onSubmit={onSubmit} />
           </Modal>
           <SingleButtonContainer>
-            <button onClick={handleNext}>Siguiente</button>
+            <MessageButton onClick={handleNext}>Siguiente</MessageButton>
           </SingleButtonContainer>
         </ButtonsContainer>
       </BodyContainer>

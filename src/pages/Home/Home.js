@@ -30,7 +30,8 @@ export const Header = styled.header`
 `;
 
 export const HomeTitle = styled.h1`
-  text-shadow: 3px 3px 1px #000000;
+font-size: 26px;
+  text-shadow: 1.2px 1.2px 1px #000000;
 `;
 
 export const LogoContainer = styled.div`
