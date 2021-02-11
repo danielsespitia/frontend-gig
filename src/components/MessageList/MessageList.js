@@ -116,39 +116,36 @@ function MessageList({ profilePicture }) {
   return (
     <MessageListContainer>
       <HeaderLeft profilePicture={profilePicture} />
-
       {!!messageArray &&
         messageArray.length > 0 &&
-        messageArray.map(
-          ({ _id, sender, messageBody, timestamp }) => {
-            return (
-              <MessageArrayRender key={_id}>
-                <SingleMessageContainer
-                  onClick={() =>
-                    onClick(
-                      sender.name,
-                      sender.profilePicture,
-                      messageBody,
-                      timestamp
-                    )
-                  }
-                >
-                  <ImageContainer>
-                    <ThumbnailContainer>
-                      <EditThumbnail src={sender.profilePicture} alt="sender" />
-                    </ThumbnailContainer>
-                  </ImageContainer>
-                  <TextContainer>
-                    <SenderName>{sender.name}</SenderName>
-                    <LimitSpan>
-                      <MessageBody>{messageBody}</MessageBody>
-                    </LimitSpan>
-                  </TextContainer>
-                </SingleMessageContainer>
-              </MessageArrayRender>
-            );
-          }
-        )}
+        messageArray.map(({ _id, sender, messageBody, timestamp }) => {
+          return (
+            <MessageArrayRender key={_id}>
+              <SingleMessageContainer
+                onClick={() =>
+                  onClick(
+                    sender.name,
+                    sender.profilePicture,
+                    messageBody,
+                    timestamp
+                  )
+                }
+              >
+                <ImageContainer>
+                  <ThumbnailContainer>
+                    <EditThumbnail src={sender.profilePicture} alt="sender" />
+                  </ThumbnailContainer>
+                </ImageContainer>
+                <TextContainer>
+                  <SenderName>{sender.name}</SenderName>
+                  <LimitSpan>
+                    <MessageBody>{messageBody}</MessageBody>
+                  </LimitSpan>
+                </TextContainer>
+              </SingleMessageContainer>
+            </MessageArrayRender>
+          );
+        })}
       <ReadMessageModal
         sender={state.sender}
         senderPhoto={state.senderPhoto}

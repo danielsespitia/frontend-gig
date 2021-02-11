@@ -9,6 +9,7 @@ export const PageContainer = styled.div`
 
 export const Aside = styled.div`
   display: inherit;
+  background-color: #f5f7fa;
   justify-content: center;
   flex-basis: 25%;
   min-width: 325px;
