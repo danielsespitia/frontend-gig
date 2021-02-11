@@ -62,7 +62,17 @@ export const SenderName = styled.h3`
   margin: 0;
 `;
 
+export const LimitSpan = styled.span`
+  display: inherit;
+  max-width: 26ch;
+`;
+
 export const MessageBody = styled.p`
+  white-space: nowrap;
+  max-width: 200px;
+  display: inherit;
+  text-overflow: ellipsis;
+  overflow: hidden;
   margin: 0;
   opacity: 0.5;
   font-size: 12px;
@@ -96,7 +106,6 @@ function MessageList({ profilePicture }) {
           },
         });
         setMessageArray(data || []);
-        console.log(messageArray);
       } catch (error) {
         localStorage.removeItem("token");
       }
@@ -131,7 +140,9 @@ function MessageList({ profilePicture }) {
                   </ImageContainer>
                   <TextContainer>
                     <SenderName>{sender.name}</SenderName>
-                    <MessageBody>{messageBody}</MessageBody>
+                    <LimitSpan>
+                      <MessageBody>{messageBody}</MessageBody>
+                    </LimitSpan>
                   </TextContainer>
                 </SingleMessageContainer>
               </MessageArrayRender>

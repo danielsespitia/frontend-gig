@@ -28,6 +28,7 @@ function ReadMessageModal({
       <p>{timestamp}</p>
       <h3>{sender}</h3>
       <p>{messageBody}</p>
+      <button>responder</button>
     </Modal>
   );
 }

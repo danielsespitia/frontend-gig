@@ -27,18 +27,17 @@ export const SendMessageButton = styled(ActionButton)`
   justify-self: center;
 `;
 
-function MessageForm({ messageBody, handleChange, disabled }) {
+function MessageForm({ messageBody, handleChange, disabled, onSubmit }) {
   const { register, handleSubmit } = useForm();
 
   return (
-    <Form>
+    <Form onSubmit={handleSubmit(onSubmit)}>
       <MessageInput
         className="messageBody-input"
         id="messageBody"
         name="messageBody"
         value={messageBody}
         onChange={handleChange}
-        handleSubmit={handleSubmit}
         ref={register}
         placeholder="Escribe aqui tu mensaje"
       />

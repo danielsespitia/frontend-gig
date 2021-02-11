@@ -52,7 +52,6 @@ function ProfileEdit() {
             Authorization: `Bearer ${token}`,
           },
         });
-        console.log(data.profilePicture);
         setName(data.name || "");
         setProfilePicture(data.profilePicture || null);
         if (data.profilePicture === undefined) {
