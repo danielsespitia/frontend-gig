@@ -6,7 +6,6 @@ import ProfileList from "../../components/ProfileList/ProfileList";
 import { PageContainer, Aside, Main } from "../StyledPages/StyledPages";
 
 function Discover() {
-
   const [dataArray, setDataArray] = useState([]);
   const [index, setIndex] = useState(0);
   const [userId, setUserId] = useState("");
@@ -59,8 +58,6 @@ function Discover() {
     }
     load();
   }, []);
-
-  const handleMessage = () => {};
 
   const randomizer = () => {
     const totalProfiles = dataArray.length - 1;

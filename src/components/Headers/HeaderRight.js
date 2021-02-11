@@ -7,22 +7,23 @@ export const InAppHeader = styled.header`
   justify-content: center;
 `;
 
-export const LogoContainer = styled.div`
+export const LogoContainer = styled.a`
   display: inherit;
 `;
 
 export const Logo = styled.img`
+  align-self: center;
   opacity: 0.5;
-  width: 50px;
-  height: 50px;
+  width: 30px;
+  height: 30px;
 `;
 
 function HeaderRight() {
   return (
     <InAppHeader>
-      <LogoContainer>
+      <LogoContainer href="/app/discover">
         <Logo
-          src="https://static.thenounproject.com/png/3097969-200.png"
+          src="https://res.cloudinary.com/danielsespitia/image/upload/v1613018925/User-ProfilePicture/LOGO_Mesa_de_trabajo_1_f7jjzr.png"
           alt="logo"
         />
       </LogoContainer>

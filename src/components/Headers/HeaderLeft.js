@@ -40,10 +40,11 @@ export const ProfilePicture = styled.img`
 `;
 
 export const MyProfileAnchor = styled.a`
+  font-size: 20px;
   font-weight: bold;
   color: white;
   text-decoration: none;
-  margin-left: 10px;
+  margin-left: 15px;
 `;
 
 function HeaderLeft({ profilePicture }) {

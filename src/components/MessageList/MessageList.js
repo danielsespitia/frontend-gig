@@ -1,37 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 import styled from "styled-components";
 import ReadMessageModal from "../../pages/Discover/ReadMessageModal/ReadMessageModal";
 
 import HeaderLeft from "../Headers/HeaderLeft";
-
-const data = [
-  {
-    sender: "Pepito",
-    senderPhoto:
-      "https://cdn.iconscout.com/icon/free/png-256/icloud-download-475016.png",
-    messageBody: "ke hay wey?",
-    timestamp: "08/02/2021 14:22",
-  },
-  {
-    sender: "Rayuela",
-    senderPhoto: "https://img.icons8.com/pastel-glyph/2x/create-new.png",
-    body: "no me dejes en visto wey",
-    timestamp: "10/02/2021 13:22",
-  },
-  {
-    sender: "Thalia",
-    senderPhoto: "https://img.icons8.com/pastel-glyph/2x/create-new.png",
-    messageBody: "si no me acuerdo no paso",
-    timestamp: "10/02/2021 13:22",
-  },
-  {
-    sender: "henry cavill",
-    senderPhoto: "https://img.icons8.com/pastel-glyph/2x/create-new.png",
-    messageBody: "wyd?",
-    timestamp: "10/02/2021 13:22",
-  },
-];
 
 export const MessageListContainer = styled.div`
   display: inherit;
@@ -46,72 +19,144 @@ export const MessageArrayRender = styled.div`
 `;
 
 export const SingleMessageContainer = styled.div`
-  margin-top: 5px;
+  display: inherit;
+  margin-top: 20px;
   flex-direction: row;
   align-items: center;
-  display: inherit;
   width: 100%;
+  cursor: pointer;
 `;
 
-export const ImgContainer = styled.div`
+export const ImageContainer = styled.div`
+  display: inherit;
+  justify-content: center;
+`;
+
+export const ThumbnailContainer = styled.div`
   margin-left: 15px;
   display: inherit;
-  width: 50px;
-  height: 50px;
+  height: 80px;
+  width: 80px;
+  justify-content: center;
+  border-radius: 50px;
+  border: solid 1px lightgray;
 `;
 
-export const Img = styled.img`
+export const EditThumbnail = styled.img`
+  display: inherit;
+  justify-self: center;
   height: 100%;
-  width: 100%;
+  border-radius: 50%;
+  object-fit: contain;
 `;
 
 export const TextContainer = styled.div`
+  padding-left: 13px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   width: 100%;
 `;
 
-export const SenderName = styled.h3``;
+export const SenderName = styled.h3`
+  margin: 0;
+`;
+
+export const LimitSpan = styled.span`
+  display: inherit;
+  max-width: 26ch;
+`;
 
 export const MessageBody = styled.p`
+  white-space: nowrap;
+  max-width: 200px;
+  display: inherit;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  margin: 0;
   opacity: 0.5;
   font-size: 12px;
 `;
 
 function MessageList({ profilePicture }) {
-  const [showReadMessageModal, setShowReadMessageModal] = useState(false);
-  const onClick = () => {
-    setShowReadMessageModal(true);
+  const [messageArray, setMessageArray] = useState([]);
+  const [state, setState] = useState({ showReadMessageModal: false });
+  const onClick = (sender, senderPhoto, messageBody, timestamp) => {
+    setState({
+      showReadMessageModal: true,
+      sender,
+      senderPhoto,
+      messageBody,
+      timestamp,
+    });
   };
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    async function load() {
+      try {
+        const {
+          data: { data },
+        } = await axios({
+          method: "GET",
+          baseURL: process.env.REACT_APP_SERVER_URL,
+          url: "/users/messages",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        setMessageArray(data || []);
+      } catch (error) {
+        localStorage.removeItem("token");
+      }
+    }
+    load();
+  }, []);
 
   return (
     <MessageListContainer>
       <HeaderLeft profilePicture={profilePicture} />
-      <MessageArrayRender>
-        {!!data &&
-          data.length > 0 &&
-          data.map(({ sender, senderPhoto, messageBody, timestamp }) => {
+
+      {!!messageArray &&
+        messageArray.length > 0 &&
+        messageArray.map(
+          ({ _id, sender, senderPhoto, messageBody, timestamp }) => {
             return (
-              <>
-                <SingleMessageContainer onClick={onClick}>
-                  <ImgContainer>
-                    <Img src={senderPhoto} alt="sender" />
-                  </ImgContainer>
+              <MessageArrayRender key={_id}>
+                <SingleMessageContainer
+                  onClick={() =>
+                    onClick(
+                      sender.name,
+                      sender.profilePicture,
+                      messageBody,
+                      timestamp
+                    )
+                  }
+                >
+                  <ImageContainer>
+                    <ThumbnailContainer>
+                      <EditThumbnail src={sender.profilePicture} alt="sender" />
+                    </ThumbnailContainer>
+                  </ImageContainer>
                   <TextContainer>
-                    <SenderName>{sender}</SenderName>
-                    <MessageBody>{messageBody}</MessageBody>
+                    <SenderName>{sender.name}</SenderName>
+                    <LimitSpan>
+                      <MessageBody>{messageBody}</MessageBody>
+                    </LimitSpan>
                   </TextContainer>
                 </SingleMessageContainer>
-                <ReadMessageModal
-                  sender={sender}
-                  senderPhoto={senderPhoto}
-                  messageBody={messageBody}
-                  timestamp={timestamp}
-                  showReadMessageModal={showReadMessageModal}
-                  setShowReadMessageModal={setShowReadMessageModal}
-                />
-              </>
+              </MessageArrayRender>
             );
-          })}
-      </MessageArrayRender>
+          }
+        )}
+      <ReadMessageModal
+        sender={state.sender}
+        senderPhoto={state.senderPhoto}
+        messageBody={state.messageBody}
+        timestamp={state.timestamp}
+        showReadMessageModal={state.showReadMessageModal}
+        onClose={() => setState({ showReadMessageModal: false })}
+      />
     </MessageListContainer>
   );
 }

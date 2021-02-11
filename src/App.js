@@ -12,6 +12,7 @@ import Discover from "./pages/Discover/Discover";
 import Profile from "./pages/Profile/Profile";
 import ProfileEdit from "./pages/ProfileEdit/ProfileEdit";
 import Messages from "./pages/Messages/Messages";
+import MessageForm from "./components/Modals/MessageForm/MessageForm";
 
 function PrivateRoute(props) {
   const token = localStorage.getItem("token");
@@ -27,6 +28,7 @@ function App() {
       <Router>
         <Switch>
           <Route exact path="/" component={Home} />
+          <PrivateRoute exact path="/app/discover/send" component={MessageForm} />
           <PrivateRoute exact path="/app/discover" component={Discover} />
           <PrivateRoute exact path="/app/profile" component={Profile} />
           <PrivateRoute

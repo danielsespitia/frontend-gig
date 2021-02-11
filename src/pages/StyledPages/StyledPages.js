@@ -24,6 +24,35 @@ export const Main = styled.div`
   flex: 1;
 `;
 
+export const MainActionButton = styled.button`
+  font-size: 14px;
+  font-weight: bold;
+  padding: 0;
+  border: none;
+  height: 40px;
+  width: 120px;
+  border-radius: 8px;
+  background: linear-gradient(
+    90deg,
+    rgba(23, 205, 212, 1) 0%,
+    rgba(130, 98, 199, 1) 100%
+  );
+  color: white;
+  &:hover {
+    color: #fff;
+    background: linear-gradient(
+      90deg,
+      rgba(130, 98, 199, 1) 0%,
+      rgba(23, 205, 212, 1) 100%
+    );
+  }
+  &:disabled {
+    cursor: not-allowed;
+    pointer-events: none;
+    opacity: 0.5;
+  }
+`;
+
 export const ActionButton = styled.button`
   font-size: 14px;
   font-weight: bold;
@@ -46,7 +75,31 @@ export const ActionButton = styled.button`
   &:disabled {
     cursor: not-allowed;
     pointer-events: none;
+    opacity: 0.5;
+  }
+`;
 
+export const SecondaryActionButton = styled.button`
+  font-size: 14px;
+  font-weight: bold;
+  padding: 0;
+  border: none;
+  height: 40px;
+  width: 120px;
+  border-radius: 8px;
+  background: #fff;
+  color: #8262c7;
+  &:hover {
+    color: white;
+    background: linear-gradient(
+      90deg,
+      rgba(23, 205, 212, 1) 0%,
+      rgba(130, 98, 199, 1) 100%
+    );
+  }
+  &:disabled {
+    cursor: not-allowed;
+    pointer-events: none;
     opacity: 0.5;
   }
 `;

@@ -94,6 +94,7 @@ function ProfileList({ dataArray, youtubeParser, handleNext, index }) {
   const [showSendMessageModal, setShowSendMessageModal] = useState(false);
 
   const {
+    _id,
     name,
     profilePicture,
     video,
@@ -141,9 +142,13 @@ function ProfileList({ dataArray, youtubeParser, handleNext, index }) {
           </SingleButtonContainer>
           <Modal
             isOpen={showSendMessageModal}
+            shouldReturnFocusAfterClose={false}
             onRequestClose={() => setShowSendMessageModal(false)}
             style={{
-              overlay: {},
+              overlay: {
+                background:
+                  "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5))",
+              },
               content: {
                 margin: "auto",
                 height: "30%",
@@ -172,7 +177,7 @@ function ProfileList({ dataArray, youtubeParser, handleNext, index }) {
                 ></CloseButton>
               </CloseModalButton>
             </ModalHeader>
-            <SendMessageModal />
+            <SendMessageModal id={_id} />
           </Modal>
           <SingleButtonContainer>
             <button onClick={handleNext}>Siguiente</button>

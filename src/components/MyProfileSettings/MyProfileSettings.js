@@ -12,10 +12,22 @@ export const MyProfileSettingsContainer = styled.div`
 
 export const MembershipContainer = styled.div`
   display: inherit;
-  align-self: center;
+  width: 100%;
+  flex-direction: column;
+  align-items: flex-start;
 `;
 
-function MyProfileSettings({ profilePicture, premiumAccount, handleDelete }) {
+export const P = styled.p`
+  margin: 0;
+  margin-left: 15px;
+`;
+
+function MyProfileSettings({
+  profilePicture,
+  email,
+  premiumAccount,
+  handleDelete,
+}) {
   const { logout } = useContext(AuthContext);
 
   return (
@@ -28,14 +40,15 @@ function MyProfileSettings({ profilePicture, premiumAccount, handleDelete }) {
         <button>Cerrar Sesion</button>
       </a>
       <div>
-        <button onClick={handleDelete}>
-          Eliminar Perfil
-        </button>
+        <button onClick={handleDelete}>Eliminar Perfil</button>
       </div>
       <MembershipContainer>
-        <p>
+        <P>
           <strong>Membresia:</strong> {premiumAccount ? "Premium" : "Gratuita"}
-        </p>
+        </P>
+        <P>
+          <strong>Correo Electronico:</strong> {email}
+        </P>
       </MembershipContainer>
     </MyProfileSettingsContainer>
   );

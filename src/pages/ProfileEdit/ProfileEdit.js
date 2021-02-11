@@ -52,7 +52,6 @@ function ProfileEdit() {
             Authorization: `Bearer ${token}`,
           },
         });
-        console.log(data.profilePicture);
         setName(data.name || "");
         setProfilePicture(data.profilePicture || null);
         if (data.profilePicture === undefined) {
@@ -294,6 +293,7 @@ function ProfileEdit() {
       <PageContainer>
         <Aside>
           <MyProfileSettings
+            email={email}
             profilePicture={profilePicture}
             premiumAccount={premiumAccount}
             handleDelete={handleDelete}
