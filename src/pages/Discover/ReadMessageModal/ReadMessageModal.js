@@ -5,16 +5,16 @@ function ReadMessageModal({
   messageBody,
   senderPhoto,
   timestamp,
-  setShowReadMessageModal,
+  onClose,
   showReadMessageModal,
 }) {
   return (
     <Modal
       isOpen={showReadMessageModal}
-      onRequestClose={() => setShowReadMessageModal(false)}
+      onRequestClose={() => onClose(false)}
       style={{
         overlay: {
-          background: "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5))"
+          background: "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5))",
         },
         content: {
           margin: "auto",
@@ -24,10 +24,7 @@ function ReadMessageModal({
         },
       }}
     >
-      <img
-      src={senderPhoto}
-      alt="sender"
-      />
+      <img src={senderPhoto} alt="sender" />
       <p>{timestamp}</p>
       <h3>{sender}</h3>
       <p>{messageBody}</p>

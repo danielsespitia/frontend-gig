@@ -16,7 +16,7 @@ const data = [
   {
     sender: "Rayuela",
     senderPhoto: "https://img.icons8.com/pastel-glyph/2x/create-new.png",
-    body: "no me dejes en visto wey",
+    messageBody: "no me dejes en visto",
     timestamp: "10/02/2021 13:22",
   },
   {
@@ -67,20 +67,32 @@ export const Img = styled.img`
 `;
 
 export const TextContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   width: 100%;
 `;
 
-export const SenderName = styled.h3``;
+export const SenderName = styled.h3`
+  margin: 0;
+`;
 
 export const MessageBody = styled.p`
+  margin: 0;
   opacity: 0.5;
   font-size: 12px;
 `;
 
 function MessageList({ profilePicture }) {
-  const [showReadMessageModal, setShowReadMessageModal] = useState(false);
-  const onClick = () => {
-    setShowReadMessageModal(true);
+  const [state, setState] = useState({ showReadMessageModal: false });
+  const onClick = (sender, senderPhoto, messageBody, timestamp) => {
+    setState({
+      showReadMessageModal: true,
+      sender,
+      senderPhoto,
+      messageBody,
+      timestamp,
+    });
   };
 
   return (
@@ -92,7 +104,11 @@ function MessageList({ profilePicture }) {
           data.map(({ sender, senderPhoto, messageBody, timestamp }) => {
             return (
               <>
-                <SingleMessageContainer onClick={onClick}>
+                <SingleMessageContainer
+                  onClick={() =>
+                    onClick(sender, senderPhoto, messageBody, timestamp)
+                  }
+                >
                   <ImgContainer>
                     <Img src={senderPhoto} alt="sender" />
                   </ImgContainer>
@@ -101,18 +117,18 @@ function MessageList({ profilePicture }) {
                     <MessageBody>{messageBody}</MessageBody>
                   </TextContainer>
                 </SingleMessageContainer>
-                <ReadMessageModal
-                  sender={sender}
-                  senderPhoto={senderPhoto}
-                  messageBody={messageBody}
-                  timestamp={timestamp}
-                  showReadMessageModal={showReadMessageModal}
-                  setShowReadMessageModal={setShowReadMessageModal}
-                />
               </>
             );
           })}
       </MessageArrayRender>
+      <ReadMessageModal
+        sender={state.sender}
+        senderPhoto={state.senderPhoto}
+        messageBody={state.messageBody}
+        timestamp={state.timestamp}
+        showReadMessageModal={state.showReadMessageModal}
+        onClose={() => setState({ showReadMessageModal: false })}
+      />
     </MessageListContainer>
   );
 }
