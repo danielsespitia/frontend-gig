@@ -120,7 +120,7 @@ function MessageList({ profilePicture }) {
       {!!messageArray &&
         messageArray.length > 0 &&
         messageArray.map(
-          ({ _id, sender, senderPhoto, messageBody, timestamp }) => {
+          ({ _id, sender, messageBody, timestamp }) => {
             return (
               <MessageArrayRender key={_id}>
                 <SingleMessageContainer

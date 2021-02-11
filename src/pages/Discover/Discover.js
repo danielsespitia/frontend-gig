@@ -6,30 +6,13 @@ import ProfileList from "../../components/ProfileList/ProfileList";
 import { PageContainer, Aside, Main } from "../StyledPages/StyledPages";
 
 function Discover() {
+
   const [dataArray, setDataArray] = useState([]);
   const [index, setIndex] = useState(0);
   const [userId, setUserId] = useState("");
 
   const [profilePicture, setProfilePicture] = useState("");
-
-  useEffect(() => {
-    async function load() {
-      try {
-        const {
-          data: { data },
-        } = await axios({
-          method: "GET",
-          baseURL: process.env.REACT_APP_SERVER_URL,
-          url: "/users",
-          headers: {},
-        });
-        setDataArray(data);
-      } catch (error) {
-        localStorage.removeItem("token");
-      }
-    }
-    load();
-  }, []);
+  const [video, setVideo] = useState("");
 
   useEffect(() => {
     async function load() {
@@ -52,6 +35,25 @@ function Discover() {
             "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png"
           );
         }
+      } catch (error) {
+        localStorage.removeItem("token");
+      }
+    }
+    load();
+  }, []);
+
+  useEffect(() => {
+    async function load() {
+      try {
+        const {
+          data: { data },
+        } = await axios({
+          method: "GET",
+          baseURL: process.env.REACT_APP_SERVER_URL,
+          url: "/users",
+          headers: {},
+        });
+        setDataArray(data);
       } catch (error) {
         localStorage.removeItem("token");
       }

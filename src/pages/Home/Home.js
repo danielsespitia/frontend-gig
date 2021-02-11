@@ -160,7 +160,7 @@ function Home() {
             },
             content: {
               margin: "auto",
-              height: "440px",
+              height: "390px",
               width: "260px",
               borderRadius: "10px",
             },
