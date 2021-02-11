@@ -27,6 +27,7 @@ export const P = styled.p`
 `;
 
 export const SettingsContainer = styled.div`
+  padding-top: 10px;
   background-color: white;
   display: flex;
   flex-direction: column;
@@ -43,7 +44,20 @@ export const Settings = styled.p`
   margin-bottom: 10px;
 `;
 
+export const NewButtonContainer = styled.button`
+  cursor: pointer;
+  margin-top: 600px;
+  height: 40px;
+  background-color: white;
+  color: red;
+  border: none;
+`;
+
+export const TextButtonContainer = styled.div`
+`;
+
 export const A = styled.a`
+  height: 20px;
   opacity: 0.5;
   color: black;
   margin: 0;
@@ -52,14 +66,6 @@ export const A = styled.a`
   text-decoration: none;
   margin-top: 10px;
   margin-bottom: 10px;
-`;
-
-export const NewButtonContainer = styled.button`
-  margin-top: 20px;
-  height: 40px;
-  background-color: white;
-  color: red;
-  border: none;
 `;
 
 function MyProfileSettings({

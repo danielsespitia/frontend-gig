@@ -169,7 +169,7 @@ export const H32 = styled.h3`
 
 export const H322 = styled.h3`
   font-size: 14px;
-  opacity: 0.5;
+  opacity: 0.4;
   margin: 0;
   padding-bottom: 1px;
   margin-left: 4px;
