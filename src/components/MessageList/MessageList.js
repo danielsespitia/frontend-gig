@@ -1,37 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 import styled from "styled-components";
 import ReadMessageModal from "../../pages/Discover/ReadMessageModal/ReadMessageModal";
 
 import HeaderLeft from "../Headers/HeaderLeft";
-
-const data = [
-  {
-    sender: "Pepito",
-    senderPhoto:
-      "https://cdn.iconscout.com/icon/free/png-256/icloud-download-475016.png",
-    messageBody: "ke hay wey?",
-    timestamp: "08/02/2021 14:22",
-  },
-  {
-    sender: "Rayuela",
-    senderPhoto: "https://img.icons8.com/pastel-glyph/2x/create-new.png",
-    messageBody: "no me dejes en visto",
-    timestamp: "10/02/2021 13:22",
-  },
-  {
-    sender: "Thalia",
-    senderPhoto: "https://img.icons8.com/pastel-glyph/2x/create-new.png",
-    messageBody: "si no me acuerdo no paso",
-    timestamp: "10/02/2021 13:22",
-  },
-  {
-    sender: "henry cavill",
-    senderPhoto: "https://img.icons8.com/pastel-glyph/2x/create-new.png",
-    messageBody: "wyd?",
-    timestamp: "10/02/2021 13:22",
-  },
-];
 
 export const MessageListContainer = styled.div`
   display: inherit;
@@ -84,6 +57,7 @@ export const MessageBody = styled.p`
 `;
 
 function MessageList({ profilePicture }) {
+  const [messageArray, setMessageArray] = useState([]);
   const [state, setState] = useState({ showReadMessageModal: false });
   const onClick = (sender, senderPhoto, messageBody, timestamp) => {
     setState({
@@ -95,32 +69,55 @@ function MessageList({ profilePicture }) {
     });
   };
 
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    async function load() {
+      try {
+        const {
+          data: { data },
+        } = await axios({
+          method: "GET",
+          baseURL: process.env.REACT_APP_SERVER_URL,
+          url: "/users/messages",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        setMessageArray(data || []);
+        console.log(messageArray)
+      } catch (error) {
+        localStorage.removeItem("token");
+      }
+    }
+    load();
+  }, []);
+
   return (
     <MessageListContainer>
       <HeaderLeft profilePicture={profilePicture} />
-      <MessageArrayRender>
-        {!!data &&
-          data.length > 0 &&
-          data.map(({ sender, senderPhoto, messageBody, timestamp }) => {
-            return (
-              <>
-                <SingleMessageContainer
-                  onClick={() =>
-                    onClick(sender, senderPhoto, messageBody, timestamp)
-                  }
-                >
-                  <ImgContainer>
-                    <Img src={senderPhoto} alt="sender" />
-                  </ImgContainer>
-                  <TextContainer>
-                    <SenderName>{sender}</SenderName>
-                    <MessageBody>{messageBody}</MessageBody>
-                  </TextContainer>
-                </SingleMessageContainer>
-              </>
-            );
-          })}
-      </MessageArrayRender>
+
+      {!!messageArray &&
+        messageArray.length > 0 &&
+        messageArray.map(
+          ({ _id, sender, senderPhoto, messageBody, timestamp }) => {
+          return (
+            <MessageArrayRender key={_id}>
+              <SingleMessageContainer
+                onClick={() =>
+                  onClick(sender.name, sender.profilePicture, messageBody, timestamp)
+                }
+              >
+                <ImgContainer>
+                  <Img src={sender.profilePicture} alt="sender" />
+                </ImgContainer>
+                <TextContainer>
+                  <SenderName>{sender.name}</SenderName>
+                  <MessageBody>{messageBody}</MessageBody>
+                </TextContainer>
+              </SingleMessageContainer>
+            </MessageArrayRender>
+          );
+        })}
       <ReadMessageModal
         sender={state.sender}
         senderPhoto={state.senderPhoto}
