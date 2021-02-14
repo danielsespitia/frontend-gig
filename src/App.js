@@ -1,21 +1,21 @@
-import "./App.css";
+import './App.css';
 import {
   BrowserRouter as Router,
   Redirect,
   Route,
   Switch,
-} from "react-router-dom";
+} from 'react-router-dom';
 
-import NotFound from "./pages/NotFound/NotFound";
-import Home from "./pages/Home/Home";
-import Discover from "./pages/Discover/Discover";
-import Profile from "./pages/Profile/Profile";
-import ProfileEdit from "./pages/ProfileEdit/ProfileEdit";
-import Messages from "./pages/Messages/Messages";
-import MessageForm from "./components/Modals/MessageForm/MessageForm";
+import NotFound from './pages/NotFound/NotFound';
+import Home from './pages/Home/Home';
+import Discover from './pages/Discover/Discover';
+import Profile from './pages/Profile/Profile';
+import ProfileEdit from './pages/ProfileEdit/ProfileEdit';
+import Messages from './pages/Messages/Messages';
+import MessageForm from './components/Modals/MessageForm/MessageForm';
 
 function PrivateRoute(props) {
-  const token = localStorage.getItem("token");
+  const token = localStorage.getItem('token');
 
   if (!token) return <Redirect to="/" />;
 
@@ -28,7 +28,11 @@ function App() {
       <Router>
         <Switch>
           <Route exact path="/" component={Home} />
-          <PrivateRoute exact path="/app/discover/send" component={MessageForm} />
+          <PrivateRoute
+            exact
+            path="/app/discover/send"
+            component={MessageForm}
+          />
           <PrivateRoute exact path="/app/discover" component={Discover} />
           <PrivateRoute exact path="/app/profile" component={Profile} />
           <PrivateRoute

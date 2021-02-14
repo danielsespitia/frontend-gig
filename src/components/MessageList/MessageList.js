@@ -1,10 +1,10 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 
-import styled from "styled-components";
-import ReadMessageModal from "../../pages/Discover/ReadMessageModal/ReadMessageModal";
+import styled from 'styled-components';
+import ReadMessageModal from '../../pages/Discover/ReadMessageModal/ReadMessageModal';
 
-import HeaderLeft from "../Headers/HeaderLeft";
+import HeaderLeft from '../Headers/HeaderLeft';
 
 export const MessageListContainer = styled.div`
   display: inherit;
@@ -92,22 +92,22 @@ function MessageList({ profilePicture }) {
   };
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem('token');
     async function load() {
       try {
         const {
           data: { data },
         } = await axios({
-          method: "GET",
+          method: 'GET',
           baseURL: process.env.REACT_APP_SERVER_URL,
-          url: "/users/messages",
+          url: '/users/messages',
           headers: {
             Authorization: `Bearer ${token}`,
           },
         });
         setMessageArray(data || []);
       } catch (error) {
-        localStorage.removeItem("token");
+        localStorage.removeItem('token');
       }
     }
     load();
@@ -119,36 +119,34 @@ function MessageList({ profilePicture }) {
 
       {!!messageArray &&
         messageArray.length > 0 &&
-        messageArray.map(
-          ({ _id, sender, messageBody, timestamp }) => {
-            return (
-              <MessageArrayRender key={_id}>
-                <SingleMessageContainer
-                  onClick={() =>
-                    onClick(
-                      sender.name,
-                      sender.profilePicture,
-                      messageBody,
-                      timestamp
-                    )
-                  }
-                >
-                  <ImageContainer>
-                    <ThumbnailContainer>
-                      <EditThumbnail src={sender.profilePicture} alt="sender" />
-                    </ThumbnailContainer>
-                  </ImageContainer>
-                  <TextContainer>
-                    <SenderName>{sender.name}</SenderName>
-                    <LimitSpan>
-                      <MessageBody>{messageBody}</MessageBody>
-                    </LimitSpan>
-                  </TextContainer>
-                </SingleMessageContainer>
-              </MessageArrayRender>
-            );
-          }
-        )}
+        messageArray.map(({ _id, sender, messageBody, timestamp }) => {
+          return (
+            <MessageArrayRender key={_id}>
+              <SingleMessageContainer
+                onClick={() =>
+                  onClick(
+                    sender.name,
+                    sender.profilePicture,
+                    messageBody,
+                    timestamp
+                  )
+                }
+              >
+                <ImageContainer>
+                  <ThumbnailContainer>
+                    <EditThumbnail src={sender.profilePicture} alt="sender" />
+                  </ThumbnailContainer>
+                </ImageContainer>
+                <TextContainer>
+                  <SenderName>{sender.name}</SenderName>
+                  <LimitSpan>
+                    <MessageBody>{messageBody}</MessageBody>
+                  </LimitSpan>
+                </TextContainer>
+              </SingleMessageContainer>
+            </MessageArrayRender>
+          );
+        })}
       <ReadMessageModal
         sender={state.sender}
         senderPhoto={state.senderPhoto}

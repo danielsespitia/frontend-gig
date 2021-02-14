@@ -1,6 +1,6 @@
-import styled from "styled-components";
-import { useForm } from "react-hook-form";
-import { ActionButton } from "../../../pages/StyledPages/StyledPages";
+import styled from 'styled-components';
+import { useForm } from 'react-hook-form';
+import { ActionButton } from '../../../pages/StyledPages/StyledPages';
 
 export const Form = styled.form`
   margin-top: 10px;

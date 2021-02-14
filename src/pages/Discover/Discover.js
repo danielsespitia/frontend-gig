@@ -1,29 +1,28 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 
-import MessageList from "../../components/MessageList/MessageList";
-import ProfileList from "../../components/ProfileList/ProfileList";
-import { PageContainer, Aside, Main } from "../StyledPages/StyledPages";
+import MessageList from '../../components/MessageList/MessageList';
+import ProfileList from '../../components/ProfileList/ProfileList';
+import { PageContainer, Aside, Main } from '../StyledPages/StyledPages';
 
 function Discover() {
-
   const [dataArray, setDataArray] = useState([]);
   const [index, setIndex] = useState(0);
-  const [userId, setUserId] = useState("");
+  const [userId, setUserId] = useState('');
 
-  const [profilePicture, setProfilePicture] = useState("");
-  const [video, setVideo] = useState("");
+  const [profilePicture, setProfilePicture] = useState('');
+  const [video, setVideo] = useState('');
 
   useEffect(() => {
     async function load() {
-      const token = localStorage.getItem("token");
+      const token = localStorage.getItem('token');
       try {
         const {
           data: { data },
         } = await axios({
-          method: "GET",
+          method: 'GET',
           baseURL: process.env.REACT_APP_SERVER_URL,
-          url: "/users/profile",
+          url: '/users/profile',
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -32,11 +31,11 @@ function Discover() {
         setProfilePicture(data.profilePicture || null);
         if (data.profilePicture === undefined) {
           setProfilePicture(
-            "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png"
+            'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png'
           );
         }
       } catch (error) {
-        localStorage.removeItem("token");
+        localStorage.removeItem('token');
       }
     }
     load();
@@ -48,14 +47,14 @@ function Discover() {
         const {
           data: { data },
         } = await axios({
-          method: "GET",
+          method: 'GET',
           baseURL: process.env.REACT_APP_SERVER_URL,
-          url: "/users",
+          url: '/users',
           headers: {},
         });
         setDataArray(data);
       } catch (error) {
-        localStorage.removeItem("token");
+        localStorage.removeItem('token');
       }
     }
     load();

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const InAppHeader = styled.header`
   width: 100%;
@@ -52,7 +52,7 @@ function HeaderLeft({ profilePicture }) {
     <InAppHeader>
       <HeaderContainer>
         <ThumbnailContainer>
-          <ProfilePicture src={profilePicture} alt="Profle Thumbnail" />
+          <ProfilePicture src={profilePicture} alt="Profile Thumbnail" />
         </ThumbnailContainer>
         <MyProfileAnchor href="/app/profile/">Mi Perfil</MyProfileAnchor>
       </HeaderContainer>

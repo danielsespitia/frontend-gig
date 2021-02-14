@@ -1,9 +1,9 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-import MessageList from "../../components/MessageList/MessageList";
-import MessageRender from "../../components/MessageRender/MessageRender";
+import MessageList from '../../components/MessageList/MessageList';
+import MessageRender from '../../components/MessageRender/MessageRender';
 
-import { PageContainer, Aside, Main } from "../StyledPages/StyledPages";
+import { PageContainer, Aside, Main } from '../StyledPages/StyledPages';
 
 function Messages() {
   return (

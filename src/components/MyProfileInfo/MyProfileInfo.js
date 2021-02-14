@@ -1,11 +1,11 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-import HeaderRight from "../Headers/HeaderRight";
+import HeaderRight from '../Headers/HeaderRight';
 
 import {
   ActionButtonContainer,
   ActionButton,
-} from "../../pages/StyledPages/StyledPages";
+} from '../../pages/StyledPages/StyledPages';
 
 import {
   ComponentContainer,
@@ -15,7 +15,7 @@ import {
   VideoPlaceholder,
   InfoContainer,
   ButtonContainer,
-} from "../StyledComponents/StyledCard";
+} from '../StyledComponents/StyledCard';
 
 const MyProfileInfoContainer = styled(ComponentContainer)``;
 
@@ -237,7 +237,7 @@ function MyProfileInfo({
                   </P>
                 ) : (
                   <P>
-                    {" "}
+                    {' '}
                     <strong>Perfil de Musico:</strong> Empirico
                   </P>
                 )}
@@ -247,7 +247,7 @@ function MyProfileInfo({
                   </P>
                 ) : (
                   <P>
-                    {" "}
+                    {' '}
                     <strong>Productor:</strong> No
                   </P>
                 )}
@@ -269,17 +269,17 @@ function MyProfileInfo({
             <ThirdCard>
               <SocialContainer>
                 <A href={youtubeAccount}>
-                  <Icon src="https://cdn.iconscout.com/icon/free/png-256/youtube-104-432560.png" />{" "}
+                  <Icon src="https://cdn.iconscout.com/icon/free/png-256/youtube-104-432560.png" />{' '}
                 </A>
                 <A href={twitterUsername}>
-                  <Icon src="https://cdn.icon-icons.com/icons2/1183/PNG/512/1490133460-social-icons01_82210.png" />{" "}
+                  <Icon src="https://cdn.icon-icons.com/icons2/1183/PNG/512/1490133460-social-icons01_82210.png" />{' '}
                 </A>
                 <A href={facebookAccount}>
-                  <Icon src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Facebook_icon_2013.svg/300px-Facebook_icon_2013.svg.png" />{" "}
+                  <Icon src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Facebook_icon_2013.svg/300px-Facebook_icon_2013.svg.png" />{' '}
                 </A>
                 <A href={instagramAccount}>
-                  {" "}
-                  <Icon src="https://image.flaticon.com/icons/png/512/174/174855.png" />{" "}
+                  {' '}
+                  <Icon src="https://image.flaticon.com/icons/png/512/174/174855.png" />{' '}
                 </A>
               </SocialContainer>
             </ThirdCard>
