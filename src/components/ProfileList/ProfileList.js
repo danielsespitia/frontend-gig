@@ -1,11 +1,11 @@
-import { useState } from "react";
-import Modal from "react-modal";
-import axios from "axios";
+import { useState } from 'react';
+import Modal from 'react-modal';
+import axios from 'axios';
 
-import styled from "styled-components";
+import styled from 'styled-components';
 
-import HeaderRight from "../Headers/HeaderRight";
-import SendMessageModal from "../../pages/Discover/SendMessageModal/SendMessageModal";
+import HeaderRight from '../Headers/HeaderRight';
+import SendMessageModal from '../../pages/Discover/SendMessageModal/SendMessageModal';
 import {
   ComponentContainer,
   BodyContainer,
@@ -13,7 +13,7 @@ import {
   VideoContainer,
   VideoPlaceholder,
   InfoContainer,
-} from "../StyledComponents/StyledCard";
+} from '../StyledComponents/StyledCard';
 
 export const BodySeveralCards = styled(BodyContainer)`
   display: inherit;
@@ -285,9 +285,9 @@ function ProfileList({ dataArray, youtubeParser, handleNext, index }) {
     setShowSendMessageModal(false);
     const { messageBody } = data;
     try {
-      const token = localStorage.getItem("token");
+      const token = localStorage.getItem('token');
       await axios({
-        method: "POST",
+        method: 'POST',
         baseURL: process.env.REACT_APP_SERVER_URL,
         url: `/messages/${_id}`,
         data: {
@@ -297,9 +297,9 @@ function ProfileList({ dataArray, youtubeParser, handleNext, index }) {
           Authorization: `Bearer ${token}`,
         },
       });
-      alert("Mensaje enviado!");
+      alert('Mensaje enviado!');
     } catch (err) {
-      alert("No se pudo enviar tu mensaje");
+      alert('No se pudo enviar tu mensaje');
     }
   };
 
@@ -366,7 +366,7 @@ function ProfileList({ dataArray, youtubeParser, handleNext, index }) {
                   </P>
                 ) : (
                   <P>
-                    {" "}
+                    {' '}
                     <strong>Perfil de Musico:</strong> Empirico
                   </P>
                 )}
@@ -376,7 +376,7 @@ function ProfileList({ dataArray, youtubeParser, handleNext, index }) {
                   </P>
                 ) : (
                   <P>
-                    {" "}
+                    {' '}
                     <strong>Productor:</strong> No
                   </P>
                 )}
@@ -398,17 +398,17 @@ function ProfileList({ dataArray, youtubeParser, handleNext, index }) {
             <ThirdCard>
               <SocialContainer>
                 <A href={youtubeAccount}>
-                  <Icon src="https://cdn.iconscout.com/icon/free/png-256/youtube-104-432560.png" />{" "}
+                  <Icon src="https://cdn.iconscout.com/icon/free/png-256/youtube-104-432560.png" />{' '}
                 </A>
                 <A href={twitterUsername}>
-                  <Icon src="https://cdn.icon-icons.com/icons2/1183/PNG/512/1490133460-social-icons01_82210.png" />{" "}
+                  <Icon src="https://cdn.icon-icons.com/icons2/1183/PNG/512/1490133460-social-icons01_82210.png" />{' '}
                 </A>
                 <A href={facebookAccount}>
-                  <Icon src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Facebook_icon_2013.svg/300px-Facebook_icon_2013.svg.png" />{" "}
+                  <Icon src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Facebook_icon_2013.svg/300px-Facebook_icon_2013.svg.png" />{' '}
                 </A>
                 <A href={instagramAccount}>
-                  {" "}
-                  <Icon src="https://image.flaticon.com/icons/png/512/174/174855.png" />{" "}
+                  {' '}
+                  <Icon src="https://image.flaticon.com/icons/png/512/174/174855.png" />{' '}
                 </A>
               </SocialContainer>
             </ThirdCard>
@@ -427,13 +427,13 @@ function ProfileList({ dataArray, youtubeParser, handleNext, index }) {
             style={{
               overlay: {
                 background:
-                  "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5))",
+                  'linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5))',
               },
               content: {
-                margin: "auto",
-                height: "268px",
-                width: "383px",
-                borderRadius: "10px",
+                margin: 'auto',
+                height: '268px',
+                width: '383px',
+                borderRadius: '10px',
               },
             }}
           >
@@ -445,7 +445,7 @@ function ProfileList({ dataArray, youtubeParser, handleNext, index }) {
                     <Thumbnail src={profilePicture} alt="user thumbnail" />
                   </ModalThumbnailContainer>
                   <SendUserName>
-                    {" "}
+                    {' '}
                     <strong>{name}</strong>
                   </SendUserName>
                 </SendUserContainer>

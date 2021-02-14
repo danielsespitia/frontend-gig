@@ -1,5 +1,5 @@
-import Modal from "react-modal";
-import styled from "styled-components";
+import Modal from 'react-modal';
+import styled from 'styled-components';
 
 export const ModalHeader = styled.header`
   width: 100%;
@@ -49,8 +49,7 @@ export const CloseButton = styled.img`
   cursor: pointer;
 `;
 
-export const MessageBody = styled.div`
-`;
+export const MessageBody = styled.div``;
 
 function ReadMessageModal({
   sender,
@@ -66,13 +65,13 @@ function ReadMessageModal({
       onRequestClose={() => onClose(false)}
       style={{
         overlay: {
-          background: "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5))",
+          background: 'linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5))',
         },
         content: {
-          margin: "auto",
-          maxHeight: "220px",
-          width: "383px",
-          borderRadius: "10px",
+          margin: 'auto',
+          maxHeight: '220px',
+          width: '383px',
+          borderRadius: '10px',
         },
       }}
     >
@@ -84,7 +83,7 @@ function ReadMessageModal({
               <Thumbnail src={senderPhoto} alt="user thumbnail" />
             </ThumbnailContainer>
             <SendUserName>
-              {" "}
+              {' '}
               <strong>{sender}</strong>
             </SendUserName>
           </SendUserContainer>

@@ -1,36 +1,36 @@
-import { useState, useContext } from "react";
-import { useHistory } from "react-router-dom";
-import { AuthContext } from "../../../store/AuthContext";
-import axios from "axios";
+import { useState, useContext } from 'react';
+import { useHistory } from 'react-router-dom';
+import { AuthContext } from '../../../store/AuthContext';
+import axios from 'axios';
 
-import { SignUpForm } from "../../../components/Modals/SignUpForm/SignUpForm";
+import { SignUpForm } from '../../../components/Modals/SignUpForm/SignUpForm';
 
 function SignUpModal() {
   const history = useHistory();
   const { isAuthenticated } = useContext(AuthContext);
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [terms, setTerms] = useState("");
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [terms, setTerms] = useState('');
   const [errors, setErrors] = useState({});
 
   const handleChange = (e) => {
     const { name, value, checked } = e.target;
     switch (name) {
-      case "name":
+      case 'name':
         setName(value);
         break;
-      case "email":
+      case 'email':
         setEmail(value);
         break;
-      case "password":
+      case 'password':
         setPassword(value);
         break;
-      case "confirmPassword":
+      case 'confirmPassword':
         setConfirmPassword(value);
         break;
-      case "terms":
+      case 'terms':
         setTerms(checked);
         break;
       default:
@@ -45,18 +45,18 @@ function SignUpModal() {
         const {
           data: { token },
         } = await axios({
-          method: "POST",
+          method: 'POST',
           baseURL: process.env.REACT_APP_SERVER_URL,
           url: `/users/sign-up`,
           data: { name, password, email, terms },
         });
-        localStorage.setItem("token", token);
-        const pathUser = "app/profile/edit";
-        localStorage.setItem("pathUser", pathUser);
+        localStorage.setItem('token', token);
+        const pathUser = 'app/profile/edit';
+        localStorage.setItem('pathUser', pathUser);
         isAuthenticated(token, pathUser);
         history.push(`${pathUser}`);
       } catch (err) {
-        setErrors({ account: "No se pudo crear tu cuenta" });
+        setErrors({ account: 'No se pudo crear tu cuenta' });
       }
     }
   };
@@ -66,7 +66,7 @@ function SignUpModal() {
       !!password && !!confirmPassword && password === confirmPassword;
 
     if (!arePasswordsEqual) {
-      setErrors({ password: "La contraseñas no coinciden!" });
+      setErrors({ password: 'La contraseñas no coinciden!' });
       return false;
     }
     return true;

@@ -1,87 +1,87 @@
-import { useState, useEffect, useContext } from "react";
-import { useHistory } from "react-router-dom";
-import axios from "axios";
+import { useState, useEffect, useContext } from 'react';
+import { useHistory } from 'react-router-dom';
+import axios from 'axios';
 
-import { AuthContext } from "../../store/AuthContext";
+import { AuthContext } from '../../store/AuthContext';
 
-import MyProfileSettings from "../../components/MyProfileSettings/MyProfileSettings";
-import MyProfileEdit from "../../components/MyProfileEdit/MyProfileEdit";
+import MyProfileSettings from '../../components/MyProfileSettings/MyProfileSettings';
+import MyProfileEdit from '../../components/MyProfileEdit/MyProfileEdit';
 
-import { PageContainer, Aside, Main } from "../StyledPages/StyledPages";
+import { PageContainer, Aside, Main } from '../StyledPages/StyledPages';
 
 function ProfileEdit() {
   const { logout } = useContext(AuthContext);
   const history = useHistory();
   const [disabled, setDisabled] = useState(true);
 
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
   const [profilePicture, setProfilePicture] = useState(null);
   const [file, setFile] = useState(null);
-  const [video, setVideo] = useState("");
+  const [video, setVideo] = useState('');
   const [videoStartMin, setVideoStartMin] = useState(0);
   const [videoStartSec, setVideoStartSec] = useState(0);
-  const [description, setDescription] = useState("");
-  const [city, setCity] = useState("");
-  const [mainInstrument, setMainInstrument] = useState("");
-  const [sideInstrument, setSideInstrument] = useState("");
-  const [youtubeAccount, setYoutubeAccount] = useState("");
-  const [twitterUsername, setTwitterUsername] = useState("");
-  const [facebookAccount, setFacebookAccount] = useState("");
-  const [instagramAccount, setInstagramAccount] = useState("");
-  const [mainGenre, setMainGenre] = useState("");
-  const [sideGenre, setSideGenre] = useState("");
-  const [influences, setInfluences] = useState("");
+  const [description, setDescription] = useState('');
+  const [city, setCity] = useState('');
+  const [mainInstrument, setMainInstrument] = useState('');
+  const [sideInstrument, setSideInstrument] = useState('');
+  const [youtubeAccount, setYoutubeAccount] = useState('');
+  const [twitterUsername, setTwitterUsername] = useState('');
+  const [facebookAccount, setFacebookAccount] = useState('');
+  const [instagramAccount, setInstagramAccount] = useState('');
+  const [mainGenre, setMainGenre] = useState('');
+  const [sideGenre, setSideGenre] = useState('');
+  const [influences, setInfluences] = useState('');
   const [isProfessional, setIsProfessional] = useState(false);
-  const [bands, setBands] = useState("");
-  const [lookingFor, setLookingFor] = useState("Collaboration");
+  const [bands, setBands] = useState('');
+  const [lookingFor, setLookingFor] = useState('Collaboration');
   const [isProducer, setIsProducer] = useState(false);
   const [premiumAccount, setPremiumAccount] = useState(false);
 
   useEffect(() => {
     async function load() {
-      const token = localStorage.getItem("token");
+      const token = localStorage.getItem('token');
       try {
         const {
           data: { data },
         } = await axios({
-          method: "GET",
+          method: 'GET',
           baseURL: process.env.REACT_APP_SERVER_URL,
-          url: "/users/profile",
+          url: '/users/profile',
           headers: {
             Authorization: `Bearer ${token}`,
           },
         });
-        setName(data.name || "");
+        setName(data.name || '');
         setProfilePicture(data.profilePicture || null);
         if (data.profilePicture === undefined) {
           setProfilePicture(
-            "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png"
+            'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png'
           );
         }
-        setVideo(data.video || "");
+        setVideo(data.video || '');
         setVideoStartMin(data.videoStartMin || 0);
         setVideoStartSec(data.videoStartSec || 0);
-        setEmail(data.email || "");
-        setDescription(data.description || "");
-        setCity(data.city || "");
-        setMainInstrument(data.mainInstrument || "");
-        setSideInstrument(data.sideInstrument || "");
-        setYoutubeAccount(data.youtubeAccount || "");
-        setTwitterUsername(data.twitterUsername || "");
-        setFacebookAccount(data.facebookAccount || "");
-        setInstagramAccount(data.instagramAccount || "");
-        setMainGenre(data.mainGenre || "");
-        setSideGenre(data.sideGenre || "");
-        setInfluences(data.influences || "");
+        setEmail(data.email || '');
+        setDescription(data.description || '');
+        setCity(data.city || '');
+        setMainInstrument(data.mainInstrument || '');
+        setSideInstrument(data.sideInstrument || '');
+        setYoutubeAccount(data.youtubeAccount || '');
+        setTwitterUsername(data.twitterUsername || '');
+        setFacebookAccount(data.facebookAccount || '');
+        setInstagramAccount(data.instagramAccount || '');
+        setMainGenre(data.mainGenre || '');
+        setSideGenre(data.sideGenre || '');
+        setInfluences(data.influences || '');
         setIsProfessional(data.isProfessional || false);
-        setBands(data.bands || "");
-        setLookingFor(data.lookingFor || "Collaboration");
+        setBands(data.bands || '');
+        setLookingFor(data.lookingFor || 'Collaboration');
         setIsProducer(data.isProducer || false);
         setPremiumAccount(data.premiumAccount || false);
       } catch (error) {
-        localStorage.removeItem("token");
-        history.push("/");
+        localStorage.removeItem('token');
+        history.push('/');
       }
     }
     load();
@@ -92,67 +92,67 @@ function ProfileEdit() {
     setDisabled(false);
 
     switch (name) {
-      case "name":
+      case 'name':
         setName(value);
         break;
-      case "email":
+      case 'email':
         setEmail(value);
         break;
-      case "video":
+      case 'video':
         setVideo(value);
         break;
-      case "videoStartMin":
+      case 'videoStartMin':
         setVideoStartMin(value);
         break;
-      case "videoStartSec":
+      case 'videoStartSec':
         setVideoStartSec(value);
         break;
-      case "description":
+      case 'description':
         setDescription(value);
         break;
-      case "city":
+      case 'city':
         setCity(value);
         break;
-      case "mainInstrument":
+      case 'mainInstrument':
         setMainInstrument(value);
         break;
-      case "sideInstrument":
+      case 'sideInstrument':
         setSideInstrument(value);
         break;
-      case "youtubeAccount":
+      case 'youtubeAccount':
         setYoutubeAccount(value);
         break;
-      case "twitterUsername":
+      case 'twitterUsername':
         setTwitterUsername(value);
         break;
-      case "facebookAccount":
+      case 'facebookAccount':
         setFacebookAccount(value);
         break;
-      case "instagramAccount":
+      case 'instagramAccount':
         setInstagramAccount(value);
         break;
-      case "mainGenre":
+      case 'mainGenre':
         setMainGenre(value);
         break;
-      case "sideGenre":
+      case 'sideGenre':
         setSideGenre(value);
         break;
-      case "influences":
+      case 'influences':
         setInfluences(value);
         break;
-      case "isProfessional":
+      case 'isProfessional':
         setIsProfessional(value);
         break;
-      case "bands":
+      case 'bands':
         setBands(value);
         break;
-      case "lookingFor":
+      case 'lookingFor':
         setLookingFor(value);
         break;
-      case "isProducer":
+      case 'isProducer':
         setIsProducer(value);
         break;
-      case "premiumAccount":
+      case 'premiumAccount':
         setPremiumAccount(value);
         break;
       default:
@@ -184,9 +184,9 @@ function ProfileEdit() {
       bands,
     } = data;
     try {
-      const token = localStorage.getItem("token");
+      const token = localStorage.getItem('token');
       await axios({
-        method: "PUT",
+        method: 'PUT',
         baseURL: process.env.REACT_APP_SERVER_URL,
         url: `/users`,
         data: {
@@ -215,28 +215,28 @@ function ProfileEdit() {
           Authorization: `Bearer ${token}`,
         },
       });
-      alert('Perfil actualizado correctamente!')
-      history.push("/app/profile");
+      alert('Perfil actualizado correctamente!');
+      history.push('/app/profile');
     } catch (err) {}
   };
 
   const handleDelete = async (e) => {
     try {
-      const token = localStorage.getItem("token");
+      const token = localStorage.getItem('token');
       axios({
-        method: "DELETE",
+        method: 'DELETE',
         baseURL: process.env.REACT_APP_SERVER_URL,
         url: `/users`,
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
-      alert("Tu cuenta fue eliminada");
-      localStorage.removeItem("token");
+      alert('Tu cuenta fue eliminada');
+      localStorage.removeItem('token');
       logout();
-      history.push("/");
+      history.push('/');
     } catch (err) {
-      alert("Tu cuenta no pudo ser eliminada", err);
+      alert('Tu cuenta no pudo ser eliminada', err);
     }
   };
 
@@ -256,23 +256,23 @@ function ProfileEdit() {
   const handleSubmitProfilePicture = async (e) => {
     e.preventDefault();
     const data = new FormData();
-    data.append("profilePicture", profilePicture);
-    data.append("file", file);
+    data.append('profilePicture', profilePicture);
+    data.append('file', file);
     try {
-      const token = localStorage.getItem("token");
+      const token = localStorage.getItem('token');
       await axios({
-        method: "PUT",
+        method: 'PUT',
         baseURL: process.env.REACT_APP_SERVER_URL,
         url: `/users/update-pp`,
         data,
         headers: {
           Authorization: `Bearer ${token}`,
-          "Content-Type": "multipart/form-data",
+          'Content-Type': 'multipart/form-data',
         },
       });
-      alert("Imagen actualizada correctamente");
+      alert('Imagen actualizada correctamente');
     } catch (error) {
-      alert("La imagen no pudo ser cargada", error);
+      alert('La imagen no pudo ser cargada', error);
     }
   };
 

@@ -1,7 +1,7 @@
-import { useForm } from "react-hook-form";
-import HeaderRight from "../Headers/HeaderRight";
+import { useForm } from 'react-hook-form';
+import HeaderRight from '../Headers/HeaderRight';
 
-import styled from "styled-components";
+import styled from 'styled-components';
 
 import {
   ComponentContainer,
@@ -11,9 +11,9 @@ import {
   VideoPlaceholder,
   InfoContainer,
   ButtonContainer,
-} from "../StyledComponents/StyledCard";
+} from '../StyledComponents/StyledCard';
 
-import { ActionButton } from "../../pages/StyledPages/StyledPages";
+import { ActionButton } from '../../pages/StyledPages/StyledPages';
 
 const MyProfileEditContainer = styled(ComponentContainer)``;
 
@@ -393,7 +393,7 @@ function MyProfileEdit({
                   onChange={handleChange}
                   ref={register}
                 >
-                  <option value={"false"}>No</option>
+                  <option value={'false'}>No</option>
                   <option value="true">Si</option>
                 </Select>
               </div>

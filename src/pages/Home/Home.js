@@ -1,20 +1,20 @@
-import styled from "styled-components";
-import Modal from "react-modal";
-import { useHistory } from "react-router-dom";
-import { useState } from "react";
+import styled from 'styled-components';
+import Modal from 'react-modal';
+import { useHistory } from 'react-router-dom';
+import { useState } from 'react';
 
-import SignUpModal from "../Home/SignUpModal/SignUpModal";
-import LogInModal from "../Home/LogInModal/LogInModal";
+import SignUpModal from '../Home/SignUpModal/SignUpModal';
+import LogInModal from '../Home/LogInModal/LogInModal';
 
 import {
   MainActionButton,
   SecondaryActionButton,
-} from "../StyledPages/StyledPages";
+} from '../StyledPages/StyledPages';
 
 export const HomeContainer = styled.div`
   color: white;
   background: linear-gradient(rgba(130, 98, 199, 0.3), rgba(23, 205, 212, 0.3)),
-    url("https://img.wavescdn.com/1lib/images/blog/preview/make-online-music-collabs-more-productive.jpg");
+    url('https://img.wavescdn.com/1lib/images/blog/preview/make-online-music-collabs-more-productive.jpg');
   background-size: cover;
   background-position: center;
   display: flex;
@@ -30,7 +30,7 @@ export const Header = styled.header`
 `;
 
 export const HomeTitle = styled.h1`
-font-size: 26px;
+  font-size: 26px;
   text-shadow: 1.2px 1.2px 1px #000000;
 `;
 
@@ -81,14 +81,14 @@ export const CloseButton = styled.img`
   cursor: pointer;
 `;
 
-Modal.setAppElement("#root");
+Modal.setAppElement('#root');
 
 function Home() {
   const history = useHistory();
-  const token = localStorage.getItem("token");
+  const token = localStorage.getItem('token');
 
   if (token) {
-    history.push("/app/discover");
+    history.push('/app/discover');
   }
 
   const [showLogInModal, setShowLogInModal] = useState(false);
@@ -115,13 +115,13 @@ function Home() {
           style={{
             overlay: {
               background:
-                "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5))",
+                'linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5))',
             },
             content: {
-              margin: "auto",
-              height: "230px",
-              width: "260px",
-              borderRadius: "10px",
+              margin: 'auto',
+              height: '230px',
+              width: '260px',
+              borderRadius: '10px',
             },
           }}
         >
@@ -156,13 +156,13 @@ function Home() {
           style={{
             overlay: {
               background:
-                "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5))",
+                'linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5))',
             },
             content: {
-              margin: "auto",
-              height: "390px",
-              width: "260px",
-              borderRadius: "10px",
+              margin: 'auto',
+              height: '390px',
+              width: '260px',
+              borderRadius: '10px',
             },
           }}
         >

@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { ActionButton } from "../../../pages/StyledPages/StyledPages";
+import styled from 'styled-components';
+import { ActionButton } from '../../../pages/StyledPages/StyledPages';
 
 export const Form = styled.form`
   display: grid;

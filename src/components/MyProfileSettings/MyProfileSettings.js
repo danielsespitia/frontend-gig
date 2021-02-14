@@ -1,8 +1,8 @@
-import { useContext } from "react";
-import { AuthContext } from "../../store/AuthContext";
-import styled from "styled-components";
+import { useContext } from 'react';
+import { AuthContext } from '../../store/AuthContext';
+import styled from 'styled-components';
 
-import HeaderLeft from "../Headers/HeaderLeft";
+import HeaderLeft from '../Headers/HeaderLeft';
 
 export const MyProfileSettingsContainer = styled.div`
   display: inherit;
@@ -44,7 +44,7 @@ function MyProfileSettings({
       </div>
       <MembershipContainer>
         <P>
-          <strong>Membresia:</strong> {premiumAccount ? "Premium" : "Gratuita"}
+          <strong>Membresia:</strong> {premiumAccount ? 'Premium' : 'Gratuita'}
         </P>
         <P>
           <strong>Correo Electronico:</strong> {email}
