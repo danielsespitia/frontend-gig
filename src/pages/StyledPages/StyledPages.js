@@ -116,3 +116,6 @@ export const gigLogo =
 
 export const closeButtonSrc =
   'https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-close-512.png';
+
+export const profilePicturePlaceholder =
+  'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png';

@@ -49,7 +49,7 @@ function Home() {
         </LogoContainer>
         <LogInButton>
           <SecondaryActionButton onClick={() => setShowLogInModal(true)}>
-            Iniciar Sesion
+            Iniciar Sesión
           </SecondaryActionButton>
         </LogInButton>
         <Modal
@@ -72,11 +72,11 @@ function Home() {
       </HomeHeader>
       <Greeting>
         <div>
-          <HomeTitle>Descubre musicos cerca</HomeTitle>
+          <HomeTitle>Descubre músicos cerca</HomeTitle>
         </div>
         <SignUpButton>
           <MainActionButton onClick={() => setShowSignUpModal(true)}>
-            Registrate
+            Regístrate
           </MainActionButton>
         </SignUpButton>
         <Modal

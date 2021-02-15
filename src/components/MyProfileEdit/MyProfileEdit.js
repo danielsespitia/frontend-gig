@@ -206,8 +206,8 @@ function MyProfileEdit({
                 </Label>
                 <p>
                   <em>
-                    Copia la URL de YouTube donde este tu mejor ejecucion, este
-                    video sera lo primero que vean los demas miembros de GIG en
+                    Copia la URL de YouTube donde este tu mejor ejecución, este
+                    video será lo primero que vean los demás miembros de GIG en
                     tu perfil
                   </em>
                 </p>
@@ -225,8 +225,8 @@ function MyProfileEdit({
               </div>
               <p>
                 <em>
-                  Tendras 15 segundos para ensenar tus habilidades, escribe a
-                  continuacion el minuto y segundo donde quieres que inicie tu
+                  Tendrás 15 segundos para enseñar tus habilidades, escribe a
+                  continuación el minuto y segundo donde quieres que inicie tu
                   video introductorio.
                 </em>
               </p>
@@ -371,7 +371,7 @@ function MyProfileEdit({
               </div>
               <div>
                 <Label>
-                  <strong>Descripcion:</strong>
+                  <strong>Descripción:</strong>
                 </Label>
                 <TextArea
                   className="description-input"
@@ -399,7 +399,7 @@ function MyProfileEdit({
               </div>
               <div>
                 <Label className="isProfessional-label">
-                  <strong>Perfil de Musico:</strong>
+                  <strong>Perfil de Músico:</strong>
                 </Label>
                 <Select
                   id="isProfessional"
@@ -414,7 +414,7 @@ function MyProfileEdit({
               </div>
               <div>
                 <Label className="mainGenre-label">
-                  <strong>Genero Principal:</strong>
+                  <strong>Género Principal:</strong>
                 </Label>
                 <Select
                   id="mainGenre"
@@ -435,7 +435,7 @@ function MyProfileEdit({
               </div>
               <div>
                 <Label className="sideGenre-label">
-                  <strong>Otro Genero:</strong>
+                  <strong>Otro Género:</strong>
                 </Label>
                 <Select
                   id="sideGenre"

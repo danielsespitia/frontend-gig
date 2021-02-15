@@ -34,20 +34,20 @@ function MyProfileSettings({
     <MyProfileSettingsContainer>
       <HeaderLeft profilePicture={profilePicture} />
       <a href="/app/discover/">
-        <button>Pagina Principal</button>
+        <button>Página Principal</button>
       </a>
       <a href="/" onClick={logout}>
-        <button>Cerrar Sesion</button>
+        <button>Cerrar Sesión</button>
       </a>
       <div>
         <button onClick={handleDelete}>Eliminar Perfil</button>
       </div>
       <MembershipContainer>
         <P>
-          <strong>Membresia:</strong> {premiumAccount ? 'Premium' : 'Gratuita'}
+          <strong>Membresía:</strong> {premiumAccount ? 'Premium' : 'Gratuita'}
         </P>
         <P>
-          <strong>Correo Electronico:</strong> {email}
+          <strong>Correo Electrónico:</strong> {email}
         </P>
       </MembershipContainer>
     </MyProfileSettingsContainer>
