@@ -15,7 +15,6 @@ function Profile() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [profilePicture, setProfilePicture] = useState(null);
-  const [file, setFile] = useState(null);
   const [video, setVideo] = useState('');
   const [videoStartMin, setVideoStartMin] = useState(0);
   const [videoStartSec, setVideoStartSec] = useState(0);
@@ -103,12 +102,6 @@ function Profile() {
     } catch (err) {
       alert('Tu cuenta no pudo ser eliminada', err);
     }
-  };
-
-  const readFile = (file) => {
-    const reader = new FileReader();
-    reader.onload = (e) => setProfilePicture(e.target.result);
-    reader.readAsDataURL(file);
   };
 
   const youtubeParser = (url) => {
