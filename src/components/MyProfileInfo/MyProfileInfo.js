@@ -233,17 +233,17 @@ function MyProfileInfo({
               <SubInfoContainer>
                 {isProfessional ? (
                   <P>
-                    <strong>Perfil de Musico:</strong> Profesional
+                    <strong>Perfil de Músico:</strong> Profesional
                   </P>
                 ) : (
                   <P>
                     {' '}
-                    <strong>Perfil de Musico:</strong> Empirico
+                    <strong>Perfil de Músico:</strong> Empírico
                   </P>
                 )}
                 {isProducer ? (
                   <P>
-                    <strong>Productor:</strong> Si
+                    <strong>Productor:</strong> Sí
                   </P>
                 ) : (
                   <P>
@@ -259,7 +259,7 @@ function MyProfileInfo({
                   <strong>Otros roles: </strong> {sideInstrument}
                 </P>
                 <P>
-                  <strong>Otros generos:</strong> {sideGenre}
+                  <strong>Otros géneros:</strong> {sideGenre}
                 </P>
                 <P>
                   <strong>Bandas: </strong> {bands}

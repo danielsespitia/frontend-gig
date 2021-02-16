@@ -1,26 +1,10 @@
 import { useContext } from 'react';
 import { AuthContext } from '../../store/AuthContext';
-import styled from 'styled-components';
 
 import HeaderLeft from '../Headers/HeaderLeft';
 
-export const MyProfileSettingsContainer = styled.div`
-  display: inherit;
-  width: 100%;
-  flex-direction: column;
-`;
-
-export const MembershipContainer = styled.div`
-  display: inherit;
-  width: 100%;
-  flex-direction: column;
-  align-items: flex-start;
-`;
-
-export const P = styled.p`
-  margin: 0;
-  margin-left: 15px;
-`;
+import { ComponentContainer } from '../StyledComponents/StyledCard';
+import { MembershipContainer, ProfileSettingsText } from "./Styles"
 
 function MyProfileSettings({
   profilePicture,
@@ -31,26 +15,26 @@ function MyProfileSettings({
   const { logout } = useContext(AuthContext);
 
   return (
-    <MyProfileSettingsContainer>
+    <ComponentContainer>
       <HeaderLeft profilePicture={profilePicture} />
       <a href="/app/discover/">
-        <button>Pagina Principal</button>
+        <button>Página Principal</button>
       </a>
       <a href="/" onClick={logout}>
-        <button>Cerrar Sesion</button>
+        <button>Cerrar Sesión</button>
       </a>
       <div>
         <button onClick={handleDelete}>Eliminar Perfil</button>
       </div>
       <MembershipContainer>
-        <P>
-          <strong>Membresia:</strong> {premiumAccount ? 'Premium' : 'Gratuita'}
-        </P>
-        <P>
-          <strong>Correo Electronico:</strong> {email}
-        </P>
+        <ProfileSettingsText>
+          <strong>Membresía:</strong> {premiumAccount ? 'Premium' : 'Gratuita'}
+        </ProfileSettingsText>
+        <ProfileSettingsText>
+          <strong>Correo Electrónico:</strong> {email}
+        </ProfileSettingsText>
       </MembershipContainer>
-    </MyProfileSettingsContainer>
+    </ComponentContainer>
   );
 }
 

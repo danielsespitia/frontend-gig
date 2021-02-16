@@ -1,27 +1,6 @@
-import styled from 'styled-components';
 import { ActionButton } from '../../../pages/StyledPages/StyledPages';
 
-export const Form = styled.form`
-  display: grid;
-`;
-
-export const Error = styled.span`
-  font-size: 12px;
-  color: grey;
-  font-style: italic;
-`;
-
-export const ButtonSpan = styled.span`
-  display: flex;
-  justify-content: center;
-  margin-top: 10px;
-`;
-
-export const ItemContainer = styled.span`
-  display: inherit;
-  margin-top: 5px;
-  margin-bottom: 5px;
-`;
+import { Form, Error, ButtonSpan, ItemContainer } from '../Styles/HomeFormsStyles';
 
 export function LogInForm({
   email,

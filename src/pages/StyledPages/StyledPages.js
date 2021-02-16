@@ -110,3 +110,15 @@ export const ActionButtonContainer = styled.div`
       0 17px 50px 0 rgba(0, 0, 0, 0.19);
   }
 `;
+
+export const gigLogo =
+  'https://res.cloudinary.com/danielsespitia/image/upload/v1613019159/User-ProfilePicture/LOGO_Mesa_de_trabajo_1_tjzeqa.ico';
+
+export const closeButtonSrc =
+  'https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-close-512.png';
+
+export const profilePicturePlaceholder =
+  'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png';
+
+export const videoPlaceholder =
+  'https://roadmaptoprofit.com/wp-content/uploads/2018/10/video-placeholder.jpg';

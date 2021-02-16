@@ -7,7 +7,12 @@ import { AuthContext } from '../../store/AuthContext';
 import MyProfileSettings from '../../components/MyProfileSettings/MyProfileSettings';
 import MyProfileEdit from '../../components/MyProfileEdit/MyProfileEdit';
 
-import { PageContainer, Aside, Main } from '../StyledPages/StyledPages';
+import {
+  PageContainer,
+  Aside,
+  Main,
+  profilePicturePlaceholder,
+} from '../StyledPages/StyledPages';
 
 function ProfileEdit() {
   const { logout } = useContext(AuthContext);
@@ -55,9 +60,7 @@ function ProfileEdit() {
         setName(data.name || '');
         setProfilePicture(data.profilePicture || null);
         if (data.profilePicture === undefined) {
-          setProfilePicture(
-            'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png'
-          );
+          setProfilePicture({ profilePicturePlaceholder });
         }
         setVideo(data.video || '');
         setVideoStartMin(data.videoStartMin || 0);
