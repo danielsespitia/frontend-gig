@@ -11,7 +11,6 @@ function Discover() {
   const [userId, setUserId] = useState('');
 
   const [profilePicture, setProfilePicture] = useState('');
-  const [video, setVideo] = useState('');
 
   useEffect(() => {
     async function load() {
