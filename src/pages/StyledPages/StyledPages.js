@@ -119,3 +119,6 @@ export const closeButtonSrc =
 
 export const profilePicturePlaceholder =
   'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png';
+
+export const videoPlaceholder =
+  'https://roadmaptoprofit.com/wp-content/uploads/2018/10/video-placeholder.jpg';
