@@ -8,7 +8,6 @@ import { PageContainer, Aside, Main } from '../StyledPages/StyledPages';
 function Discover() {
   const [dataArray, setDataArray] = useState([]);
   const [index, setIndex] = useState(0);
-  const [userId, setUserId] = useState('');
 
   const [profilePicture, setProfilePicture] = useState('');
 
@@ -26,7 +25,6 @@ function Discover() {
             Authorization: `Bearer ${token}`,
           },
         });
-        setUserId(data._id);
         setProfilePicture(data.profilePicture || null);
         if (data.profilePicture === undefined) {
           setProfilePicture(
@@ -62,16 +60,6 @@ function Discover() {
   const randomizer = () => {
     const totalProfiles = dataArray.length - 1;
     return Math.floor(Math.random() * Math.floor(totalProfiles));
-  };
-
-  const detectMyProfile = async () => {
-    let profileIndex = 0;
-    for (let i = 0; i < dataArray.length - 1; i++) {
-      if (dataArray[i]._id === userId) {
-        profileIndex = i;
-      }
-    }
-    return profileIndex;
   };
 
   const handleNext = () => {
