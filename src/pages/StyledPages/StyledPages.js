@@ -123,3 +123,15 @@ export const profilePicturePlaceholder =
 
 export const videoPlaceholder =
   'https://roadmaptoprofit.com/wp-content/uploads/2018/10/video-placeholder.jpg';
+
+export const youTubeLogo =
+  'https://cdn.iconscout.com/icon/free/png-256/youtube-104-432560.png';
+
+export const twitterLogo =
+  'https://cdn.icon-icons.com/icons2/1183/PNG/512/1490133460-social-icons01_82210.png';
+
+export const facebookLogo =
+  'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Facebook_icon_2013.svg/300px-Facebook_icon_2013.svg.png';
+
+export const instagramLogo =
+  'https://image.flaticon.com/icons/png/512/174/174855.png';
