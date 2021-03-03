@@ -49,7 +49,6 @@ function MyProfileInfo({
       <HeaderRight />
       <BodyContainer>
         <ProfileContainer>
-          <p>testtttt</p>
           <VideoContainer>
             {video ? (
               <YouTubeService

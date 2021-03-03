@@ -1,88 +1,46 @@
 import { useState, useEffect, useContext } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import axios from 'axios';
 
 import { AuthContext } from '../../store/AuthContext';
+import auth from '../../auth';
 
 import MyProfileSettings from '../../components/MyProfileSettings/MyProfileSettings';
 import MyProfileInfo from '../../components/MyProfileInfo/MyProfileInfo';
 import { PageContainer, Aside, Main } from '../StyledPages/StyledPages';
 
 function Profile() {
+  useLocation();
+
+  const {
+    user: {
+      name,
+      email,
+      video,
+      profilePicture,
+      videoStartMin,
+      videoStartSec,
+      description,
+      city,
+      mainInstrument,
+      sideInstrument,
+      youtubeAccount,
+      twitterUsername,
+      facebookAccount,
+      instagramAccount,
+      mainGenre,
+      sideGenre,
+      influences,
+      isProfessional,
+      bands,
+      lookingFor,
+      isProducer,
+      premiumAccount,
+    },
+  } = auth;
+
   const { logout } = useContext(AuthContext);
   const history = useHistory();
-
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [profilePicture, setProfilePicture] = useState(null);
-  const [video, setVideo] = useState('');
-  const [videoStartMin, setVideoStartMin] = useState(0);
-  const [videoStartSec, setVideoStartSec] = useState(0);
-  const [description, setDescription] = useState('');
-  const [city, setCity] = useState('');
-  const [mainInstrument, setMainInstrument] = useState('');
-  const [sideInstrument, setSideInstrument] = useState('');
-  const [youtubeAccount, setYoutubeAccount] = useState('');
-  const [twitterUsername, setTwitterUsername] = useState('');
-  const [facebookAccount, setFacebookAccount] = useState('');
-  const [instagramAccount, setInstagramAccount] = useState('');
-  const [mainGenre, setMainGenre] = useState('');
-  const [sideGenre, setSideGenre] = useState('');
-  const [influences, setInfluences] = useState('');
-  const [isProfessional, setIsProfessional] = useState(false);
-  const [bands, setBands] = useState('');
-  const [lookingFor, setLookingFor] = useState('Collaboration');
-  const [isProducer, setIsProducer] = useState(false);
-  const [premiumAccount, setPremiumAccount] = useState(false);
-
-  useEffect(() => {
-    async function load() {
-      const token = localStorage.getItem('token');
-      try {
-        const {
-          data: { data },
-        } = await axios({
-          method: 'GET',
-          baseURL: process.env.REACT_APP_SERVER_URL,
-          url: '/users/profile',
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        setName(data.name || '');
-        setProfilePicture(data.profilePicture || null);
-        if (data.profilePicture === undefined) {
-          setProfilePicture(
-            'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png'
-          );
-        }
-        setVideo(data.video || '');
-        setVideoStartMin(data.videoStartMin || 0);
-        setVideoStartSec(data.videoStartSec || 0);
-        setEmail(data.email || '');
-        setDescription(data.description || '');
-        setCity(data.city || '');
-        setMainInstrument(data.mainInstrument || '');
-        setSideInstrument(data.sideInstrument || '');
-        setYoutubeAccount(data.youtubeAccount || '');
-        setTwitterUsername(data.twitterUsername || '');
-        setFacebookAccount(data.facebookAccount || '');
-        setInstagramAccount(data.instagramAccount || '');
-        setMainGenre(data.mainGenre || '');
-        setSideGenre(data.sideGenre || '');
-        setInfluences(data.influences || '');
-        setIsProfessional(data.isProfessional || false);
-        setBands(data.bands || '');
-        setLookingFor(data.lookingFor || 'Collaboration');
-        setIsProducer(data.isProducer || false);
-        setPremiumAccount(data.premiumAccount || false);
-      } catch (error) {
-        localStorage.removeItem('token');
-        history.push('/');
-      }
-    }
-    load();
-  }, [history]);
 
   const handleDelete = async (e) => {
     try {

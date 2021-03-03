@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 import {
   InAppHeader,
   HeaderContainer,
@@ -13,7 +15,7 @@ function HeaderLeft({ profilePicture }) {
         <ThumbnailContainer>
           <ProfilePicture src={profilePicture} alt="Profile Thumbnail" />
         </ThumbnailContainer>
-        <MyProfileAnchor href="/app/profile/">Mi Perfil</MyProfileAnchor>
+        <Link to="/app/profile/">Mi Perfil</Link>
       </HeaderContainer>
     </InAppHeader>
   );
