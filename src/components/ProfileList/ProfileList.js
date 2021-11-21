@@ -11,6 +11,9 @@ import SendMessageModal from '../../pages/Discover/SendMessageModal/SendMessageM
 // Services
 import YouTubeService from '../../services/YouTubeService';
 
+// Utils
+import { startTimeGen, endTimeGen, youtubeParser } from '../../utils';
+
 // Styles
 import {
   ComponentContainer,
@@ -38,32 +41,12 @@ import {
 } from './Styles';
 import { videoPlaceholder } from '../../pages/StyledPages/StyledPages';
 
-function ProfileList({ dataArray, youtubeParser, handleNext, index }) {
+function ProfileList({ dataArray, handleNext, index }) {
   const [showSendMessageModal, setShowSendMessageModal] = useState(false);
 
-  const {
-    _id,
-    video,
-    videoStartMin,
-    videoStartSec,
-    profilePicture,
-    name,
-    city,
-    mainInstrument,
-    mainGenre,
-    lookingFor,
-    description,
-    isProfessional,
-    isProducer,
-    influences,
-    sideInstrument,
-    sideGenre,
-    bands,
-    youtubeAccount,
-    twitterUsername,
-    facebookAccount,
-    instagramAccount,
-  } = dataArray[index];
+  const currentProfile = dataArray[index];
+  const { _id, video, videoStartMin, videoStartSec, profilePicture, name } =
+    currentProfile;
 
   const onSubmit = async (data) => {
     setShowSendMessageModal(false);
@@ -87,8 +70,9 @@ function ProfileList({ dataArray, youtubeParser, handleNext, index }) {
     }
   };
 
-  const startTime = videoStartMin * 60 + videoStartSec;
-  const endTime = startTime + 15;
+  const youtubeId = youtubeParser(video);
+  const startTime = startTimeGen(videoStartMin, videoStartSec);
+  const endTime = endTimeGen(startTime);
 
   return (
     <ComponentContainer>
@@ -98,7 +82,7 @@ function ProfileList({ dataArray, youtubeParser, handleNext, index }) {
           <VideoContainer>
             {video ? (
               <YouTubeService
-                youtubeId={youtubeParser(video)}
+                youtubeId={youtubeId}
                 startTime={startTime}
                 endTime={endTime}
               />
@@ -107,25 +91,7 @@ function ProfileList({ dataArray, youtubeParser, handleNext, index }) {
             )}
           </VideoContainer>
           <InfoContainer>
-            <ProfileListChild
-              profilePicture={profilePicture}
-              name={name}
-              city={city}
-              mainInstrument={mainInstrument}
-              mainGenre={mainGenre}
-              lookingFor={lookingFor}
-              description={description}
-              influences={influences}
-              isProfessional={isProfessional}
-              isProducer={isProducer}
-              sideInstrument={sideInstrument}
-              sideGenre={sideGenre}
-              bands={bands}
-              youtubeAccount={youtubeAccount}
-              twitterUsername={twitterUsername}
-              facebookAccount={facebookAccount}
-              instagramAccount={instagramAccount}
-            />
+            <ProfileListChild {...currentProfile} />
           </InfoContainer>
         </ProfileContainer>
         <ButtonsContainer>

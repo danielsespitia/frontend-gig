@@ -5,7 +5,7 @@ import { InAppHeader, LogoContainer, Logo } from './HeaderRightStyles';
 function HeaderRight() {
   return (
     <InAppHeader>
-      <LogoContainer href="/app/discover">
+      <LogoContainer to="/app/discover">
         <Logo src={gigLogo} alt="logo" />
       </LogoContainer>
     </InAppHeader>

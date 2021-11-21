@@ -14,7 +14,6 @@ function SendMessageModal({ id, onSubmit }) {
     switch (name) {
       case 'messageBody':
         setMessageBody(value);
-        console.log(value);
         break;
       default:
         break;

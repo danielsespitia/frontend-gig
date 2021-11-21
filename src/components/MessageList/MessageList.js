@@ -2,6 +2,9 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
+// Context
+import { useAppContext } from '../../context/app-context';
+
 // Components
 import ReadMessageModal from '../../pages/Discover/ReadMessageModal/ReadMessageModal';
 import HeaderLeft from '../Headers/HeaderLeft';
@@ -20,7 +23,11 @@ import {
   MessageBody,
 } from './Styles';
 
-function MessageList({ profilePicture }) {
+function MessageList() {
+  const {
+    state: { userData },
+  } = useAppContext();
+  const { profilePicture } = userData;
   const [messageArray, setMessageArray] = useState([]);
   const [state, setState] = useState({ showReadMessageModal: false });
   const onClick = (sender, senderPhoto, messageBody, timestamp) => {

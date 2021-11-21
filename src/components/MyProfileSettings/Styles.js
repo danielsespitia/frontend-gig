@@ -1,5 +1,6 @@
 // Packages
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const MyProfileSettingsContainer = styled.div`
   display: inherit;
@@ -32,7 +33,7 @@ export const SettingsContainer = styled.div`
   align-items: flex-start;
 `;
 
-export const Anchor = styled.a`
+export const Anchor = styled(Link)`
   height: 20px;
   opacity: 0.5;
   color: black;

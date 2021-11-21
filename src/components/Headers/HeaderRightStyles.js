@@ -1,5 +1,6 @@
 // Packages
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const InAppHeader = styled.header`
   width: 100%;
@@ -8,7 +9,7 @@ export const InAppHeader = styled.header`
   justify-content: center;
 `;
 
-export const LogoContainer = styled.a`
+export const LogoContainer = styled(Link)`
   display: inherit;
 `;
 

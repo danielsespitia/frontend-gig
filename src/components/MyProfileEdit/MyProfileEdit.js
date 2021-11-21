@@ -4,6 +4,9 @@ import { useForm } from 'react-hook-form';
 // Context
 import { useAppContext } from '../../context/app-context';
 
+// Utils
+import { startTimeGen, endTimeGen, youtubeParser } from '../../utils';
+
 // Services
 import YouTubeService from '../../services/YouTubeService';
 
@@ -45,8 +48,12 @@ function MyProfileEdit({
     state: { userData },
   } = useAppContext();
 
-  const { profilePicture, video } = userData;
+  const { profilePicture, video, videoStartMin, videoStartSec } = userData;
   const { register, handleSubmit } = useForm();
+
+  const youtubeId = youtubeParser(video);
+  const startTime = startTimeGen(videoStartMin, videoStartSec);
+  const endTime = endTimeGen(startTime);
 
   return (
     <ComponentContainer>
@@ -55,7 +62,11 @@ function MyProfileEdit({
         <ProfileContainer>
           <VideoContainer>
             {video ? (
-              <YouTubeService />
+              <YouTubeService
+                youtubeId={youtubeId}
+                startTime={startTime}
+                endTime={endTime}
+              />
             ) : (
               <VideoPlaceholder src={videoPlaceholder} alt="videoPlaceholder" />
             )}

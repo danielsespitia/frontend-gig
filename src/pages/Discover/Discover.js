@@ -11,35 +11,6 @@ function Discover() {
   const [dataArray, setDataArray] = useState([]);
   const [index, setIndex] = useState(0);
 
-  const [profilePicture, setProfilePicture] = useState('');
-
-  useEffect(() => {
-    async function load() {
-      const token = localStorage.getItem('token');
-      try {
-        const {
-          data: { data },
-        } = await axios({
-          method: 'GET',
-          baseURL: process.env.REACT_APP_SERVER_URL,
-          url: '/users/profile',
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        setProfilePicture(data.profilePicture || null);
-        if (data.profilePicture === undefined) {
-          setProfilePicture(
-            'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png'
-          );
-        }
-      } catch (error) {
-        localStorage.removeItem('token');
-      }
-    }
-    load();
-  }, []);
-
   useEffect(() => {
     async function load() {
       try {
@@ -78,24 +49,15 @@ function Discover() {
     }
   };
 
-  const youtubeParser = (url) => {
-    const regExp =
-      /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
-    let match = url.match(regExp);
-
-    return match && match[7].length === 11 ? match[7] : false;
-  };
-
   return (
     <div className="discover">
       <PageContainer>
         <Aside>
-          <MessageList profilePicture={profilePicture} />
+          <MessageList />
         </Aside>
         <Main>
           {!!dataArray.length > 0 && (
             <ProfileList
-              youtubeParser={youtubeParser}
               dataArray={dataArray}
               handleNext={handleNext}
               index={index}

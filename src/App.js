@@ -32,22 +32,12 @@ function App() {
       <Router>
         <Switch>
           <Route exact path="/" component={Home} />
-          <PrivateRoute
-            exact
-            path="/app/discover/send"
-            component={MessageForm}
-          />
           <PrivateRoute exact path="/app/discover" component={Discover} />
           <PrivateRoute exact path="/app/profile" component={Profile} />
           <PrivateRoute
             exact
             path="/app/profile/edit"
             component={ProfileEdit}
-          />
-          <PrivateRoute
-            exact
-            path="/app/messages/:userId"
-            component={Messages}
           />
           <Route component={NotFound} />
         </Switch>

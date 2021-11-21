@@ -26,7 +26,7 @@ function MyProfileSettings() {
   const {
     state: { userData },
   } = useAppContext();
-  const { profilePicture, email, premiumAccount } = userData;
+  const { email, premiumAccount } = userData;
 
   const handleDelete = async (e) => {
     try {
@@ -52,11 +52,11 @@ function MyProfileSettings() {
 
   return (
     <MyProfileSettingsContainer>
-      <HeaderLeft profilePicture={profilePicture} />
+      <HeaderLeft />
       <Settings>Ajustes de Cuenta</Settings>
       <SettingsContainer>
-        <Anchor href="/app/discover/">Descubre Musicos</Anchor>
-        <Anchor href="/" onClick={logout}>
+        <Anchor to="/app/discover/">Descubre Musicos</Anchor>
+        <Anchor to="/" onClick={logout}>
           Cerrar Sesion
         </Anchor>
         <Paragraph>Correo Electronico: {email}</Paragraph>
