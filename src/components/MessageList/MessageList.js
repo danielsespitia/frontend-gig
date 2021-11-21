@@ -29,15 +29,12 @@ function MessageList() {
   } = useAppContext();
   const { profilePicture } = userData;
   const [messageArray, setMessageArray] = useState([]);
-  const [state, setState] = useState({ showReadMessageModal: false });
-  const onClick = (sender, senderPhoto, messageBody, timestamp) => {
-    setState({
-      showReadMessageModal: true,
-      sender,
-      senderPhoto,
-      messageBody,
-      timestamp,
-    });
+  const [messageInfo, setMessageInfo] = useState({
+    showReadMessageModal: false,
+  });
+
+  const populateMessage = (messageInfo) => {
+    setMessageInfo(messageInfo);
   };
 
   useEffect(() => {
@@ -72,12 +69,13 @@ function MessageList() {
             <MessageArrayRender key={_id}>
               <SingleMessageContainer
                 onClick={() =>
-                  onClick(
-                    sender.name,
-                    sender.profilePicture,
+                  populateMessage({
+                    showReadMessageModal: true,
+                    sender: sender.name,
+                    senderPhoto: sender.profilePicture,
                     messageBody,
-                    timestamp
-                  )
+                    timestamp,
+                  })
                 }
               >
                 <ImageContainer>
@@ -96,12 +94,10 @@ function MessageList() {
           );
         })}
       <ReadMessageModal
-        sender={state.sender}
-        senderPhoto={state.senderPhoto}
-        messageBody={state.messageBody}
-        timestamp={state.timestamp}
-        showReadMessageModal={state.showReadMessageModal}
-        onClose={() => setState({ showReadMessageModal: false })}
+        {...messageInfo}
+        onClose={() =>
+          setMessageInfo({ ...messageInfo, showReadMessageModal: false })
+        }
       />
     </MessageListContainer>
   );
