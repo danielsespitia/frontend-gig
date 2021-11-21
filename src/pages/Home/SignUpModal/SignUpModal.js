@@ -1,6 +1,7 @@
 import { useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import { AuthContext } from '../../../store/AuthContext';
+import { useAppContext } from '../../../context/app-context';
 import axios from 'axios';
 
 import { SignUpForm } from '../../../components/Modals/SignUpForm/SignUpForm';
@@ -8,30 +9,35 @@ import { SignUpForm } from '../../../components/Modals/SignUpForm/SignUpForm';
 function SignUpModal() {
   const history = useHistory();
   const { isAuthenticated } = useContext(AuthContext);
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
+  const {
+    state: { userData },
+    setUserData,
+    setUserAuthentication,
+  } = useAppContext();
+  const { name, email, terms } = userData;
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [terms, setTerms] = useState('');
   const [errors, setErrors] = useState({});
 
   const handleChange = (e) => {
     const { name, value, checked } = e.target;
+
+    //TODO: Refactor to remove switch statement
     switch (name) {
       case 'name':
-        setName(value);
+        setUserData({ ...userData, name: value });
         break;
       case 'email':
-        setEmail(value);
+        setUserData({ ...userData, email: value });
+        break;
+      case 'terms':
+        setUserData({ ...userData, terms: checked });
         break;
       case 'password':
         setPassword(value);
         break;
       case 'confirmPassword':
         setConfirmPassword(value);
-        break;
-      case 'terms':
-        setTerms(checked);
         break;
       default:
         break;
@@ -50,13 +56,19 @@ function SignUpModal() {
           url: `/users/sign-up`,
           data: { name, password, email, terms },
         });
-        localStorage.setItem('token', token);
+
         const pathUser = 'app/profile/edit';
+
+        localStorage.setItem('token', token);
         localStorage.setItem('pathUser', pathUser);
+
         isAuthenticated(token, pathUser);
+        setUserAuthentication(true);
+
         history.push(`${pathUser}`);
       } catch (err) {
         setErrors({ account: 'No se pudo crear tu cuenta' });
+        console.log(err);
       }
     }
   };

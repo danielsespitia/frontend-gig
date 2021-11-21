@@ -1,6 +1,7 @@
 import { useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import { AuthContext } from '../../../store/AuthContext';
+import { useAppContext } from '../../../context/app-context';
 import axios from 'axios';
 
 import { LogInForm } from '../../../components/Modals/LogInForm/LogInForm';
@@ -8,7 +9,12 @@ import { LogInForm } from '../../../components/Modals/LogInForm/LogInForm';
 function LogInModal() {
   const history = useHistory();
   const { isAuthenticated } = useContext(AuthContext);
-  const [email, setEmail] = useState('');
+  const {
+    state: { userData },
+    setUserData,
+    setUserAuthentication,
+  } = useAppContext();
+  const { email } = userData;
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
   const [errors, setErrors] = useState({});
@@ -17,7 +23,7 @@ function LogInModal() {
     const { name, value } = e.target;
     switch (name) {
       case 'email':
-        setEmail(value);
+        setUserData({ ...userData, email: value });
         break;
       case 'password':
         setPassword(value);
@@ -34,15 +40,21 @@ function LogInModal() {
         data: { token },
       } = await axios({
         method: 'POST',
-        baseURL: process.env.REACT_APP_SERVER_URL,
+        baseURL: 'http://localhost:8000',
         url: `/users/sign-in`,
         data: { email, password },
       });
-      localStorage.setItem('token', token);
+
       const pathUser = 'app/discover/';
+
+      localStorage.setItem('token', token);
       localStorage.setItem('pathUser', pathUser);
+
       isAuthenticated(token, pathUser);
+      setUserAuthentication(true);
+
       setMessage('Inicio de sesion exitoso');
+
       history.push(`${pathUser}`);
     } catch (err) {
       localStorage.removeItem('token');
