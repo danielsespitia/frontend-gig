@@ -1,5 +1,6 @@
 // Packages
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const InAppHeader = styled.header`
   width: 100%;
@@ -40,7 +41,7 @@ export const ProfilePicture = styled.img`
   border-style: solid;
 `;
 
-export const MyProfileAnchor = styled.a`
+export const MyProfileAnchor = styled(Link)`
   font-size: 20px;
   font-weight: bold;
   color: white;

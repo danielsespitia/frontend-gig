@@ -14,11 +14,12 @@ import {
   MyProfileAnchor,
 } from './HeaderLeftStyles';
 
-function HeaderLeft({ profilePicture }) {
+function HeaderLeft() {
   const {
     state: { userData },
     setUserData,
   } = useAppContext();
+
   useEffect(() => {
     async function load() {
       const token = localStorage.getItem('token');
@@ -46,9 +47,12 @@ function HeaderLeft({ profilePicture }) {
     <InAppHeader>
       <HeaderContainer>
         <ThumbnailContainer>
-          <ProfilePicture src={profilePicture} alt="Profile Thumbnail" />
+          <ProfilePicture
+            src={userData.profilePicture}
+            alt="Profile Thumbnail"
+          />
         </ThumbnailContainer>
-        <MyProfileAnchor href="/app/profile/">Mi Perfil</MyProfileAnchor>
+        <MyProfileAnchor to="/app/profile/">Mi Perfil</MyProfileAnchor>
       </HeaderContainer>
     </InAppHeader>
   );

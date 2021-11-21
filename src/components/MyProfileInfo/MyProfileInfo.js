@@ -1,4 +1,7 @@
 // Packages
+import { Link } from 'react-router-dom';
+
+// Context
 import { useAppContext } from '../../context/app-context';
 
 // Components
@@ -58,11 +61,11 @@ function MyProfileInfo() {
           </InfoContainer>
         </ProfileContainer>
         <ButtonContainerEditInfo>
-          <a href="/app/profile/edit">
+          <Link to="/app/profile/edit">
             <ActionButtonContainer>
               <ActionButton color="primary">Editar Perfil</ActionButton>
             </ActionButtonContainer>
-          </a>
+          </Link>
         </ButtonContainerEditInfo>
       </BodyContainer>
     </ComponentContainer>
