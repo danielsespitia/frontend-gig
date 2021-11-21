@@ -122,7 +122,6 @@ function ProfileEdit() {
         </Aside>
         <Main>
           <MyProfileEdit
-            {...userData}
             handleChange={handleChange}
             onSubmit={onSubmit}
             disabled={disabled}
