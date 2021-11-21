@@ -1,4 +1,20 @@
-function YouTubeService({ youtubeId, startTime, endTime }) {
+// Context
+import { useAppContext } from '../context/app-context';
+
+// Utils
+import { startTimeGen, endTimeGen, youtubeParser } from '../utils';
+
+function YouTubeService() {
+  const {
+    state: { userData },
+  } = useAppContext();
+
+  const { video, videoStartMin, videoStartSec } = userData;
+
+  const youtubeId = youtubeParser(video);
+  const startTime = startTimeGen(videoStartMin, videoStartSec);
+  const endTime = endTimeGen(startTime);
+
   return (
     <iframe
       title="userVideo"

@@ -1,10 +1,12 @@
+// Packages
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
+// Components
 import ReadMessageModal from '../../pages/Discover/ReadMessageModal/ReadMessageModal';
-
 import HeaderLeft from '../Headers/HeaderLeft';
 
+// Styles
 import {
   MessageListContainer,
   MessageArrayRender,

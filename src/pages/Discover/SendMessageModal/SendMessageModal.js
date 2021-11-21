@@ -1,4 +1,7 @@
+// Packages
 import { useState } from 'react';
+
+// Components
 import MessageForm from '../../../components/Modals/MessageForm/MessageForm';
 
 function SendMessageModal({ id, onSubmit }) {

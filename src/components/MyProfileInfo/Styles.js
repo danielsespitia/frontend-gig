@@ -1,5 +1,7 @@
+// Packages
 import styled from 'styled-components';
 
+// Styles
 import { ButtonContainer } from '../StyledComponents/StyledCard';
 
 export const ButtonContainerEditInfo = styled(ButtonContainer)`

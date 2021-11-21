@@ -1,3 +1,7 @@
+// Context
+import { useAppContext } from '../../../context/app-context';
+
+// Styles
 import {
   Label,
   Input,
@@ -6,15 +10,13 @@ import {
   Select,
 } from '../Styles';
 
-function FirstFormChildren({
-  name,
-  video,
-  videoStartMin,
-  videoStartSec,
-  mainInstrument,
-  handleChange,
-  register,
-}) {
+function FirstFormChildren({ handleChange, register }) {
+  const {
+    state: { userData },
+  } = useAppContext();
+  const { name, video, videoStartMin, videoStartSec, mainInstrument } =
+    userData;
+
   return (
     <>
       <div>

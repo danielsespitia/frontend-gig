@@ -1,17 +1,23 @@
+// Packages
 import { useForm } from 'react-hook-form';
-import HeaderRight from '../Headers/HeaderRight';
 
+// Context
+import { useAppContext } from '../../context/app-context';
+
+// Services
 import YouTubeService from '../../services/YouTubeService';
 
+// Components
+import HeaderRight from '../Headers/HeaderRight';
 import FirstFormChildren from './FormChildren/FirstFormChildren';
 import SecondFormChildren from './FormChildren/SecondFormChildren';
 import ThirdFormChildren from './FormChildren/ThirdFormChildren';
 
+// Styles
 import {
   ActionButton,
   videoPlaceholder,
 } from '../../pages/StyledPages/StyledPages';
-
 import {
   ComponentContainer,
   BodyContainer,
@@ -20,7 +26,6 @@ import {
   VideoPlaceholder,
   InfoContainer,
 } from '../StyledComponents/StyledCard';
-
 import {
   ButtonContainerEditInfo,
   Form,
@@ -30,36 +35,17 @@ import {
 } from './Styles';
 
 function MyProfileEdit({
-  name,
-  profilePicture,
-  video,
-  videoStartMin,
-  videoStartSec,
-  youtubeId,
-  startTime,
-  endTime,
-  email,
-  description,
-  city,
-  mainInstrument,
-  sideInstrument,
-  youtubeAccount,
-  twitterUsername,
-  facebookAccount,
-  instagramAccount,
-  mainGenre,
-  sideGenre,
-  influences,
-  isProfessional,
-  bands,
-  lookingFor,
-  isProducer,
   handleChange,
   onSubmit,
   disabled,
   handleChangeProfilePicture,
   handleSubmitProfilePicture,
 }) {
+  const {
+    state: { userData },
+  } = useAppContext();
+
+  const { profilePicture, video } = userData;
   const { register, handleSubmit } = useForm();
 
   return (
@@ -69,11 +55,7 @@ function MyProfileEdit({
         <ProfileContainer>
           <VideoContainer>
             {video ? (
-              <YouTubeService
-                youtubeId={youtubeId}
-                startTime={startTime}
-                endTime={endTime}
-              />
+              <YouTubeService />
             ) : (
               <VideoPlaceholder src={videoPlaceholder} alt="videoPlaceholder" />
             )}
@@ -105,34 +87,14 @@ function MyProfileEdit({
             </form>
             <Form id="edit-form" onSubmit={handleSubmit(onSubmit)}>
               <FirstFormChildren
-                name={name}
-                video={video}
-                videoStartMin={videoStartMin}
-                videoStartSec={videoStartSec}
-                mainInstrument={mainInstrument}
                 handleChange={handleChange}
                 register={register}
               />
               <SecondFormChildren
-                sideInstrument={sideInstrument}
-                lookingFor={lookingFor}
-                email={email}
-                city={city}
-                description={description}
-                isProducer={isProducer}
-                isProfessional={isProfessional}
                 handleChange={handleChange}
                 register={register}
               />
               <ThirdFormChildren
-                mainGenre={mainGenre}
-                sideGenre={sideGenre}
-                influences={influences}
-                bands={bands}
-                youtubeAccount={youtubeAccount}
-                twitterUsername={twitterUsername}
-                facebookAccount={facebookAccount}
-                instagramAccount={instagramAccount}
                 handleChange={handleChange}
                 register={register}
               />

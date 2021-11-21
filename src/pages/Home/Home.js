@@ -1,17 +1,19 @@
+// Packages
 import { useHistory } from 'react-router-dom';
 import { useState } from 'react';
-
 import Modal from 'react-modal';
+
+// Components
 import SignUpModal from '../Home/SignUpModal/SignUpModal';
 import LogInModal from '../Home/LogInModal/LogInModal';
 
+// Styles
 import {
   MainActionButton,
   SecondaryActionButton,
   gigLogo,
   closeButtonSrc,
 } from '../StyledPages/StyledPages';
-
 import {
   HomeContainer,
   HomeHeader,

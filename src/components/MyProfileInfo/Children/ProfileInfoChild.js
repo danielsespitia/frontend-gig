@@ -1,10 +1,13 @@
+// Context
+import { useAppContext } from '../../../context/app-context';
+
+// Styles
 import {
   youTubeLogo,
   twitterLogo,
   facebookLogo,
   instagramLogo,
 } from '../../../pages/StyledPages/StyledPages';
-
 import {
   FirstCard,
   ImageContainer,
@@ -28,25 +31,31 @@ import {
   FirstTextContainer,
 } from '../Styles';
 
-function ProfileInfoChild({
-  profilePicture,
-  name,
-  city,
-  mainInstrument,
-  mainGenre,
-  lookingFor,
-  description,
-  influences,
-  isProfessional,
-  isProducer,
-  sideInstrument,
-  sideGenre,
-  bands,
-  youtubeAccount,
-  twitterUsername,
-  facebookAccount,
-  instagramAccount,
-}) {
+function ProfileInfoChild() {
+  const {
+    state: { userData },
+  } = useAppContext();
+
+  const {
+    profilePicture,
+    name,
+    city,
+    mainInstrument,
+    mainGenre,
+    lookingFor,
+    description,
+    influences,
+    isProfessional,
+    isProducer,
+    sideInstrument,
+    sideGenre,
+    bands,
+    youtubeAccount,
+    twitterUsername,
+    facebookAccount,
+    instagramAccount,
+  } = userData;
+
   return (
     <>
       <FirstCard>

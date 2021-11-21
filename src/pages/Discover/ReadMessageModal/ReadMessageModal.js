@@ -1,5 +1,7 @@
+// Packages
 import Modal from 'react-modal';
 
+// Styles
 import {
   ModalHeader,
   To,

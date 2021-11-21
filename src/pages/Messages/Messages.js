@@ -1,8 +1,8 @@
-import styled from 'styled-components';
-
+// Components
 import MessageList from '../../components/MessageList/MessageList';
 import MessageRender from '../../components/MessageRender/MessageRender';
 
+// Styles
 import { PageContainer, Aside, Main } from '../StyledPages/StyledPages';
 
 function Messages() {

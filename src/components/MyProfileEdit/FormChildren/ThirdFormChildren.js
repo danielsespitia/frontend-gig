@@ -1,17 +1,25 @@
+// Context
+import { useAppContext } from '../../../context/app-context';
+
+// Styles
 import { Label, Input, Select, TextArea } from '../Styles';
 
-function ThirdFormChildren({
-  mainGenre,
-  sideGenre,
-  influences,
-  bands,
-  youtubeAccount,
-  twitterUsername,
-  facebookAccount,
-  instagramAccount,
-  handleChange,
-  register,
-}) {
+function ThirdFormChildren({ handleChange, register }) {
+  const {
+    state: { userData },
+  } = useAppContext();
+  const {
+    mainGenre,
+    sideGenre,
+    influences,
+    bands,
+    youtubeAccount,
+    twitterUsername,
+    facebookAccount,
+    instagramAccount,
+  } = userData;
+
+  // TODO: Clean unnecesarry classnames
   return (
     <>
       <div>
@@ -26,6 +34,7 @@ function ThirdFormChildren({
           ref={register}
           required
         >
+          {/* //TODO: Map values */}
           <option value="Rock">Rock</option>
           <option value="Metal">Metal</option>
           <option value="EDM">EDM</option>
@@ -46,6 +55,7 @@ function ThirdFormChildren({
           onChange={handleChange}
           ref={register}
         >
+          {/* //TODO: Map values */}
           <option value="Rock">Rock</option>
           <option value="Metal">Metal</option>
           <option value="EDM">EDM</option>

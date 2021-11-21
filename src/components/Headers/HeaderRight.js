@@ -1,3 +1,4 @@
+// Styles
 import { gigLogo } from '../../pages/StyledPages/StyledPages';
 import { InAppHeader, LogoContainer, Logo } from './HeaderRightStyles';
 

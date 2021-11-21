@@ -1,8 +1,16 @@
+// Packages
 import { useContext } from 'react';
-import { AuthContext } from '../../store/AuthContext';
+import { useHistory } from 'react-router-dom';
+import axios from 'axios';
 
+// Context
+import { AuthContext } from '../../store/AuthContext';
+import { useAppContext } from '../../context/app-context';
+
+// Components
 import HeaderLeft from '../Headers/HeaderLeft';
 
+// Styles
 import {
   MyProfileSettingsContainer,
   Settings,
@@ -12,13 +20,35 @@ import {
   NewButtonContainer,
 } from './Styles';
 
-function MyProfileSettings({
-  profilePicture,
-  email,
-  premiumAccount,
-  handleDelete,
-}) {
+function MyProfileSettings() {
   const { logout } = useContext(AuthContext);
+  const history = useHistory();
+  const {
+    state: { userData },
+  } = useAppContext();
+  const { profilePicture, email, premiumAccount } = userData;
+
+  const handleDelete = async (e) => {
+    try {
+      const token = localStorage.getItem('token');
+      axios({
+        method: 'DELETE',
+        baseURL: process.env.REACT_APP_SERVER_URL,
+        url: `/users`,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      localStorage.removeItem('token');
+      logout();
+
+      alert('Tu cuenta fue eliminada');
+      history.push('/');
+    } catch (err) {
+      alert('Tu cuenta no pudo ser eliminada', err);
+    }
+  };
 
   return (
     <MyProfileSettingsContainer>
