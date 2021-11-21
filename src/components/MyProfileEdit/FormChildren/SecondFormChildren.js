@@ -1,16 +1,22 @@
+// Context
+import { useAppContext } from '../../../context/app-context';
+
+// Styles
 import { Label, Input, Select, TextArea } from '../Styles';
 
-function SecondFormChildren({
-  sideInstrument,
-  lookingFor,
-  email,
-  city,
-  description,
-  isProducer,
-  isProfessional,
-  handleChange,
-  register,
-}) {
+function SecondFormChildren({ handleChange, register }) {
+  const {
+    state: { userData },
+  } = useAppContext();
+  const {
+    sideInstrument,
+    lookingFor,
+    email,
+    city,
+    description,
+    isProducer,
+    isProfessional,
+  } = userData;
   return (
     <>
       <div>
@@ -24,6 +30,7 @@ function SecondFormChildren({
           onChange={handleChange}
           ref={register}
         >
+          {/* // TODO: Map values */}
           <option value="Ninguno">Ninguno</option>
           <option value="Guitarrista">Guitarrista</option>
           <option value="Bajista">Bajista</option>

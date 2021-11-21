@@ -1,5 +1,7 @@
 // Packages
 import { createContext, useContext, useMemo, useReducer } from 'react';
+
+// Assets
 import { profilePicturePlaceholder } from '../pages/StyledPages/StyledPages';
 
 const AppContext = createContext(undefined);

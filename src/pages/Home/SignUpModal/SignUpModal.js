@@ -1,9 +1,13 @@
+// Packages
 import { useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
-import { AuthContext } from '../../../store/AuthContext';
-import { useAppContext } from '../../../context/app-context';
 import axios from 'axios';
 
+// Context
+import { AuthContext } from '../../../store/AuthContext';
+import { useAppContext } from '../../../context/app-context';
+
+// Components
 import { SignUpForm } from '../../../components/Modals/SignUpForm/SignUpForm';
 
 function SignUpModal() {

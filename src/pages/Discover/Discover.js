@@ -1,6 +1,8 @@
+// Packages
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
+// Components
 import MessageList from '../../components/MessageList/MessageList';
 import ProfileList from '../../components/ProfileList/ProfileList';
 import { PageContainer, Aside, Main } from '../StyledPages/StyledPages';
@@ -77,7 +79,8 @@ function Discover() {
   };
 
   const youtubeParser = (url) => {
-    const regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
+    const regExp =
+      /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
     let match = url.match(regExp);
 
     return match && match[7].length === 11 ? match[7] : false;

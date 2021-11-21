@@ -1,24 +1,26 @@
-import { useState, useEffect, useContext } from 'react';
+// Packages
+import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 
-import { AuthContext } from '../../store/AuthContext';
+// Context
 import { useAppContext } from '../../context/app-context';
 
+// Components
 import MyProfileSettings from '../../components/MyProfileSettings/MyProfileSettings';
 import MyProfileEdit from '../../components/MyProfileEdit/MyProfileEdit';
 
+// Styles
 import { PageContainer, Aside, Main } from '../StyledPages/StyledPages';
 
 function ProfileEdit() {
-  const { logout } = useContext(AuthContext);
   const history = useHistory();
   const [disabled, setDisabled] = useState(true);
   const {
     state: { userData },
     setUserData,
   } = useAppContext();
-  const { profilePicture, video, videoStartMin, videoStartSec } = userData;
+  const { profilePicture } = userData;
 
   const [file, setFile] = useState(null);
 
@@ -70,28 +72,6 @@ function ProfileEdit() {
     } catch (err) {}
   };
 
-  const handleDelete = async (e) => {
-    try {
-      const token = localStorage.getItem('token');
-      axios({
-        method: 'DELETE',
-        baseURL: process.env.REACT_APP_SERVER_URL,
-        url: `/users`,
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-
-      localStorage.removeItem('token');
-      logout();
-
-      alert('Tu cuenta fue eliminada');
-      history.push('/');
-    } catch (err) {
-      alert('Tu cuenta no pudo ser eliminada', err);
-    }
-  };
-
   const readFile = (file) => {
     const reader = new FileReader();
 
@@ -134,35 +114,15 @@ function ProfileEdit() {
     }
   };
 
-  // TODO: Move to utils folder with export statement
-  const youtubeParser = (url) => {
-    if (url) {
-      const regExp =
-        /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
-      let match = url.match(regExp);
-
-      return match && match[7].length === 11 ? match[7] : false;
-    }
-    return;
-  };
-
-  const youtubeId = youtubeParser(video);
-
-  const startTime = videoStartMin * 60 + videoStartSec;
-  const endTime = startTime + 15;
-
   return (
     <div className="profile-edit">
       <PageContainer>
         <Aside>
-          <MyProfileSettings {...userData} handleDelete={handleDelete} />
+          <MyProfileSettings {...userData} />
         </Aside>
         <Main>
           <MyProfileEdit
             {...userData}
-            youtubeId={youtubeId}
-            startTime={startTime}
-            endTime={endTime}
             handleChange={handleChange}
             onSubmit={onSubmit}
             disabled={disabled}

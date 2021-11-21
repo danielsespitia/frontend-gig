@@ -1,13 +1,19 @@
+// Packages
+import { useAppContext } from '../../context/app-context';
+
+// Components
+import HeaderRight from '../Headers/HeaderRight';
+import ProfileInfoChild from './Children/ProfileInfoChild';
+
+// Services
 import YouTubeService from '../../services/YouTubeService';
 
-import HeaderRight from '../Headers/HeaderRight';
-
+// Styles
 import {
   ActionButtonContainer,
   ActionButton,
   videoPlaceholder,
 } from '../../pages/StyledPages/StyledPages';
-
 import {
   ComponentContainer,
   BodyContainer,
@@ -16,34 +22,14 @@ import {
   VideoPlaceholder,
   InfoContainer,
 } from '../StyledComponents/StyledCard';
-
 import { ButtonContainerEditInfo } from './Styles';
 
-import ProfileInfoChild from './Children/ProfileInfoChild';
+function MyProfileInfo() {
+  const {
+    state: { userData },
+  } = useAppContext();
+  const { video } = userData;
 
-function MyProfileInfo({
-  video,
-  youtubeId,
-  startTime,
-  endTime,
-  profilePicture,
-  name,
-  city,
-  mainInstrument,
-  mainGenre,
-  lookingFor,
-  description,
-  isProfessional,
-  isProducer,
-  influences,
-  sideInstrument,
-  sideGenre,
-  bands,
-  youtubeAccount,
-  twitterUsername,
-  facebookAccount,
-  instagramAccount,
-}) {
   return (
     <ComponentContainer>
       <HeaderRight />
@@ -51,35 +37,13 @@ function MyProfileInfo({
         <ProfileContainer>
           <VideoContainer>
             {video ? (
-              <YouTubeService
-                youtubeId={youtubeId}
-                startTime={startTime}
-                endTime={endTime}
-              />
+              <YouTubeService />
             ) : (
               <VideoPlaceholder src={videoPlaceholder} alt="videoPlaceholder" />
             )}
           </VideoContainer>
           <InfoContainer>
-            <ProfileInfoChild
-              profilePicture={profilePicture}
-              name={name}
-              city={city}
-              mainInstrument={mainInstrument}
-              mainGenre={mainGenre}
-              lookingFor={lookingFor}
-              description={description}
-              influences={influences}
-              isProfessional={isProfessional}
-              isProducer={isProducer}
-              sideInstrument={sideInstrument}
-              sideGenre={sideGenre}
-              bands={bands}
-              youtubeAccount={youtubeAccount}
-              twitterUsername={twitterUsername}
-              facebookAccount={facebookAccount}
-              instagramAccount={instagramAccount}
-            />
+            <ProfileInfoChild />
           </InfoContainer>
         </ProfileContainer>
         <ButtonContainerEditInfo>

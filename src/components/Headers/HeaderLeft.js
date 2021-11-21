@@ -1,3 +1,4 @@
+// Styles
 import {
   InAppHeader,
   HeaderContainer,

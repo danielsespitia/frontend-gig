@@ -1,4 +1,4 @@
-import './App.css';
+// Packages
 import {
   BrowserRouter as Router,
   Redirect,
@@ -6,6 +6,7 @@ import {
   Switch,
 } from 'react-router-dom';
 
+// Components
 import NotFound from './pages/NotFound/NotFound';
 import Home from './pages/Home/Home';
 import Discover from './pages/Discover/Discover';
@@ -13,6 +14,9 @@ import Profile from './pages/Profile/Profile';
 import ProfileEdit from './pages/ProfileEdit/ProfileEdit';
 import Messages from './pages/Messages/Messages';
 import MessageForm from './components/Modals/MessageForm/MessageForm';
+
+// Styles
+import './App.css';
 
 function PrivateRoute(props) {
   const token = localStorage.getItem('token');

@@ -1,12 +1,17 @@
+// Packages
 import { useState } from 'react';
 import Modal from 'react-modal';
 import axios from 'axios';
 
-import YouTubeService from '../../services/YouTubeService';
-
+// Components
 import HeaderRight from '../Headers/HeaderRight';
 import ProfileListChild from './ProfileListChildren/ProfileListChild';
 import SendMessageModal from '../../pages/Discover/SendMessageModal/SendMessageModal';
+
+// Services
+import YouTubeService from '../../services/YouTubeService';
+
+// Styles
 import {
   ComponentContainer,
   BodyContainer,
@@ -15,7 +20,6 @@ import {
   VideoPlaceholder,
   InfoContainer,
 } from '../StyledComponents/StyledCard';
-
 import {
   ButtonsContainer,
   MessageButtonContainer,
